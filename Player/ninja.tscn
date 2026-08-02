@@ -1,0 +1,156 @@
+[gd_scene format=3 uid="uid://ejfaj5pm3sua"]
+
+[ext_resource type="PackedScene" uid="uid://6lciyj62uqti" path="res://Ninja model/T-Pose.fbx" id="1_25rb4"]
+[ext_resource type="Script" uid="uid://ba6hxecms0gtp" path="res://Player/ninja.gd" id="2_0jgus"]
+[ext_resource type="Texture2D" uid="uid://dab7j4yaog6cy" path="res://Ninja model/ninja_ninja_character_3d_model_basecolor.png" id="2_lbaip"]
+[ext_resource type="AnimationLibrary" uid="uid://bjxkx141qed0" path="res://Animations/walk aiming/Standing Aim Idle.fbx" id="3_s7tgv"]
+[ext_resource type="AnimationLibrary" uid="uid://4af3flmy02k5" path="res://Animations/walk aiming/Standing Aim Walk Back.fbx" id="4_0jgus"]
+[ext_resource type="AnimationLibrary" uid="uid://nb5h3jvsq1hv" path="res://Animations/walk aiming/Standing Aim Walk Forward.fbx" id="5_l1xii"]
+[ext_resource type="AnimationLibrary" uid="uid://cb2lcomsqslto" path="res://Animations/walk aiming/Standing Aim Walk Left.fbx" id="6_ugt1r"]
+[ext_resource type="AnimationLibrary" uid="uid://5t27ca3vpy54" path="res://Animations/walk aiming/Standing Aim Walk Right.fbx" id="7_wwoeq"]
+[ext_resource type="AnimationLibrary" uid="uid://cjtojebqbfds4" path="res://Animations/walk aiming/Standing Aim Shoot.fbx" id="8_jmlab"]
+[ext_resource type="AnimationLibrary" uid="uid://b5pvo8fj88dhd" path="res://Animations/walk with bow/Standing Idle 03 Examine.fbx" id="9_ge331"]
+[ext_resource type="AnimationLibrary" uid="uid://cn06wtvvmqi57" path="res://Animations/walk with bow/Standing Run Back.fbx" id="10_e5msv"]
+[ext_resource type="AnimationLibrary" uid="uid://cco0cpi0j4bec" path="res://Animations/walk with bow/Standing Sprint Forward.fbx" id="11_urp7h"]
+[ext_resource type="AnimationLibrary" uid="uid://bcnifltk7gglh" path="res://Animations/walk with bow/Standing Run Left.fbx" id="12_buiaf"]
+[ext_resource type="AnimationLibrary" uid="uid://cmt3ehq0hs5to" path="res://Animations/walk with bow/Standing Run Right.fbx" id="13_5wk80"]
+[ext_resource type="AnimationLibrary" uid="uid://5q7un3fbrla2" path="res://Animations/normal walk/Breathing Idle.fbx" id="14_fxwi1"]
+[ext_resource type="AnimationLibrary" uid="uid://cvg2ctqrh8djr" path="res://Animations/normal walk/Left Strafe.fbx" id="15_5y2i1"]
+[ext_resource type="AnimationLibrary" uid="uid://vn712pb80in2" path="res://Animations/attack/High Kick Left.fbx" id="15_fxwi1"]
+[ext_resource type="AnimationLibrary" uid="uid://p5yo582xgrrr" path="res://Animations/attack/High Kick Right.fbx" id="16_5y2i1"]
+[ext_resource type="AnimationLibrary" uid="uid://bqvo7tku07vi0" path="res://Animations/normal walk/Right Strafe.fbx" id="16_j8gkf"]
+[ext_resource type="AnimationLibrary" uid="uid://dtoq61u0dhvs2" path="res://Animations/attack/Low Kick Left.fbx" id="17_j8gkf"]
+[ext_resource type="AnimationLibrary" uid="uid://bn6gfwky23pn5" path="res://Animations/normal walk/Running Backward.fbx" id="17_nx11x"]
+[ext_resource type="AnimationLibrary" uid="uid://cueub0kfy4aru" path="res://Animations/normal walk/Fast Run.fbx" id="18_6umd0"]
+[ext_resource type="AnimationLibrary" uid="uid://cidakxpufl4sc" path="res://Animations/attack/Low Kick Right.fbx" id="18_nx11x"]
+[ext_resource type="AnimationLibrary" uid="uid://bx1sfhfcugmct" path="res://Animations/attack/Mma Kick  Right.fbx" id="19_6umd0"]
+[ext_resource type="AnimationLibrary" uid="uid://tgkns68chn7u" path="res://Animations/attack/Mma Kick Left.fbx" id="20_8q81g"]
+[ext_resource type="AnimationLibrary" uid="uid://bskfpf524bibf" path="res://Animations/attack/Punch Quick Right.fbx" id="26_7fjl8"]
+[ext_resource type="AnimationLibrary" uid="uid://bjra00ycbdufc" path="res://Animations/attack/Punch Long Left.fbx" id="27_samnv"]
+[ext_resource type="AnimationLibrary" uid="uid://gkch7scrbimp" path="res://Animations/attack/Punch Long Right.fbx" id="28_usuh0"]
+[ext_resource type="AnimationLibrary" uid="uid://cfpaxucp03og8" path="res://Animations/attack/Punch Quick Left.fbx" id="29_nitqc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ot7kk"]
+albedo_texture = ExtResource("2_lbaip")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_h2uud"]
+radius = 0.14111328
+height = 0.94677734
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aimshoot"]
+animation = &"Aim Shoot/mixamo_com"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_h4j7k"]
+filter_enabled = true
+filters = ["Skeleton3D:mixamorig_Head", "Skeleton3D:mixamorig_LeftArm", "Skeleton3D:mixamorig_LeftForeArm", "Skeleton3D:mixamorig_LeftHand", "Skeleton3D:mixamorig_LeftHandIndex1", "Skeleton3D:mixamorig_LeftHandIndex2", "Skeleton3D:mixamorig_LeftHandIndex3", "Skeleton3D:mixamorig_LeftHandThumb1", "Skeleton3D:mixamorig_LeftHandThumb2", "Skeleton3D:mixamorig_LeftHandThumb3", "Skeleton3D:mixamorig_LeftShoulder", "Skeleton3D:mixamorig_Neck", "Skeleton3D:mixamorig_RightArm", "Skeleton3D:mixamorig_RightForeArm", "Skeleton3D:mixamorig_RightHand", "Skeleton3D:mixamorig_RightHandIndex1", "Skeleton3D:mixamorig_RightHandIndex2", "Skeleton3D:mixamorig_RightHandIndex3", "Skeleton3D:mixamorig_RightHandThumb1", "Skeleton3D:mixamorig_RightHandThumb2", "Skeleton3D:mixamorig_RightHandThumb3", "Skeleton3D:mixamorig_RightShoulder", "Skeleton3D:mixamorig_Spine", "Skeleton3D:mixamorig_Spine1", "Skeleton3D:mixamorig_Spine2", "mixamorig_Head", "mixamorig_HeadTop_End", "mixamorig_LeftArm", "mixamorig_LeftForeArm", "mixamorig_LeftHand", "mixamorig_LeftHandIndex1", "mixamorig_LeftHandIndex2", "mixamorig_LeftHandIndex3", "mixamorig_LeftHandIndex4", "mixamorig_LeftHandThumb1", "mixamorig_LeftHandThumb2", "mixamorig_LeftHandThumb3", "mixamorig_LeftHandThumb4", "mixamorig_LeftShoulder", "mixamorig_Neck", "mixamorig_RightArm", "mixamorig_RightForeArm", "mixamorig_RightHand", "mixamorig_RightHandIndex1", "mixamorig_RightHandIndex2", "mixamorig_RightHandIndex3", "mixamorig_RightHandIndex4", "mixamorig_RightHandThumb1", "mixamorig_RightHandThumb2", "mixamorig_RightHandThumb3", "mixamorig_RightHandThumb4", "mixamorig_RightShoulder", "mixamorig_Spine", "mixamorig_Spine1", "mixamorig_Spine2"]
+fadein_time = 0.1
+fadeout_time = 0.1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aimback"]
+animation = &"Aim Run Back/mixamo_com"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aimfwd"]
+animation = &"Aim Run Forward/mixamo_com"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aimidle"]
+animation = &"Aim Idle/mixamo_com"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aimleft"]
+animation = &"Aim Run Left/mixamo_com"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aimright"]
+animation = &"Aim Run Right/mixamo_com"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_idle"]
+animation = &"Bow Idle/mixamo_com"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_run"]
+animation = &"Bow Run Forward/mixamo_com"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_default"]
+xfade_time = 0.2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_s7tgv"]
+states/AimBack/node = SubResource("AnimationNodeAnimation_aimback")
+states/AimBack/position = Vector2(460, 492)
+states/AimForward/node = SubResource("AnimationNodeAnimation_aimfwd")
+states/AimForward/position = Vector2(460, 105)
+states/AimIdle/node = SubResource("AnimationNodeAnimation_aimidle")
+states/AimIdle/position = Vector2(59, 289)
+states/AimLeft/node = SubResource("AnimationNodeAnimation_aimleft")
+states/AimLeft/position = Vector2(243, 289)
+states/AimRight/node = SubResource("AnimationNodeAnimation_aimright")
+states/AimRight/position = Vector2(645, 283)
+states/Idle/node = SubResource("AnimationNodeAnimation_idle")
+states/Idle/position = Vector2(-190, 253)
+states/Run/node = SubResource("AnimationNodeAnimation_run")
+states/Run/position = Vector2(79, 100)
+states/Start/position = Vector2(53, 14)
+transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_default"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_default"), "Idle", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "Idle", SubResource("AnimationNodeStateMachineTransition_default"), "Run", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "Run", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default")]
+graph_offset = Vector2(-321, 43)
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
+graph_offset = Vector2(-509.1498, -204.57455)
+nodes/output/position = Vector2(500, -60)
+nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
+nodes/StateMachine/position = Vector2(-180, -100)
+nodes/Shoot/node = SubResource("AnimationNodeOneShot_h4j7k")
+nodes/Shoot/position = Vector2(260, -60)
+nodes/AimShoot/node = SubResource("AnimationNodeAnimation_aimshoot")
+nodes/AimShoot/position = Vector2(-180, 140)
+node_connections = [&"output", 0, &"Shoot", &"Shoot", 0, &"StateMachine", &"Shoot", 1, &"AimShoot"]
+
+[node name="Ninja" unique_id=233157932 instance=ExtResource("1_25rb4")]
+script = ExtResource("2_0jgus")
+
+[node name="Skeleton3D" parent="." index="0" unique_id=1484561533]
+bones/12/rotation = Quaternion(0.025149304, 6.941091e-17, -1.3882182e-17, 0.9996837)
+bones/13/rotation = Quaternion(-0.027157648, 3.082625e-33, 0, 0.99963117)
+bones/16/rotation = Quaternion(0.011310096, 9.7150735e-17, 2.4287684e-17, 0.99993604)
+bones/17/rotation = Quaternion(0.05499171, -2.779764e-17, -3.4747053e-18, 0.9984868)
+bones/24/rotation = Quaternion(0.062739, 4.1715555e-17, 5.562073e-17, 0.99802995)
+bones/25/rotation = Quaternion(-0.067017935, 8.345435e-17, -6.954531e-17, 0.9977518)
+bones/28/rotation = Quaternion(-0.060860954, 2.58974e-26, 1.042767e-17, 0.99814624)
+bones/29/rotation = Quaternion(0.07379109, 5.5662896e-17, -4.8705033e-17, 0.99727374)
+
+[node name="tripo_node_011bb799" parent="Skeleton3D" index="0" unique_id=441335630]
+surface_material_override/0 = SubResource("StandardMaterial3D_ot7kk")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=96017134]
+"libraries/Aim Idle" = ExtResource("3_s7tgv")
+"libraries/Aim Run Back" = ExtResource("4_0jgus")
+"libraries/Aim Run Forward" = ExtResource("5_l1xii")
+"libraries/Aim Run Left" = ExtResource("6_ugt1r")
+"libraries/Aim Run Right" = ExtResource("7_wwoeq")
+"libraries/Aim Shoot" = ExtResource("8_jmlab")
+"libraries/Bow Idle" = ExtResource("9_ge331")
+"libraries/Bow Run Back" = ExtResource("10_e5msv")
+"libraries/Bow Run Forward" = ExtResource("11_urp7h")
+"libraries/Bow Run Left" = ExtResource("12_buiaf")
+"libraries/Bow Run Right" = ExtResource("13_5wk80")
+"libraries/High Kick Left" = ExtResource("15_fxwi1")
+"libraries/High Kick Right" = ExtResource("16_5y2i1")
+"libraries/Low Kick Left" = ExtResource("17_j8gkf")
+"libraries/Low Kick Right" = ExtResource("18_nx11x")
+"libraries/Mma Kick  Right" = ExtResource("19_6umd0")
+"libraries/Mma Kick Left" = ExtResource("20_8q81g")
+"libraries/Normal Idle" = ExtResource("14_fxwi1")
+"libraries/Normal Left Strafe" = ExtResource("15_5y2i1")
+"libraries/Normal Right Strafe" = ExtResource("16_j8gkf")
+"libraries/Normal Run Backward" = ExtResource("17_nx11x")
+"libraries/Normal Run Forward" = ExtResource("18_6umd0")
+"libraries/Punch Quick Right" = ExtResource("26_7fjl8")
+"libraries/Punching Long Left" = ExtResource("27_samnv")
+"libraries/Punching Long Right" = ExtResource("28_usuh0")
+"libraries/Punching Quick Left" = ExtResource("29_nitqc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=1334062913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46655273, 0.009079799)
+shape = SubResource("CapsuleShape3D_h2uud")
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="3" unique_id=923202538]
+tree_root = SubResource("AnimationNodeBlendTree_9k2l3")
+anim_player = NodePath("../AnimationPlayer")
+parameters/Shoot/active = false
+parameters/Shoot/internal_active = false
+parameters/Shoot/request = 0

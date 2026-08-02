@@ -1,0 +1,4 @@
+[gd_resource type="AnimationNodeBlendTree" format=3 uid="uid://gam83ei3meo1"]
+
+[resource]
+nodes/output/position = Vector2(0, 0)
