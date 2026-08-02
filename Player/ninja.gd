@@ -50,11 +50,6 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot") and is_aiming:
 		_fire()
 
-	if Input.is_action_just_pressed("punch"):
-		_attack(0)
-	if Input.is_action_just_pressed("kick"):
-		_attack(1)
-
 	_update_animation(is_aiming, move_dir)
 
 
@@ -79,25 +74,6 @@ func _process_aiming(delta: float, move_dir: Vector3, aim_input: Vector2) -> voi
 func _fire() -> void:
 	if not animation_tree.get("parameters/Shoot/active"):
 		animation_tree.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-
-
-func _attack(type: int) -> void:
-	print("_attack called: ", type)
-	if animation_tree.get("parameters/Attack/blend_amount") > 0.01:
-		return
-	var anims := PUNCH_ANIMS if type == 0 else KICK_ANIMS
-	var index := randi() % anims.size()
-	var anim: StringName = anims[index]
-	animation_tree.tree_root.get_node("AttackAnim").set("animation", anim)
-	animation_tree.set("parameters/Attack/blend_amount", 1.0)
-	var attack_anim: Animation = $AnimationPlayer.get_animation(anim)
-	var anim_length: float = attack_anim.length
-	var tween := create_tween()
-	tween.tween_method(_set_attack_blend.bind(1.0, 0.0), 0.0, 1.0, anim_length)
-
-
-func _set_attack_blend(t: float, from: float, to: float) -> void:
-	animation_tree.set("parameters/Attack/blend_amount", lerp(from, to, t))
 
 
 func _update_animation(is_aiming: bool, move_dir: Vector3) -> void:
