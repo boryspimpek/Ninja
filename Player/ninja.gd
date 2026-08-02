@@ -28,11 +28,16 @@ const KICK_ANIMS: Array[StringName] = [
 
 
 func _physics_process(delta: float) -> void:
+	var is_melee_attacking: bool = (
+		animation_tree.get("parameters/PunchShot/active")
+		or animation_tree.get("parameters/KickShot/active")
+	)
+	var is_shooting: bool = animation_tree.get("parameters/Shoot/active")
+
 	var move_input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
 	var aim_input := Input.get_vector("aim_stick_left", "aim_stick_right", "aim_stick_forward", "aim_stick_back")
 	var is_aiming := Input.is_action_pressed("aim_mode") or aim_input.length() > STICK_DEADZONE
 
-	# World-space movement: x = right, z = "down"-on-screen forward.
 	var move_dir := Vector3(move_input.x, 0.0, move_input.y)
 
 	if not is_on_floor():
@@ -40,25 +45,37 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = 0.0
 
-	if is_aiming:
+	if is_melee_attacking:
+		velocity.x = 0.0
+		velocity.z = 0.0
+	elif is_aiming:
 		_process_aiming(delta, move_dir, aim_input)
 	else:
 		_process_moving(delta, move_dir)
 
 	move_and_slide()
 
-	if Input.is_action_just_pressed("shoot") and is_aiming:
+	if Input.is_action_just_pressed("shoot") and is_aiming and not is_melee_attacking and not is_shooting:
 		_fire()
 
-	_update_animation(is_aiming, move_dir)
+	if not is_melee_attacking:
+		_update_animation(is_aiming, move_dir)
 
 
 func _input(event: InputEvent) -> void:
+	var is_melee_attacking: bool = (
+		animation_tree.get("parameters/PunchShot/active")
+		or animation_tree.get("parameters/KickShot/active")
+	)
+	var is_shooting: bool = animation_tree.get("parameters/Shoot/active")
+	if is_melee_attacking or is_shooting:
+		return
+
 	if event.is_action_pressed("punch"):
 		_do_attack("PunchAnim", "PunchShot", PUNCH_ANIMS)
 	elif event.is_action_pressed("kick"):
 		_do_attack("KickAnim", "KickShot", KICK_ANIMS)
-
+		
 
 func _do_attack(anim_node_name: String, shot_name: String, pool: Array[StringName]) -> void:
 	var anim_node: AnimationNodeAnimation = animation_tree.tree_root.get_node(anim_node_name)

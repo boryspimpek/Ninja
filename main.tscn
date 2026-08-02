@@ -48,7 +48,7 @@ shape = SubResource("ConcavePolygonShape3D_1bvp3")
 [node name="Player" parent="." unique_id=1521387049 instance=ExtResource("1_ig7tw")]
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1034609979]
-transform = Transform3D(1, 0, 0, 0, 0.7489557, 0.66262007, 0, -0.66262007, 0.7489557, 0, 2.496, 3.228)
+transform = Transform3D(1, 0, 0, 0, 0.77162457, 0.63607824, 0, -0.63607824, 0.77162457, 0, 1.366, 1.768)
 script = ExtResource("2_0xm2m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=599845764]
