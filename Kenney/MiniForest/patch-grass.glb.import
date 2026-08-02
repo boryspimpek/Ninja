@@ -3,17 +3,17 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bryr1ugg1e5d2"
-path="res://.godot/imported/weapon-bow.glb-b6aed12470e784388d9d90cefd38a46c.scn"
+uid="uid://bg666oiu3mqwa"
+path="res://.godot/imported/patch-grass.glb-a8052711fd9f1430faf697f36edf1db1.scn"
 
 [deps]
 
-source_file="res://Kenney/kenney_mini-forest_1.0/weapon-bow.glb"
-dest_files=["res://.godot/imported/weapon-bow.glb-b6aed12470e784388d9d90cefd38a46c.scn"]
+source_file="res://Kenney/MiniForest/patch-grass.glb"
+dest_files=["res://.godot/imported/patch-grass.glb-a8052711fd9f1430faf697f36edf1db1.scn"]
 
 [params]
 
-nodes/root_type="MeshInstance3D"
+nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
@@ -37,6 +37,12 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:patch-grass": {
+"generate/physics": true
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1

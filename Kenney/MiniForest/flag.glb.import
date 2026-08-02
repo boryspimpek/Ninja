@@ -3,17 +3,17 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cgnvri3qlo177"
-path="res://.godot/imported/tree-high.glb-b8cb7e5599f3fd41b7aefb8e3eb514dd.scn"
+uid="uid://dj0ogfuv05lbm"
+path="res://.godot/imported/flag.glb-57c151cc065fb4bde1f0ddca0109856b.scn"
 
 [deps]
 
-source_file="res://Kenney/kenney_mini-forest_1.0/tree-high.glb"
-dest_files=["res://.godot/imported/tree-high.glb-b8cb7e5599f3fd41b7aefb8e3eb514dd.scn"]
+source_file="res://Kenney/MiniForest/flag.glb"
+dest_files=["res://.godot/imported/flag.glb-57c151cc065fb4bde1f0ddca0109856b.scn"]
 
 [params]
 
-nodes/root_type="MeshInstance3D"
+nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
@@ -33,10 +33,16 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
-import_script/path="res://Kenney/kenney_mini-forest_1.0/mesh_collision_post_import.gd"
+import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:flag": {
+"generate/physics": true
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1

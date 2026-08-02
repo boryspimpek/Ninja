@@ -3,17 +3,17 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ddnnjc3ycqgpu"
-path="res://.godot/imported/character-archer.glb-8df463d2b032f696e4fbb3e860276186.scn"
+uid="uid://ba5ag1inw1axl"
+path="res://.godot/imported/tree.glb-6a83c06b586f23fb0ec4ff5b8fed8e7f.scn"
 
 [deps]
 
-source_file="res://Kenney/kenney_mini-forest_1.0/character-archer.glb"
-dest_files=["res://.godot/imported/character-archer.glb-8df463d2b032f696e4fbb3e860276186.scn"]
+source_file="res://Kenney/MiniForest/tree.glb"
+dest_files=["res://.godot/imported/tree.glb-6a83c06b586f23fb0ec4ff5b8fed8e7f.scn"]
 
 [params]
 
-nodes/root_type="MeshInstance3D"
+nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
@@ -37,6 +37,12 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:tree": {
+"generate/physics": true
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bq48wf5cxv7tp"
-path.s3tc="res://.godot/imported/colormap.png-73c5f91406e255d0572f4f6e593f0648.s3tc.ctex"
+uid="uid://cec1psesswfwt"
+path.s3tc="res://.godot/imported/colormap.png-a228248e78b97c98ee711bda9115d995.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Kenney/kenney_mini-forest_1.0/Textures/colormap.png"
-dest_files=["res://.godot/imported/colormap.png-73c5f91406e255d0572f4f6e593f0648.s3tc.ctex"]
+source_file="res://Kenney/MiniForest/Textures/colormap.png"
+dest_files=["res://.godot/imported/colormap.png-a228248e78b97c98ee711bda9115d995.s3tc.ctex"]
 
 [params]
 

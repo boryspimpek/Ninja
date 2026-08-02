@@ -3,17 +3,17 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c0js6nloa7q3o"
-path="res://.godot/imported/plant.glb-5d2a38555fc1faad6f467f68a5ca632f.scn"
+uid="uid://clplny5om6lui"
+path="res://.godot/imported/bridge.glb-168ac7692823e8533f624189bf6a568c.scn"
 
 [deps]
 
-source_file="res://Kenney/kenney_mini-forest_1.0/plant.glb"
-dest_files=["res://.godot/imported/plant.glb-5d2a38555fc1faad6f467f68a5ca632f.scn"]
+source_file="res://Kenney/MiniForest/bridge.glb"
+dest_files=["res://.godot/imported/bridge.glb-168ac7692823e8533f624189bf6a568c.scn"]
 
 [params]
 
-nodes/root_type="MeshInstance3D"
+nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
@@ -33,10 +33,16 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
-import_script/path="res://Kenney/kenney_mini-forest_1.0/mesh_collision_post_import.gd"
+import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:bridge": {
+"generate/physics": true
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1

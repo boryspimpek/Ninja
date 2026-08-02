@@ -3,17 +3,17 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dsqs83b8p13jr"
-path="res://.godot/imported/bridge.glb-c85a84910af46791bd1a96ebb5bf5cc6.scn"
+uid="uid://bm4thvnper1sw"
+path="res://.godot/imported/weapon-arrow.glb-cc3d20c358b0346b40a43965b8f2df01.scn"
 
 [deps]
 
-source_file="res://Kenney/kenney_mini-forest_1.0/bridge.glb"
-dest_files=["res://.godot/imported/bridge.glb-c85a84910af46791bd1a96ebb5bf5cc6.scn"]
+source_file="res://Kenney/MiniForest/weapon-arrow.glb"
+dest_files=["res://.godot/imported/weapon-arrow.glb-cc3d20c358b0346b40a43965b8f2df01.scn"]
 
 [params]
 
-nodes/root_type="MeshInstance3D"
+nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
@@ -33,10 +33,16 @@ animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
-import_script/path="res://Kenney/kenney_mini-forest_1.0/mesh_collision_post_import.gd"
+import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:weapon-arrow": {
+"generate/physics": true
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
