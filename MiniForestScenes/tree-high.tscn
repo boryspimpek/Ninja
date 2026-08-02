@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b6wavrspm73tq"]
+
+[ext_resource type="PackedScene" uid="uid://cwujl4jsunhwj" path="res://Kenney/MiniForest/tree-high.fbx" id="1_base"]
+[ext_resource type="Texture2D" uid="uid://cec1psesswfwt" path="res://Kenney/MiniForest/Textures/colormap.png" id="2_rtvbb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d8wqu"]
+cull_mode = 1
+albedo_color = Color(0, 0, 0, 1)
+grow = true
+grow_amount = 0.02
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4e5yc"]
+next_pass = SubResource("StandardMaterial3D_d8wqu")
+diffuse_mode = 3
+specular_mode = 1
+albedo_texture = ExtResource("2_rtvbb")
+metallic = 0.66
+metallic_specular = 0.0
+roughness = 0.5
+
+[node name="tree-high" unique_id=344840795 instance=ExtResource("1_base")]
+
+[node name="tree-high" parent="." index="0" unique_id=1759025686]
+surface_material_override/0 = SubResource("StandardMaterial3D_4e5yc")

@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://ch176vmivrh50"]
+
+[ext_resource type="PackedScene" path="res://Kenney/MiniForest/patch-dirt.fbx" id="1_base"]
+
+[node name="patch-dirt" type="Node3D" instance=ExtResource("1_base")]

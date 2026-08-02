@@ -32,7 +32,10 @@
 [ext_resource type="AnimationLibrary" uid="uid://cfpaxucp03og8" path="res://Animations/attack/Punch Quick Left.fbx" id="29_nitqc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ot7kk"]
+diffuse_mode = 3
+specular_mode = 1
 albedo_texture = ExtResource("2_lbaip")
+roughness = 0.5
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aimshoot"]
 animation = &"Aim Shoot/mixamo_com"
