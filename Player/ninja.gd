@@ -9,9 +9,9 @@ const STICK_DEADZONE := 0.2
 
 const PUNCH_ANIMS: Array[StringName] = [
 	&"Punch Quick Right/mixamo_com",
-	&"Punching Long Left/mixamo_com",
-	&"Punching Long Right/mixamo_com",
-	&"Punching Quick Left/mixamo_com",
+	&"Punch Long Left/mixamo_com",
+	&"Punch Long Right/mixamo_com",
+	&"Punch Quick Left/mixamo_com",
 ]
 
 const KICK_ANIMS: Array[StringName] = [
@@ -20,7 +20,7 @@ const KICK_ANIMS: Array[StringName] = [
 	&"Low Kick Left/mixamo_com",
 	&"Low Kick Right/mixamo_com",
 	&"Mma Kick Left/mixamo_com",
-	&"Mma Kick  Right/mixamo_com",
+	&"Mma Kick Right/mixamo_com",
 ]
 
 @onready var animation_tree: AnimationTree = $AnimationTree
@@ -51,6 +51,19 @@ func _physics_process(delta: float) -> void:
 		_fire()
 
 	_update_animation(is_aiming, move_dir)
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("punch"):
+		_do_attack("PunchAnim", "PunchShot", PUNCH_ANIMS)
+	elif event.is_action_pressed("kick"):
+		_do_attack("KickAnim", "KickShot", KICK_ANIMS)
+
+
+func _do_attack(anim_node_name: String, shot_name: String, pool: Array[StringName]) -> void:
+	var anim_node: AnimationNodeAnimation = animation_tree.tree_root.get_node(anim_node_name)
+	anim_node.animation = pool.pick_random()
+	animation_tree.set("parameters/" + shot_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 
 func _process_moving(delta: float, move_dir: Vector3) -> void:

@@ -23,7 +23,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://bn6gfwky23pn5" path="res://Animations/normal walk/Running Backward.fbx" id="17_nx11x"]
 [ext_resource type="AnimationLibrary" uid="uid://cueub0kfy4aru" path="res://Animations/normal walk/Fast Run.fbx" id="18_6umd0"]
 [ext_resource type="AnimationLibrary" uid="uid://cidakxpufl4sc" path="res://Animations/attack/Low Kick Right.fbx" id="18_nx11x"]
-[ext_resource type="AnimationLibrary" uid="uid://bx1sfhfcugmct" path="res://Animations/attack/Mma Kick  Right.fbx" id="19_6umd0"]
+[ext_resource type="AnimationLibrary" uid="uid://bx1sfhfcugmct" path="res://Animations/attack/Mma Kick Right.fbx" id="19_6umd0"]
 [ext_resource type="AnimationLibrary" uid="uid://tgkns68chn7u" path="res://Animations/attack/Mma Kick Left.fbx" id="20_8q81g"]
 [ext_resource type="AnimationLibrary" uid="uid://bskfpf524bibf" path="res://Animations/attack/Punch Quick Right.fbx" id="26_7fjl8"]
 [ext_resource type="AnimationLibrary" uid="uid://bjra00ycbdufc" path="res://Animations/attack/Punch Long Left.fbx" id="27_samnv"]
@@ -39,6 +39,16 @@ height = 0.94677734
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aimshoot"]
 animation = &"Aim Shoot/mixamo_com"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fxwi1"]
+animation = &"Low Kick Right/mixamo_com"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_5y2i1"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j8gkf"]
+animation = &"Punch Quick Right/mixamo_com"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_nx11x"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_h4j7k"]
 filter_enabled = true
@@ -72,33 +82,41 @@ xfade_time = 0.2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_s7tgv"]
 states/AimBack/node = SubResource("AnimationNodeAnimation_aimback")
-states/AimBack/position = Vector2(460, 492)
+states/AimBack/position = Vector2(439, 553)
 states/AimForward/node = SubResource("AnimationNodeAnimation_aimfwd")
-states/AimForward/position = Vector2(460, 105)
+states/AimForward/position = Vector2(444, -33)
 states/AimIdle/node = SubResource("AnimationNodeAnimation_aimidle")
-states/AimIdle/position = Vector2(59, 289)
+states/AimIdle/position = Vector2(-49, 560)
 states/AimLeft/node = SubResource("AnimationNodeAnimation_aimleft")
-states/AimLeft/position = Vector2(243, 289)
+states/AimLeft/position = Vector2(61, 196)
 states/AimRight/node = SubResource("AnimationNodeAnimation_aimright")
-states/AimRight/position = Vector2(645, 283)
+states/AimRight/position = Vector2(743, 196)
 states/Idle/node = SubResource("AnimationNodeAnimation_idle")
-states/Idle/position = Vector2(-190, 253)
+states/Idle/position = Vector2(-188, 196)
 states/Run/node = SubResource("AnimationNodeAnimation_run")
-states/Run/position = Vector2(79, 100)
-states/Start/position = Vector2(53, 14)
+states/Run/position = Vector2(-49, -33)
+states/Start/position = Vector2(-354, 31)
 transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_default"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_default"), "Idle", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "Idle", SubResource("AnimationNodeStateMachineTransition_default"), "Run", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "Run", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default")]
-graph_offset = Vector2(-321, 43)
+graph_offset = Vector2(-273, -190)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
-graph_offset = Vector2(-509.1498, -204.57455)
-nodes/output/position = Vector2(500, -60)
+graph_offset = Vector2(-480.3292, 8.728973)
+nodes/output/position = Vector2(560, 200)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
-nodes/StateMachine/position = Vector2(-180, -100)
+nodes/StateMachine/position = Vector2(-440, 100)
 nodes/Shoot/node = SubResource("AnimationNodeOneShot_h4j7k")
-nodes/Shoot/position = Vector2(260, -60)
+nodes/Shoot/position = Vector2(-100, 140)
 nodes/AimShoot/node = SubResource("AnimationNodeAnimation_aimshoot")
-nodes/AimShoot/position = Vector2(-180, 140)
-node_connections = [&"output", 0, &"Shoot", &"Shoot", 0, &"StateMachine", &"Shoot", 1, &"AimShoot"]
+nodes/AimShoot/position = Vector2(-440, 320)
+nodes/PunchAnim/node = SubResource("AnimationNodeAnimation_j8gkf")
+nodes/PunchAnim/position = Vector2(-320, 580)
+nodes/KickAnim/node = SubResource("AnimationNodeAnimation_fxwi1")
+nodes/KickAnim/position = Vector2(40, 580)
+nodes/PunchShot/node = SubResource("AnimationNodeOneShot_nx11x")
+nodes/PunchShot/position = Vector2(160, 200)
+nodes/KickShot/node = SubResource("AnimationNodeOneShot_5y2i1")
+nodes/KickShot/position = Vector2(360, 200)
+node_connections = [&"output", 0, &"KickShot", &"Shoot", 0, &"StateMachine", &"Shoot", 1, &"AimShoot", &"PunchShot", 0, &"Shoot", &"PunchShot", 1, &"PunchAnim", &"KickShot", 0, &"PunchShot", &"KickShot", 1, &"KickAnim"]
 
 [node name="Ninja" unique_id=233157932 instance=ExtResource("1_25rb4")]
 script = ExtResource("2_0jgus")
@@ -132,17 +150,17 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ot7kk")
 "libraries/High Kick Right" = ExtResource("16_5y2i1")
 "libraries/Low Kick Left" = ExtResource("17_j8gkf")
 "libraries/Low Kick Right" = ExtResource("18_nx11x")
-"libraries/Mma Kick  Right" = ExtResource("19_6umd0")
 "libraries/Mma Kick Left" = ExtResource("20_8q81g")
+"libraries/Mma Kick Right" = ExtResource("19_6umd0")
 "libraries/Normal Idle" = ExtResource("14_fxwi1")
 "libraries/Normal Left Strafe" = ExtResource("15_5y2i1")
 "libraries/Normal Right Strafe" = ExtResource("16_j8gkf")
 "libraries/Normal Run Backward" = ExtResource("17_nx11x")
 "libraries/Normal Run Forward" = ExtResource("18_6umd0")
+"libraries/Punch Long Left" = ExtResource("27_samnv")
+"libraries/Punch Long Right" = ExtResource("28_usuh0")
+"libraries/Punch Quick Left" = ExtResource("29_nitqc")
 "libraries/Punch Quick Right" = ExtResource("26_7fjl8")
-"libraries/Punching Long Left" = ExtResource("27_samnv")
-"libraries/Punching Long Right" = ExtResource("28_usuh0")
-"libraries/Punching Quick Left" = ExtResource("29_nitqc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2" unique_id=1334062913]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46655273, 0.009079799)
@@ -154,3 +172,9 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/Shoot/active = false
 parameters/Shoot/internal_active = false
 parameters/Shoot/request = 0
+parameters/PunchShot/active = false
+parameters/PunchShot/internal_active = false
+parameters/PunchShot/request = 0
+parameters/KickShot/active = false
+parameters/KickShot/internal_active = false
+parameters/KickShot/request = 0

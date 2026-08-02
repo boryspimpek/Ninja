@@ -4,12 +4,12 @@ importer="animation_library"
 importer_version=1
 type="AnimationLibrary"
 uid="uid://bx1sfhfcugmct"
-path="res://.godot/imported/Mma Kick  Right.fbx-968688d2a9dcbb3107d8c50d2e045472.res"
+path="res://.godot/imported/Mma Kick Right.fbx-277dfa7a9946e49084cf42b027d33dc3.res"
 
 [deps]
 
-source_file="res://Animations/attack/Mma Kick  Right.fbx"
-dest_files=["res://.godot/imported/Mma Kick  Right.fbx-968688d2a9dcbb3107d8c50d2e045472.res"]
+source_file="res://Animations/attack/Mma Kick Right.fbx"
+dest_files=["res://.godot/imported/Mma Kick Right.fbx-277dfa7a9946e49084cf42b027d33dc3.res"]
 
 [params]
 
