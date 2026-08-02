@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c8chtuplirkgm"]
+
+[ext_resource type="Shader" uid="uid://c6qqb04bkhxpc" path="res://shaders/toon.gdshader" id="1_jb7hd"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_jb7hd")
+shader_parameter/albedo_color = Color(0, 0, 0, 1)
+shader_parameter/toon_steps = 3
+shader_parameter/shadow_min = 0.15
+shader_parameter/band_softness = 0.02
+shader_parameter/enable_rim = false
+shader_parameter/rim_amount = 0.3
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/enable_specular = false
+shader_parameter/specular_size = 0.1

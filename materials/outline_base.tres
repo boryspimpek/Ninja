@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dda6qxus8ltei"]
+
+[ext_resource type="Shader" uid="uid://bpxrrpmixb8lo" path="res://shaders/outline.gdshader" id="1_wqaoa"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_wqaoa")
+shader_parameter/outline_width = 0.01
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/fade_with_distance = false
+shader_parameter/fade_start = 10.0

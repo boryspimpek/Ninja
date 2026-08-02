@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://6m0hn0br5405"]
+
+[ext_resource type="PackedScene" uid="uid://l3s7uc6udfj4" path="res://Kenney/MiniForest/bridge.fbx" id="1_yokb4"]
+[ext_resource type="PackedScene" uid="uid://ckuvyqldik116" path="res://Kenney/MiniForest/building-platform.fbx" id="2_35c7g"]
+[ext_resource type="PackedScene" uid="uid://b68kvs4vvjgin" path="res://Kenney/MiniForest/building-roof.fbx" id="3_n068f"]
+[ext_resource type="PackedScene" uid="uid://ct0dqmwwdjbsd" path="res://Kenney/MiniForest/building-structure.fbx" id="4_g8a64"]
+[ext_resource type="PackedScene" uid="uid://b68120yp72wt2" path="res://Kenney/MiniForest/character-archer.fbx" id="5_uvldv"]
+[ext_resource type="PackedScene" uid="uid://b2wak4ligb270" path="res://Kenney/MiniForest/fence.fbx" id="6_nb1nt"]
+[ext_resource type="PackedScene" uid="uid://ckw5qyjw5r6pr" path="res://Kenney/MiniForest/flag.fbx" id="7_u834y"]
+[ext_resource type="PackedScene" uid="uid://besb75ek5vwb" path="res://Kenney/MiniForest/ladder.fbx" id="8_w3v2p"]
+[ext_resource type="PackedScene" uid="uid://ulksxor1cwky" path="res://Kenney/MiniForest/tent.fbx" id="9_35c7g"]
+
+[node name="Arena" type="Node3D" unique_id=509106087 groups=["toon_target"]]
+
+[node name="bridge" parent="." unique_id=477447511 instance=ExtResource("1_yokb4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.6787732, -1.1920929e-07, -0.0965662)
+
+[node name="building-platform" parent="." unique_id=2016272935 instance=ExtResource("2_35c7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19803786, -1.1920929e-07, 2.0955007)
+
+[node name="building-roof" parent="." unique_id=1655844232 instance=ExtResource("3_n068f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0805386, -1.1920929e-07, -1.4342172)
+
+[node name="building-structure" parent="." unique_id=1024969265 instance=ExtResource("4_g8a64")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5911937, -1.1920929e-07, -0.0965662)
+
+[node name="character-archer" parent="." unique_id=664601751 instance=ExtResource("5_uvldv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1884937, -1.1920929e-07, 2.0188673)
+
+[node name="fence" parent="." unique_id=854890503 instance=ExtResource("6_nb1nt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2969687, -1.1920929e-07, -0.59538364)
+
+[node name="flag" parent="." unique_id=1759743449 instance=ExtResource("7_u834y")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0355928, -1.1920929e-07, -2.4553597)
+
+[node name="ladder" parent="." unique_id=1597256708 instance=ExtResource("8_w3v2p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19803786, -1.1920929e-07, -3.2009304)
+
+[node name="tent" parent="." unique_id=1100247948 instance=ExtResource("9_35c7g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4138057, 0, 3.3493123)
+
+[editable path="building-structure"]
