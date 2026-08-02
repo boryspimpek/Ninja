@@ -1,4 +1,0 @@
-[gd_resource type="AnimationNodeBlendTree" format=3]
-
-[resource]
-nodes/Output/position = Vector2(0, 0)

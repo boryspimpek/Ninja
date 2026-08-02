@@ -3,13 +3,13 @@
 importer="animation_library"
 importer_version=1
 type="AnimationLibrary"
-uid="uid://cvg2ctqrh8djr"
-path="res://.godot/imported/Left Strafe.fbx-e1a3fe5a7ab86b8dca0e6087b27e43c8.res"
+uid="uid://daxfv5ughnjkk"
+path="res://.godot/imported/Jump.fbx-2e925b949bb7814c078ceff501037f1c.res"
 
 [deps]
 
-source_file="res://Animations/normal walk/Left Strafe.fbx"
-dest_files=["res://.godot/imported/Left Strafe.fbx-e1a3fe5a7ab86b8dca0e6087b27e43c8.res"]
+source_file="res://Animations/jump/Jump.fbx"
+dest_files=["res://.godot/imported/Jump.fbx-2e925b949bb7814c078ceff501037f1c.res"]
 
 [params]
 
@@ -33,7 +33,7 @@ animation/fps=30
 animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
-import_script/path="res://Animations/loop_post_import.gd"
+import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""

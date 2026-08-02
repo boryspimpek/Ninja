@@ -6,6 +6,7 @@ const MOVE_SPEED := 3.0
 const AIM_MOVE_SPEED := 1.0
 const ROTATE_SPEED := 12.0
 const STICK_DEADZONE := 0.2
+const JUMP_VELOCITY := 3.0
 
 const PUNCH_ANIMS: Array[StringName] = [
 	&"Punch Quick Right/mixamo_com",
@@ -44,7 +45,10 @@ func _physics_process(delta: float) -> void:
 		velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity", 9.8) * delta
 	else:
 		velocity.y = 0.0
-
+		if Input.is_action_just_pressed("jump") and not is_melee_attacking:
+			velocity.y = JUMP_VELOCITY
+			_do_jump()
+			
 	if is_melee_attacking:
 		velocity.x = 0.0
 		velocity.z = 0.0
@@ -75,7 +79,11 @@ func _input(event: InputEvent) -> void:
 		_do_attack("PunchAnim", "PunchShot", PUNCH_ANIMS)
 	elif event.is_action_pressed("kick"):
 		_do_attack("KickAnim", "KickShot", KICK_ANIMS)
-		
+
+
+func _do_jump() -> void:
+	animation_tree.set("parameters/JumpShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	
 
 func _do_attack(anim_node_name: String, shot_name: String, pool: Array[StringName]) -> void:
 	var anim_node: AnimationNodeAnimation = animation_tree.tree_root.get_node(anim_node_name)

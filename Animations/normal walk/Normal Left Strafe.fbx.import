@@ -3,13 +3,13 @@
 importer="animation_library"
 importer_version=1
 type="AnimationLibrary"
-uid="uid://cueub0kfy4aru"
-path="res://.godot/imported/Fast Run.fbx-ed8ce804e1d6a9dda2bb3903d773f48b.res"
+uid="uid://cvg2ctqrh8djr"
+path="res://.godot/imported/Normal Left Strafe.fbx-eaaa59424313171a7d96d48bb59a78fa.res"
 
 [deps]
 
-source_file="res://Animations/normal walk/Fast Run.fbx"
-dest_files=["res://.godot/imported/Fast Run.fbx-ed8ce804e1d6a9dda2bb3903d773f48b.res"]
+source_file="res://Animations/normal walk/Normal Left Strafe.fbx"
+dest_files=["res://.godot/imported/Normal Left Strafe.fbx-eaaa59424313171a7d96d48bb59a78fa.res"]
 
 [params]
 

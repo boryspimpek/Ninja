@@ -4,12 +4,12 @@ importer="animation_library"
 importer_version=1
 type="AnimationLibrary"
 uid="uid://bn6gfwky23pn5"
-path="res://.godot/imported/Running Backward.fbx-6bc14be4b74ba973594e9533c5782730.res"
+path="res://.godot/imported/Normal Running Back.fbx-cdc6e49320d8a1e53d01d58efc9ea37d.res"
 
 [deps]
 
-source_file="res://Animations/normal walk/Running Backward.fbx"
-dest_files=["res://.godot/imported/Running Backward.fbx-6bc14be4b74ba973594e9533c5782730.res"]
+source_file="res://Animations/normal walk/Normal Running Back.fbx"
+dest_files=["res://.godot/imported/Normal Running Back.fbx-cdc6e49320d8a1e53d01d58efc9ea37d.res"]
 
 [params]
 

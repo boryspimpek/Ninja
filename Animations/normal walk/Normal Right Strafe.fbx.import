@@ -3,13 +3,13 @@
 importer="animation_library"
 importer_version=1
 type="AnimationLibrary"
-uid="uid://5q7un3fbrla2"
-path="res://.godot/imported/Breathing Idle.fbx-8a47ee56ee637fbb4af8bf05b8ca4ef8.res"
+uid="uid://bqvo7tku07vi0"
+path="res://.godot/imported/Normal Right Strafe.fbx-ddea5710b13c234be17ee3e265b676aa.res"
 
 [deps]
 
-source_file="res://Animations/normal walk/Breathing Idle.fbx"
-dest_files=["res://.godot/imported/Breathing Idle.fbx-8a47ee56ee637fbb4af8bf05b8ca4ef8.res"]
+source_file="res://Animations/normal walk/Normal Right Strafe.fbx"
+dest_files=["res://.godot/imported/Normal Right Strafe.fbx-ddea5710b13c234be17ee3e265b676aa.res"]
 
 [params]
 
