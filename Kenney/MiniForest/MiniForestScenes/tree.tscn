@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://mn1gk3v8fgvi"]
+
+[ext_resource type="PackedScene" path="res://Kenney/MiniForest/tree.fbx" id="1_base"]
+
+[node name="tree" type="Node3D" instance=ExtResource("1_base")]

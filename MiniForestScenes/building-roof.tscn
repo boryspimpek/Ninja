@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://cjwpbm8pnhkai"]
-
-[ext_resource type="PackedScene" uid="uid://b68kvs4vvjgin" path="res://Kenney/MiniForest/building-roof.fbx" id="1_base"]
-
-[node name="building-roof" unique_id=876700307 instance=ExtResource("1_base")]

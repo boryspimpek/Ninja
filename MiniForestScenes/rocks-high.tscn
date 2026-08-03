@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://308w7emckccf"]
-
-[ext_resource type="PackedScene" path="res://Kenney/MiniForest/rocks-high.fbx" id="1_base"]
-
-[node name="rocks-high" type="Node3D" instance=ExtResource("1_base")]

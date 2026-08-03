@@ -43,7 +43,7 @@ roughness = 0.5
 animation = &"Aim Shoot/mixamo_com"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nx11x"]
-animation = &"Jump/mixamo_com"
+animation = &"Jump Vault Monkey/mixamo_com"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6umd0"]
 fadein_time = 0.1
@@ -113,7 +113,7 @@ transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_d
 graph_offset = Vector2(-367, -192)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
-graph_offset = Vector2(-261.91965, 212.96619)
+graph_offset = Vector2(-110.18182, 274.63635)
 nodes/output/position = Vector2(720, 200)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
 nodes/StateMachine/position = Vector2(-440, 100)
@@ -136,12 +136,13 @@ nodes/JumpAnim/position = Vector2(300, 580)
 node_connections = [&"output", 0, &"JumpShot", &"Shoot", 0, &"StateMachine", &"Shoot", 1, &"AimShoot", &"PunchShot", 0, &"Shoot", &"PunchShot", 1, &"PunchAnim", &"KickShot", 0, &"PunchShot", &"KickShot", 1, &"KickAnim", &"JumpShot", 0, &"KickShot", &"JumpShot", 1, &"JumpAnim"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5y2i1"]
-radius = 0.14257813
+radius = 0.026367188
 height = 0.95703125
 
 [node name="Ninja" unique_id=233157932 instance=ExtResource("1_25rb4")]
 transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
-safe_margin = 0.1
+collision_mask = 3
+safe_margin = 0.01
 script = ExtResource("2_0jgus")
 
 [node name="Skeleton3D" parent="." index="0" unique_id=1484561533]

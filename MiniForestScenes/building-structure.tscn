@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://bhkrdep46i3le"]
-
-[ext_resource type="PackedScene" path="res://Kenney/MiniForest/building-structure.fbx" id="1_base"]
-
-[node name="building-structure" type="Node3D" instance=ExtResource("1_base")]

@@ -2,11 +2,11 @@ extends CharacterBody3D
 ## Isometric twin-stick controller: left stick moves, right stick (or aim_mode
 ## trigger) aims. Drives the AnimationTree blend tree on the Ninja model.
 
-const MOVE_SPEED := 3.0
-const AIM_MOVE_SPEED := 1.0
-const ROTATE_SPEED := 12.0
-const STICK_DEADZONE := 0.2
-const JUMP_VELOCITY := 3.0
+@export var MOVE_SPEED := 3.0
+@export var AIM_MOVE_SPEED := 1.0
+@export var ROTATE_SPEED := 12.0
+@export var STICK_DEADZONE := 0.2
+@export var JUMP_VELOCITY := 3.0
 
 const PUNCH_ANIMS: Array[StringName] = [
 	&"Punch Quick Right/mixamo_com",
