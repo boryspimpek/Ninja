@@ -296,7 +296,7 @@ _data = {
 animation = &"Aim Shoot/mixamo_com"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nx11x"]
-animation = &"Jump Vault Monkey/mixamo_com"
+animation = &"Jump/mixamo_com"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6umd0"]
 fadein_time = 0.1
@@ -366,7 +366,7 @@ transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_d
 graph_offset = Vector2(-367, -192)
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
-graph_offset = Vector2(-428.7345, -10.84314)
+graph_offset = Vector2(-415.7345, 117.15686)
 nodes/output/position = Vector2(720, 200)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
 nodes/StateMachine/position = Vector2(-440, 100)

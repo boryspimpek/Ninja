@@ -20,7 +20,7 @@ MCPRuntimeServer="*res://addons/godot_mcp_toolkit/runtime/mcp_runtime_server.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_mcp_toolkit/plugin.cfg", "res://addons/grid_map_layer/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_mcp_toolkit/plugin.cfg", "res://addons/grid_map_layer/plugin.cfg", "res://addons/terrain_3d/plugin.cfg")
 
 [input]
 
