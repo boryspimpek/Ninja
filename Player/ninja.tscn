@@ -141,6 +141,7 @@ height = 0.95703125
 
 [node name="Ninja" unique_id=233157932 instance=ExtResource("1_25rb4")]
 transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
+safe_margin = 0.1
 script = ExtResource("2_0jgus")
 
 [node name="Skeleton3D" parent="." index="0" unique_id=1484561533]
