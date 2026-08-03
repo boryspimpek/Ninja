@@ -55,6 +55,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("jump") and not is_melee_attacking:
 			
 			if can_vault:
+				velocity.y = JUMP_VELOCITY
 				_do_vault()
 			else:
 				velocity.y = JUMP_VELOCITY

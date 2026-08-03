@@ -1,5 +1,5 @@
 [gd_scene format=3 uid="uid://b838amj02onkr"]
 
-[ext_resource type="PackedScene" path="res://Kenney/MiniForest/character-archer.fbx" id="1_base"]
+[ext_resource type="PackedScene" uid="uid://b68120yp72wt2" path="res://Kenney/MiniForest/fbx/character-archer.fbx" id="1_base"]
 
 [node name="character-archer" type="Node3D" instance=ExtResource("1_base")]

@@ -32,6 +32,7 @@
 [ext_resource type="AnimationLibrary" uid="uid://gkch7scrbimp" path="res://Animations/attack/Punch Long Right.fbx" id="28_usuh0"]
 [ext_resource type="AnimationLibrary" uid="uid://cfpaxucp03og8" path="res://Animations/attack/Punch Quick Left.fbx" id="29_nitqc"]
 [ext_resource type="AnimationLibrary" uid="uid://bt1icfcju4664" path="res://Animations/jump/Jump Vault.fbx" id="31_j8gkf"]
+[ext_resource type="PackedScene" uid="uid://bjdo1exfi4ycs" path="res://assets/BinbunVFX_Vol2/DarkMagicFX/effects/area/vfx_evil_area_01.tscn" id="33_6umd0"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ot7kk"]
 diffuse_mode = 3
@@ -223,3 +224,7 @@ parameters/VaultShot/request = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=1740798387]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47265625, 0.10223469)
 shape = SubResource("CapsuleShape3D_5y2i1")
+
+[node name="VFXEvilArea_01" parent="." index="4" unique_id=394797287 instance=ExtResource("33_6umd0")]
+transform = Transform3D(0.351, 0, 0, 0, 0.351, 0, 0, 0, 0.351, 0, 0, 0)
+speed_scale = 2.0

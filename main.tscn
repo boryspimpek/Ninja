@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://b6wavrspm73tq" path="res://Kenney/MiniForest/MiniForestScenes/tree-high.tscn" id="5_lquwl"]
 [ext_resource type="Texture2D" uid="uid://gxrcsld0hkd2" path="res://Texture/kenney_prototype-textures/PNG/Purple/texture_01.png" id="6_272bh"]
 [ext_resource type="Texture2D" uid="uid://c4oyfjjltf85k" path="res://Texture/kenney_prototype-textures/PNG/Green/texture_01.png" id="7_5vw27"]
-[ext_resource type="PackedScene" uid="uid://biqt6apb0ph8h" path="res://Kenney/MiniForest/MiniForestScenes/tent.tscn" id="8_5vw27"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_272bh"]
 panorama = ExtResource("1_lquwl")
@@ -83,16 +82,17 @@ metadata/_edit_lock_ = true
 shape = SubResource("ConcavePolygonShape3D_h2yge")
 
 [node name="tree-high" parent="." unique_id=344840795 instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.753069, 0.00012207031, -3.2790527)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.253069, 0.00012207031, -0.77905273)
 
 [node name="VaultObstacle" type="Node3D" parent="." unique_id=42020932]
+transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -0.5, 0, 3.5)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="VaultObstacle" unique_id=1696334364]
-transform = Transform3D(0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.70710665, -4.4391193, 0.25, -0.06127882)
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -4.2617226, 0.24999999, 0.115240574)
 material_override = SubResource("StandardMaterial3D_kek77")
 use_collision = true
 collision_layer = 16
-size = Vector3(0.5, 0.5, 3)
+size = Vector3(1, 0.5, 3)
 
 [node name="Area3D" type="Area3D" parent="VaultObstacle" unique_id=868473405]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
@@ -100,73 +100,32 @@ collision_layer = 2
 collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="VaultObstacle/Area3D" unique_id=1481332412]
-transform = Transform3D(0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.70710665, -5.5461044, 0, -1.1682644)
+transform = Transform3D(0, 0, -0.9999998, 0, 1, 0, 0.9999998, 0, 0, -4.261722, -1.4901161e-08, -1.7002729)
 shape = SubResource("BoxShape3D_lquwl")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="VaultObstacle/Area3D" unique_id=1322469411]
-transform = Transform3D(0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.70710665, -3.3275642, 0, 1.0502753)
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -4.2617216, -1.4901161e-08, 1.937216)
 shape = SubResource("BoxShape3D_lquwl")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="VaultObstacle" unique_id=1507590530]
-transform = Transform3D(0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.70710665, -3.9794989, -0.47100002, 0.3983407)
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -4.2617226, -0.47100002, 1.0152414)
 material_override = SubResource("StandardMaterial3D_4c57u")
 size = Vector3(1, 1, 3)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="VaultObstacle" unique_id=953039340]
-transform = Transform3D(0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.70710665, -4.898738, -0.47100002, -0.52089834)
+transform = Transform3D(0, 0, -0.9999998, 0, 1, 0, 0.9999998, 0, 0, -4.261722, -0.47100002, -0.7847589)
 material_override = SubResource("StandardMaterial3D_4c57u")
 size = Vector3(1, 1, 3)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="VaultObstacle" unique_id=366398980]
-transform = Transform3D(0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.70710665, -3.3291893, -0.47100002, 1.0486507)
+transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -4.2617226, -0.47100002, 1.9349179)
 material_override = SubResource("StandardMaterial3D_efxa6")
 size = Vector3(0.85, 1, 3)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="VaultObstacle" unique_id=1867590290]
-transform = Transform3D(0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.70710665, -5.5492764, -0.47100002, -1.1714363)
-material_override = SubResource("StandardMaterial3D_efxa6")
-size = Vector3(0.85, 1, 3)
-
-[node name="VaultObstacle2" type="Node3D" parent="." unique_id=1027679630]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 4)
-
-[node name="tent" parent="VaultObstacle2" unique_id=1006132643 instance=ExtResource("8_5vw27")]
-transform = Transform3D(0.70710665, 0, 0.70710665, 0, 1, 0, -0.70710665, 0, 0.70710665, 2.4393778, 0, -1.9393382)
-
-[node name="Area3D" type="Area3D" parent="VaultObstacle2" unique_id=1872935220]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-collision_layer = 2
-collision_mask = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VaultObstacle2/Area3D" unique_id=698020449]
-transform = Transform3D(0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.70710665, 1.3326502, 0, -3.0469437)
-shape = SubResource("BoxShape3D_lquwl")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="VaultObstacle2/Area3D" unique_id=1002010987]
-transform = Transform3D(0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.70710665, 3.5511885, 0, -0.82840395)
-shape = SubResource("BoxShape3D_lquwl")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="VaultObstacle2" unique_id=1488536302]
-transform = Transform3D(0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.70710665, 2.8992548, -0.47100002, -1.480339)
-material_override = SubResource("StandardMaterial3D_4c57u")
-size = Vector3(1, 1, 3)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="VaultObstacle2" unique_id=2038539205]
-transform = Transform3D(0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.70710665, 1.9800158, -0.47100002, -2.399578)
-material_override = SubResource("StandardMaterial3D_4c57u")
-size = Vector3(1, 1, 3)
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="VaultObstacle2" unique_id=702462602]
-transform = Transform3D(0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.70710665, 3.5495634, -0.47100002, -0.83002853)
-material_override = SubResource("StandardMaterial3D_efxa6")
-size = Vector3(0.85, 1, 3)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="VaultObstacle2" unique_id=2081764605]
-transform = Transform3D(0.70710665, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, 0.70710665, 1.3294764, -0.47100002, -3.050116)
+transform = Transform3D(0, 0, -0.9999998, 0, 1, 0, 0.9999998, 0, 0, -4.261722, -0.47100002, -1.7047585)
 material_override = SubResource("StandardMaterial3D_efxa6")
 size = Vector3(0.85, 1, 3)
 
 [connection signal="body_entered" from="VaultObstacle/Area3D" to="Player" method="_on_area_3d_body_entered"]
 [connection signal="body_exited" from="VaultObstacle/Area3D" to="Player" method="_on_area_3d_body_exited"]
-[connection signal="body_entered" from="VaultObstacle2/Area3D" to="Player" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="VaultObstacle2/Area3D" to="Player" method="_on_area_3d_body_exited"]

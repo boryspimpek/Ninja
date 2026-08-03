@@ -1,5 +1,5 @@
 [gd_scene format=3 uid="uid://c3f85hlsh07rv"]
 
-[ext_resource type="PackedScene" path="res://Kenney/MiniForest/stones.fbx" id="1_base"]
+[ext_resource type="PackedScene" uid="uid://bm05qnpme55gx" path="res://Kenney/MiniForest/fbx/stones.fbx" id="1_base"]
 
 [node name="stones" type="Node3D" instance=ExtResource("1_base")]

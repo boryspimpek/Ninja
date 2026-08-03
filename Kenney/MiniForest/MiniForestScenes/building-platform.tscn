@@ -1,5 +1,5 @@
 [gd_scene format=3 uid="uid://xbcc4nmt12sq"]
 
-[ext_resource type="PackedScene" path="res://Kenney/MiniForest/building-platform.fbx" id="1_base"]
+[ext_resource type="PackedScene" uid="uid://ckuvyqldik116" path="res://Kenney/MiniForest/fbx/building-platform.fbx" id="1_base"]
 
 [node name="building-platform" type="Node3D" instance=ExtResource("1_base")]
