@@ -10,9 +10,6 @@ extends CharacterBody3D
 
 const PUNCH_ANIMS: Array[StringName] = [
 	&"Punch Quick Right/mixamo_com",
-	&"Punch Long Left/mixamo_com",
-	&"Punch Long Right/mixamo_com",
-	&"Punch Quick Left/mixamo_com",
 ]
 
 const KICK_ANIMS: Array[StringName] = [
