@@ -42,8 +42,11 @@ roughness = 0.5
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aimshoot"]
 animation = &"Aim Shoot/mixamo_com"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nx11x"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6umd0"]
 animation = &"Jump Vault Monkey/mixamo_com"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nx11x"]
+animation = &"Jump/mixamo_com"
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_6umd0"]
 fadein_time = 0.1
@@ -112,15 +115,19 @@ states/Start/position = Vector2(-354, 31)
 transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_default"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_default"), "Idle", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "Idle", SubResource("AnimationNodeStateMachineTransition_default"), "Run", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "Run", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default")]
 graph_offset = Vector2(-367, -192)
 
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_8q81g"]
+fadein_time = 0.1
+fadeout_time = 0.2
+
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
-graph_offset = Vector2(-110.18182, 274.63635)
-nodes/output/position = Vector2(720, 200)
+graph_offset = Vector2(-28.890747, 125.59598)
+nodes/output/position = Vector2(960, 240)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
-nodes/StateMachine/position = Vector2(-440, 100)
+nodes/StateMachine/position = Vector2(-440, 180)
 nodes/Shoot/node = SubResource("AnimationNodeOneShot_h4j7k")
-nodes/Shoot/position = Vector2(-100, 140)
+nodes/Shoot/position = Vector2(-80, 200)
 nodes/AimShoot/node = SubResource("AnimationNodeAnimation_aimshoot")
-nodes/AimShoot/position = Vector2(-440, 320)
+nodes/AimShoot/position = Vector2(-440, 380)
 nodes/PunchAnim/node = SubResource("AnimationNodeAnimation_j8gkf")
 nodes/PunchAnim/position = Vector2(-320, 580)
 nodes/KickAnim/node = SubResource("AnimationNodeAnimation_fxwi1")
@@ -133,15 +140,20 @@ nodes/JumpShot/node = SubResource("AnimationNodeOneShot_6umd0")
 nodes/JumpShot/position = Vector2(560, 200)
 nodes/JumpAnim/node = SubResource("AnimationNodeAnimation_nx11x")
 nodes/JumpAnim/position = Vector2(300, 580)
-node_connections = [&"output", 0, &"JumpShot", &"Shoot", 0, &"StateMachine", &"Shoot", 1, &"AimShoot", &"PunchShot", 0, &"Shoot", &"PunchShot", 1, &"PunchAnim", &"KickShot", 0, &"PunchShot", &"KickShot", 1, &"KickAnim", &"JumpShot", 0, &"KickShot", &"JumpShot", 1, &"JumpAnim"]
+nodes/VaultShot/node = SubResource("AnimationNodeOneShot_8q81g")
+nodes/VaultShot/position = Vector2(760, 200)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_6umd0")
+nodes/Animation/position = Vector2(580, 580)
+node_connections = [&"output", 0, &"VaultShot", &"Shoot", 0, &"StateMachine", &"Shoot", 1, &"AimShoot", &"PunchShot", 0, &"Shoot", &"PunchShot", 1, &"PunchAnim", &"KickShot", 0, &"PunchShot", &"KickShot", 1, &"KickAnim", &"JumpShot", 0, &"KickShot", &"JumpShot", 1, &"JumpAnim", &"VaultShot", 0, &"JumpShot", &"VaultShot", 1, &"Animation"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5y2i1"]
 radius = 0.026367188
 height = 0.95703125
 
-[node name="Ninja" unique_id=233157932 instance=ExtResource("1_25rb4")]
+[node name="Ninja" unique_id=233157932 groups=["player"] instance=ExtResource("1_25rb4")]
 transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
-collision_mask = 3
+collision_layer = 8
+collision_mask = 17
 safe_margin = 0.01
 script = ExtResource("2_0jgus")
 
@@ -204,6 +216,9 @@ parameters/KickShot/request = 0
 parameters/JumpShot/active = false
 parameters/JumpShot/internal_active = false
 parameters/JumpShot/request = 0
+parameters/VaultShot/active = false
+parameters/VaultShot/internal_active = false
+parameters/VaultShot/request = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=1740798387]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47265625, 0.10223469)

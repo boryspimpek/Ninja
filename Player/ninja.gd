@@ -27,6 +27,13 @@ const KICK_ANIMS: Array[StringName] = [
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var _playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/StateMachine/playback"]
 
+var can_vault: bool = false
+var current_vault = null
+
+
+func _ready():
+	print("groups: ", get_groups())
+
 
 func _physics_process(delta: float) -> void:
 	var is_melee_attacking: bool = (
@@ -46,9 +53,13 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = 0.0
 		if Input.is_action_just_pressed("jump") and not is_melee_attacking:
-			velocity.y = JUMP_VELOCITY
-			_do_jump()
 			
+			if can_vault:
+				_do_vault()
+			else:
+				velocity.y = JUMP_VELOCITY
+				_do_jump()			
+
 	if is_melee_attacking:
 		velocity.x = 0.0
 		velocity.z = 0.0
@@ -83,7 +94,17 @@ func _input(event: InputEvent) -> void:
 
 func _do_jump() -> void:
 	animation_tree.set("parameters/JumpShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	
+	print("JUMP WYKONANY")
+
+
+func _do_vault() -> void:
+	set_collision_mask_value(5, false)
+	animation_tree.set("parameters/VaultShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	print("VAULT WYKONANY")
+	await get_tree().create_timer(1.0).timeout
+
+	set_collision_mask_value(5, true)
+	print("MASKA 5 PRZYWRÓCONA")	
 
 func _do_attack(anim_node_name: String, shot_name: String, pool: Array[StringName]) -> void:
 	var anim_node: AnimationNodeAnimation = animation_tree.tree_root.get_node(anim_node_name)
@@ -134,3 +155,18 @@ func _update_animation(is_aiming: bool, move_dir: Vector3) -> void:
 		_playback.travel("AimLeft" if local_x > 0.0 else "AimRight")
 	else:
 		_playback.travel("AimForward" if local_z > 0.0 else "AimBack")
+
+
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	print("Area entered: ", body.name)
+	if body.is_in_group("player"):
+		body.can_vault = true
+		print("VAULT ON: ", body.can_vault)
+		body.current_vault = self
+
+func _on_area_3d_body_exited(body: Node3D) -> void:
+	print("Area exited: ", body.name)
+	if body.is_in_group("player"):
+		body.can_vault = false
+		print("VAULT OFF: ", body.can_vault)
+		body.current_vault = null
