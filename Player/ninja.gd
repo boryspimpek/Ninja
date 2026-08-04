@@ -20,7 +20,7 @@ const KICK_ANIMS: Array[StringName] = [
 	&"Mma Kick Right/mixamo_com",
 ]
 
-const PUNCH_COMBO_ORDER: Array[String] = ["Jab_L", "Jab_R", "Hook_L", "Hook_R"]
+const PUNCH_COMBO_ORDER: Array[String] = ["Punch_L", "Punch_R", "Punch_L2", "Punch_Cross_R"]
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_player: AnimationPlayer = $AnimationPlayer

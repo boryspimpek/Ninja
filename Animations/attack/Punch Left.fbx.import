@@ -3,13 +3,13 @@
 importer="animation_library"
 importer_version=1
 type="AnimationLibrary"
-uid="uid://bjra00ycbdufc"
-path="res://.godot/imported/Punch Long Left.fbx-fc8ce00af6fa108cb4b6ed005b48afb0.res"
+uid="uid://b7h3w65qwl2uh"
+path="res://.godot/imported/Punch Left.fbx-b4874703b66075ad117adce1a8893001.res"
 
 [deps]
 
-source_file="res://Animations/attack/Punch Long Left.fbx"
-dest_files=["res://.godot/imported/Punch Long Left.fbx-fc8ce00af6fa108cb4b6ed005b48afb0.res"]
+source_file="res://Animations/attack/Punch Left.fbx"
+dest_files=["res://.godot/imported/Punch Left.fbx-b4874703b66075ad117adce1a8893001.res"]
 
 [params]
 

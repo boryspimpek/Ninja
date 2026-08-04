@@ -28,11 +28,12 @@
 [ext_resource type="AnimationLibrary" uid="uid://cpe5qp1ncr6bo" path="res://Animations/jump/Jump Vault Monkey.fbx" id="19_nx11x"]
 [ext_resource type="AnimationLibrary" uid="uid://tgkns68chn7u" path="res://Animations/attack/Mma Kick Left.fbx" id="20_8q81g"]
 [ext_resource type="AnimationLibrary" uid="uid://bskfpf524bibf" path="res://Animations/attack/Punch Quick Right.fbx" id="26_7fjl8"]
-[ext_resource type="AnimationLibrary" uid="uid://bjra00ycbdufc" path="res://Animations/attack/Punch Long Left.fbx" id="27_samnv"]
 [ext_resource type="AnimationLibrary" uid="uid://gkch7scrbimp" path="res://Animations/attack/Punch Long Right.fbx" id="28_usuh0"]
-[ext_resource type="AnimationLibrary" uid="uid://cfpaxucp03og8" path="res://Animations/attack/Punch Quick Left.fbx" id="29_nitqc"]
+[ext_resource type="AnimationLibrary" uid="uid://ch2huaoog21v7" path="res://Animations/attack/Punch Cross Right.fbx" id="29_8q81g"]
+[ext_resource type="AnimationLibrary" uid="uid://b7h3w65qwl2uh" path="res://Animations/attack/Punch Left.fbx" id="30_7fjl8"]
 [ext_resource type="AnimationLibrary" uid="uid://bt1icfcju4664" path="res://Animations/jump/Jump Vault.fbx" id="31_j8gkf"]
 [ext_resource type="PackedScene" uid="uid://bjdo1exfi4ycs" path="res://assets/BinbunVFX_Vol2/DarkMagicFX/effects/area/vfx_evil_area_01.tscn" id="33_6umd0"]
+[ext_resource type="AnimationLibrary" uid="uid://btxmtilqhbsxa" path="res://Animations/attack/Punch Right.fbx" id="33_samnv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ot7kk"]
 diffuse_mode = 3
@@ -60,53 +61,57 @@ animation = &"Low Kick Right/mixamo_com"
 fadein_time = 0.1
 fadeout_time = 0.2
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8q81g"]
-animation = &"Punch Long Left/mixamo_com"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7fjl8"]
-animation = &"Punch Long Right/mixamo_com"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_samnv"]
 animation = &"Normal Idle/mixamo_com"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8q81g"]
+animation = &"Punch Cross Right/mixamo_com"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7fjl8"]
+animation = &"Punch Left/mixamo_com"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_usuh0"]
-animation = &"Punch Quick Left/mixamo_com"
+animation = &"Punch Left/mixamo_com"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nitqc"]
-animation = &"Punch Quick Right/mixamo_com"
+animation = &"Punch Right/mixamo_com"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w7c48"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pcu4d"]
 xfade_time = 0.1
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_56a10"]
+xfade_time = 0.1
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t6exf"]
+xfade_time = 0.3
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t3i7j"]
+xfade_time = 0.1
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q1lxh"]
-switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_57na2"]
-states/Hook_L/node = SubResource("AnimationNodeAnimation_8q81g")
-states/Hook_L/position = Vector2(653, 299)
-states/Hook_R/node = SubResource("AnimationNodeAnimation_7fjl8")
-states/Hook_R/position = Vector2(488, 175)
 states/Idle/node = SubResource("AnimationNodeAnimation_samnv")
 states/Idle/position = Vector2(306, 175)
-states/Jab_L/node = SubResource("AnimationNodeAnimation_usuh0")
-states/Jab_L/position = Vector2(306, 299)
-states/Jab_R/node = SubResource("AnimationNodeAnimation_nitqc")
-states/Jab_R/position = Vector2(488, 435)
+states/Punch_Cross_R/node = SubResource("AnimationNodeAnimation_8q81g")
+states/Punch_Cross_R/position = Vector2(694, 257)
+states/Punch_L/node = SubResource("AnimationNodeAnimation_7fjl8")
+states/Punch_L/position = Vector2(388, 257)
+states/Punch_L2/node = SubResource("AnimationNodeAnimation_usuh0")
+states/Punch_L2/position = Vector2(694, 423)
+states/Punch_R/node = SubResource("AnimationNodeAnimation_nitqc")
+states/Punch_R/position = Vector2(388, 423)
 states/Start/position = Vector2(127, 175)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_w7c48"), "Idle", "Jab_L", SubResource("AnimationNodeStateMachineTransition_pcu4d"), "Jab_L", "Jab_R", SubResource("AnimationNodeStateMachineTransition_56a10"), "Jab_R", "Hook_L", SubResource("AnimationNodeStateMachineTransition_t6exf"), "Hook_L", "Hook_R", SubResource("AnimationNodeStateMachineTransition_t3i7j"), "Hook_R", "Jab_L", SubResource("AnimationNodeStateMachineTransition_q1lxh")]
-graph_offset = Vector2(-117, 40)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_w7c48"), "Punch_L", "Punch_R", SubResource("AnimationNodeStateMachineTransition_pcu4d"), "Punch_R", "Punch_L2", SubResource("AnimationNodeStateMachineTransition_56a10"), "Punch_L2", "Punch_Cross_R", SubResource("AnimationNodeStateMachineTransition_t6exf"), "Punch_Cross_R", "Punch_L", SubResource("AnimationNodeStateMachineTransition_t3i7j"), "Idle", "Punch_L", SubResource("AnimationNodeStateMachineTransition_q1lxh")]
+graph_offset = Vector2(-94, 8)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_nx11x"]
 fadein_time = 0.1
@@ -166,7 +171,7 @@ fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
-graph_offset = Vector2(-539.7206, 164.73315)
+graph_offset = Vector2(-521.7206, 285.73315)
 nodes/output/position = Vector2(960, 240)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
 nodes/StateMachine/position = Vector2(-440, 180)
@@ -242,10 +247,11 @@ libraries/Jump = ExtResource("17_5y2i1")
 "libraries/Normal Right Strafe" = ExtResource("16_j8gkf")
 "libraries/Normal Run Backward" = ExtResource("17_nx11x")
 "libraries/Normal Run Forward" = ExtResource("18_6umd0")
-"libraries/Punch Long Left" = ExtResource("27_samnv")
+"libraries/Punch Cross Right" = ExtResource("29_8q81g")
+"libraries/Punch Left" = ExtResource("30_7fjl8")
 "libraries/Punch Long Right" = ExtResource("28_usuh0")
-"libraries/Punch Quick Left" = ExtResource("29_nitqc")
 "libraries/Punch Quick Right" = ExtResource("26_7fjl8")
+"libraries/Punch Right" = ExtResource("33_samnv")
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=923202538]
 tree_root = SubResource("AnimationNodeBlendTree_9k2l3")
@@ -274,7 +280,7 @@ shape = SubResource("CapsuleShape3D_5y2i1")
 transform = Transform3D(0.351, 0, 0, 0, 0.351, 0, 0, 0, 0.351, 0, 0, 0)
 speed_scale = 2.0
 
-[node name="ComboWindowTimer" type="Timer" parent="." index="6" unique_id=1556077207]
+[node name="ComboWindowTimer" type="Timer" parent="." index="5" unique_id=1556077207]
 one_shot = true
 
 [connection signal="timeout" from="ComboWindowTimer" to="." method="_on_combo_window_timer_timeout"]

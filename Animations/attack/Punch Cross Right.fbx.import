@@ -3,13 +3,13 @@
 importer="animation_library"
 importer_version=1
 type="AnimationLibrary"
-uid="uid://cfpaxucp03og8"
-path="res://.godot/imported/Punch Quick Left.fbx-22fac18f81326a8d4a54ef0e396ff1dd.res"
+uid="uid://ch2huaoog21v7"
+path="res://.godot/imported/Punch Cross Right.fbx-bf81e99b64c85fe3ddcea5717bc8ce02.res"
 
 [deps]
 
-source_file="res://Animations/attack/Punch Quick Left.fbx"
-dest_files=["res://.godot/imported/Punch Quick Left.fbx-22fac18f81326a8d4a54ef0e396ff1dd.res"]
+source_file="res://Animations/attack/Punch Cross Right.fbx"
+dest_files=["res://.godot/imported/Punch Cross Right.fbx-bf81e99b64c85fe3ddcea5717bc8ce02.res"]
 
 [params]
 
