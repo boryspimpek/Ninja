@@ -8,7 +8,7 @@ extends CharacterBody3D
 @export var STICK_DEADZONE := 0.2
 @export var JUMP_VELOCITY := 3.0
 
-@export var PUNCH_FADEOUT := 0.1  # fadeout do Idle po zakończeniu comba
+@export var PUNCH_FADEOUT := 0.2  # fadeout do Idle po zakończeniu comba
 
 const KICK_ANIMS: Array[StringName] = [
 	&"High Kick Left/mixamo_com",
@@ -41,6 +41,8 @@ var combo_index := -1  # -1 = poza combem (nic nie kolejkujemy)
 var _pending_target := ""  # cel, który już zakolejkowaliśmy i czeka na start
 var _last_combo_state := ""  # ostatni stan, dla którego wystartował combo_timer
 
+var _pending_facing_rot: float = 0.0
+var _has_pending_facing: bool = false
 
 func _ready() -> void:
 	print("groups: ", get_groups())
@@ -98,21 +100,20 @@ func _process(_delta: float) -> void:
 	if combo_index == -1:
 		_last_combo_state = ""
 		_pending_target = ""
+		_has_pending_facing = false
 		return
 
-	# Timer na okno combo NIE startuje w momencie kliknięcia, tylko w
-	# momencie gdy state machine faktycznie zacznie grać dany stan
-	# (przy Switch Mode "At End" to może nastąpić z opóźnieniem względem
-	# kliknięcia - klik tylko KOLEJKUJE przejście). Dzięki temu okno zawsze
-	# odpowiada realnemu czasowi trwania animacji, która się właśnie gra.
 	var current_playing := String(punch_combo_playback.get_current_node())
 	if current_playing != _last_combo_state and current_playing in PUNCH_COMBO_ORDER:
 		_last_combo_state = current_playing
 		combo_timer.start(_get_combo_window(current_playing))
 
 	if current_playing == _pending_target:
-		# Zakolejkowany cios właśnie faktycznie ruszył - zwalniamy bufor,
-		# żeby kolejny klik gracza mógł zakolejkować następny cios.
+		# Ten konkretny cios właśnie zaczął się realnie grać - dopiero teraz
+		# "commitujemy" kierunek, w jaki gracz celował stickiem w momencie kliknięcia.
+		if _has_pending_facing:
+			rotation.y = _pending_facing_rot
+			_has_pending_facing = false
 		_pending_target = ""
 
 
@@ -159,25 +160,33 @@ func _do_attack(anim_node_name: String, shot_name: String, pool: Array[StringNam
 	animation_tree.set("parameters/" + shot_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 
+func _capture_attack_facing() -> float:
+	var move_input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	if move_input.length() > STICK_DEADZONE:
+		return atan2(move_input.x, move_input.y)
+	return rotation.y  # stick wycentrowany - zachowaj obecny obrót
+
+
 func _on_attack_input() -> void:
 	combo_timer.stop()
+	var facing := _capture_attack_facing()
 
 	if combo_index == -1:
-		# Pierwszy cios w serii - odpalamy zewnętrzny OneShot.
 		combo_index = 0
 		_pending_target = PUNCH_COMBO_ORDER[combo_index]
+		_pending_facing_rot = facing
+		_has_pending_facing = true
 		punch_combo_playback.travel(_pending_target)
 		animation_tree.set("parameters/PunchShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		return
 
 	if _pending_target != "":
-		# Mamy już jeden zakolejkowany cios, który jeszcze się nie zaczął
-		# odtwarzać - bufor pełny, dodatkowe kliknięcia ignorujemy (zamiast
-		# pozwolić graczowi "namashować" długą, niekontrolowaną serię ciosów).
 		return
 
 	combo_index = (combo_index + 1) % PUNCH_COMBO_ORDER.size()
 	_pending_target = PUNCH_COMBO_ORDER[combo_index]
+	_pending_facing_rot = facing
+	_has_pending_facing = true
 	punch_combo_playback.travel(_pending_target)
 
 
