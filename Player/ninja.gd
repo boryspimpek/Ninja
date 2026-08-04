@@ -8,9 +8,6 @@ extends CharacterBody3D
 @export var STICK_DEADZONE := 0.2
 @export var JUMP_VELOCITY := 3.0
 
-@export var PUNCH_FADEOUT := 0.2  # fadeout do Idle po zakończeniu comba
-@export var COMBO_ROTATE_SPEED := 20.0  # szybszy niż zwykły ROTATE_SPEED, żeby czuć responsywność ciosu
-
 const KICK_ANIMS: Array[StringName] = [
 	&"High Kick Left/mixamo_com",
 	&"Low Kick Right/mixamo_com",
@@ -23,42 +20,22 @@ const HIT_ANIMS: Array[StringName] = [
 	&"Punch Cross/mixamo_com",
 ]
 
-const PUNCH_COMBO_ORDER: Array[String] = ["Punch_L", "Punch_R", "Punch_L2", "Punch_Cross"]
-
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var _playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/StateMachine/playback"]
 
-# Wewnętrzna state machine ciosów - to osobny węzeł BlendTree (nazwa jak w edytorze!),
-# NIE podścieżka wewnątrz PunchShot. Podmień "PunchCombo" jeśli nazwałeś węzeł inaczej.
-@onready var punch_combo_playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/PunchCombo/playback")
-@onready var punch_combo_state_machine: AnimationNodeStateMachine = animation_tree.tree_root.get_node("PunchCombo")
-# Sam węzeł OneShot, żeby móc sterować fadeout_time z kodu
-@onready var punch_one_shot: AnimationNodeOneShot = animation_tree.tree_root.get_node("PunchShot")
-
-@onready var combo_timer: Timer = $ComboWindowTimer  # one_shot = true
-
 var can_vault: bool = false
 var current_vault = null
 
-var combo_index := -1  # -1 = poza combem (nic nie kolejkujemy)
-var _pending_target := ""  # cel, który już zakolejkowaliśmy i czeka na start
-var _last_combo_state := ""  # ostatni stan, dla którego wystartował combo_timer
-
-var _pending_facing_rot: float = 0.0
-var _has_pending_facing: bool = false
-var _target_facing_rot: float = 0.0
 
 func _ready() -> void:
-	_target_facing_rot = rotation.y
 	print("groups: ", get_groups())
 
 
 func _physics_process(delta: float) -> void:
-	var is_punching: bool = animation_tree.get("parameters/PunchShot/active")
 	var is_melee_attacking: bool = (
-		animation_tree.get("parameters/PunchShot/active")
-		or animation_tree.get("parameters/KickShot/active")
+		animation_tree.get("parameters/KickShot/active")
+		or animation_tree.get("parameters/HitShot/active")
 	)
 	var is_shooting: bool = animation_tree.get("parameters/Shoot/active")
 
@@ -83,8 +60,6 @@ func _physics_process(delta: float) -> void:
 	if is_melee_attacking:
 		velocity.x = 0.0
 		velocity.z = 0.0
-		if is_punching:
-			rotation.y = lerp_angle(rotation.y, _target_facing_rot, COMBO_ROTATE_SPEED * delta)
 	elif is_aiming:
 		_process_aiming(delta, move_dir, aim_input)
 	else:
@@ -99,40 +74,15 @@ func _physics_process(delta: float) -> void:
 		_update_animation(is_aiming, move_dir)
 
 
-func _process(_delta: float) -> void:
-	punch_one_shot.fadeout_time = 0.0 if combo_index != -1 else PUNCH_FADEOUT
-
-	if combo_index == -1:
-		_last_combo_state = ""
-		_pending_target = ""
-		_has_pending_facing = false
-		return
-
-	var current_playing := String(punch_combo_playback.get_current_node())
-	if current_playing != _last_combo_state and current_playing in PUNCH_COMBO_ORDER:
-		_last_combo_state = current_playing
-		combo_timer.start(_get_combo_window(current_playing))
-
-	if current_playing == _pending_target:
-		if _has_pending_facing:
-			_target_facing_rot = _pending_facing_rot
-			_has_pending_facing = false
-		_pending_target = ""
-
-
 func _input(event: InputEvent) -> void:
 	var is_shooting: bool = animation_tree.get("parameters/Shoot/active")
 
 	if is_shooting:
 		return
 
-	if event.is_action_pressed("punch") and not event.is_echo():
-		_on_attack_input()
-		return
-
 	var is_melee_attacking: bool = (
-		animation_tree.get("parameters/PunchShot/active")
-		or animation_tree.get("parameters/KickShot/active")
+		animation_tree.get("parameters/KickShot/active")
+		or animation_tree.get("parameters/HitShot/active")
 	)
 
 	if is_melee_attacking:
@@ -164,63 +114,6 @@ func _do_attack(anim_node_name: String, shot_name: String, pool: Array[StringNam
 	var anim_node: AnimationNodeAnimation = animation_tree.tree_root.get_node(anim_node_name)
 	anim_node.animation = pool.pick_random()
 	animation_tree.set("parameters/" + shot_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-
-
-func _capture_attack_facing() -> float:
-	var move_input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	if move_input.length() > STICK_DEADZONE:
-		return atan2(move_input.x, move_input.y)
-	return rotation.y  # stick wycentrowany - zachowaj obecny obrót
-
-
-func _on_attack_input() -> void:
-	combo_timer.stop()
-	var facing := _capture_attack_facing()
-
-	if combo_index == -1:
-		combo_index = 0
-		_pending_target = PUNCH_COMBO_ORDER[combo_index]
-		_pending_facing_rot = facing
-		_has_pending_facing = true
-		punch_combo_playback.travel(_pending_target)
-		animation_tree.set("parameters/PunchShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-		return
-
-	if _pending_target != "":
-		return
-
-	combo_index = (combo_index + 1) % PUNCH_COMBO_ORDER.size()
-	_pending_target = PUNCH_COMBO_ORDER[combo_index]
-	_pending_facing_rot = facing
-	_has_pending_facing = true
-	punch_combo_playback.travel(_pending_target)
-
-
-func _get_combo_window(state_name: String) -> float:
-	var anim_node := punch_combo_state_machine.get_node(state_name) as AnimationNodeAnimation
-	assert(anim_node != null, "Brak stanu '%s' w PunchCombo albo to nie jest AnimationNodeAnimation" % state_name)
-
-	var duration: float
-	if anim_node.use_custom_timeline:
-		# Węzeł ma własną, rozciągniętą długość - to ona realnie leci w state machine.
-		duration = anim_node.timeline_length
-	else:
-		var anim := animation_player.get_animation(anim_node.animation)
-		assert(anim != null, "Animacja '%s' (stan '%s') nie istnieje w AnimationPlayer" % [anim_node.animation, state_name])
-		duration = anim.length
-
-	var window := duration + 0.1
-	print(state_name, " -> okno na klik: ", window, "s")
-	return window
-
-func _on_combo_window_timer_timeout() -> void:
-	combo_index = -1
-	# PunchCombo (state machine) nie ma jednoznacznego "końca" jak zwykła
-	# animacja - zatrzymuje się na ostatnim stanie i czeka. Musimy więc
-	# jawnie kazać zewnętrznemu OneShotowi się zakończyć, inaczej "active"
-	# zostanie true na zawsze i postać nigdy nie wróci do ruchu/skoku.
-	punch_one_shot.fadeout_time = PUNCH_FADEOUT
-	animation_tree.set("parameters/PunchShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FADE_OUT)
 
 
 func _process_moving(delta: float, move_dir: Vector3) -> void:
