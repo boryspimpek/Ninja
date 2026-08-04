@@ -8,7 +8,7 @@ extends CharacterBody3D
 @export var STICK_DEADZONE := 0.2
 @export var JUMP_VELOCITY := 3.0
 
-@export var COMBO_WINDOW := 0.6  # ile sekund po ciosie gracz ma na wciśnięcie kolejnego
+@export var COMBO_WINDOW := 0.6  # fallback, gdy nie uda się odczytać długości animacji
 @export var PUNCH_FADEOUT := 0.15  # fadeout do Idle po zakończeniu comba
 
 const KICK_ANIMS: Array[StringName] = [
@@ -20,14 +20,16 @@ const KICK_ANIMS: Array[StringName] = [
 	&"Mma Kick Right/mixamo_com",
 ]
 
-const PUNCH_COMBO_ORDER := ["Jab_L", "Jab_R", "Hook_L", "Hook_R"]
+const PUNCH_COMBO_ORDER: Array[String] = ["Jab_L", "Jab_R", "Hook_L", "Hook_R"]
 
 @onready var animation_tree: AnimationTree = $AnimationTree
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var _playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/StateMachine/playback"]
 
 # Wewnętrzna state machine ciosów - to osobny węzeł BlendTree (nazwa jak w edytorze!),
 # NIE podścieżka wewnątrz PunchShot. Podmień "PunchCombo" jeśli nazwałeś węzeł inaczej.
 @onready var punch_combo_playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/PunchCombo/playback")
+@onready var punch_combo_state_machine: AnimationNodeStateMachine = animation_tree.tree_root.get_node("PunchCombo")
 # Sam węzeł OneShot, żeby móc sterować fadeout_time z kodu
 @onready var punch_one_shot: AnimationNodeOneShot = animation_tree.tree_root.get_node("PunchShot")
 
@@ -37,6 +39,7 @@ var can_vault: bool = false
 var current_vault = null
 
 var combo_index := -1  # -1 = poza combem (nic nie kolejkujemy)
+var _last_combo_state := ""  # ostatni stan, dla którego wystartował combo_timer
 
 
 func _ready() -> void:
@@ -92,6 +95,20 @@ func _process(_delta: float) -> void:
 	# używa aktualnej wartości, a nie tej ustawionej na starcie ataku.
 	punch_one_shot.fadeout_time = 0.0 if combo_index != -1 else PUNCH_FADEOUT
 
+	if combo_index == -1:
+		_last_combo_state = ""
+		return
+
+	# Timer na okno combo NIE startuje w momencie kliknięcia, tylko w
+	# momencie gdy state machine faktycznie zacznie grać dany stan
+	# (przy Switch Mode "At End" to może nastąpić z opóźnieniem względem
+	# kliknięcia - klik tylko KOLEJKUJE przejście). Dzięki temu okno zawsze
+	# odpowiada realnemu czasowi trwania animacji, która się właśnie gra.
+	var current_playing := String(punch_combo_playback.get_current_node())
+	if current_playing != _last_combo_state and current_playing in PUNCH_COMBO_ORDER:
+		_last_combo_state = current_playing
+		combo_timer.start(_get_combo_window(current_playing))
+
 
 func _input(event: InputEvent) -> void:
 	var is_shooting: bool = animation_tree.get("parameters/Shoot/active")
@@ -146,10 +163,27 @@ func _on_attack_input() -> void:
 	else:
 		# Kolejny cios w oknie combo - OneShot już gra, tylko przesuwamy
 		# wewnętrzną state machine na następny stan (xfade 0 między nimi).
+		# Sam moment faktycznego przełączenia (i zresetowania timera na
+		# odpowiednią długość) obsługuje _process(), bo przy Switch Mode
+		# "At End" to przełączenie może nastąpić z opóźnieniem względem kliku.
 		combo_index = (combo_index + 1) % PUNCH_COMBO_ORDER.size()
 
 	punch_combo_playback.travel(PUNCH_COMBO_ORDER[combo_index])
-	combo_timer.start(COMBO_WINDOW)
+
+
+func _get_combo_window(state_name: String) -> float:
+	# Okno na kolejny klik = długość animacji aktualnego ciosu (+ mały zapas),
+	# zamiast jednej sztywnej wartości dla wszystkich ciosów. Dzięki temu przy
+	# długich hakach gracz ma tyle czasu ile trwa animacja, a nie tylko 0.6s.
+	var anim_node := punch_combo_state_machine.get_node(state_name) as AnimationNodeAnimation
+	if anim_node == null:
+		return COMBO_WINDOW
+	var anim := animation_player.get_animation(anim_node.animation)
+	if anim == null:
+		return COMBO_WINDOW
+	var window := anim.length + 0.1
+	print(state_name, " -> okno na klik: ", window, "s")
+	return window
 
 
 func _on_combo_window_timer_timeout() -> void:
