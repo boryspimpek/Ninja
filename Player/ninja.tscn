@@ -22,14 +22,17 @@
 [ext_resource type="AnimationLibrary" uid="uid://daxfv5ughnjkk" path="res://Animations/jump/Jump.fbx" id="17_5y2i1"]
 [ext_resource type="AnimationLibrary" uid="uid://dtoq61u0dhvs2" path="res://Animations/attack/Low Kick Left.fbx" id="17_j8gkf"]
 [ext_resource type="AnimationLibrary" uid="uid://bn6gfwky23pn5" path="res://Animations/normal walk/Normal Running Back.fbx" id="17_nx11x"]
+[ext_resource type="AnimationLibrary" uid="uid://bq2nyvrpliaok" path="res://Animations/attack/Idle Bounce.fbx" id="17_usuh0"]
 [ext_resource type="AnimationLibrary" uid="uid://cueub0kfy4aru" path="res://Animations/normal walk/Normal Run.fbx" id="18_6umd0"]
+[ext_resource type="AnimationLibrary" uid="uid://cn8npdg0ru8yo" path="res://Animations/attack/Idle Guard.fbx" id="18_nitqc"]
 [ext_resource type="AnimationLibrary" uid="uid://cidakxpufl4sc" path="res://Animations/attack/Low Kick Right.fbx" id="18_nx11x"]
 [ext_resource type="AnimationLibrary" uid="uid://bx1sfhfcugmct" path="res://Animations/attack/Mma Kick Right.fbx" id="19_6umd0"]
 [ext_resource type="AnimationLibrary" uid="uid://cpe5qp1ncr6bo" path="res://Animations/jump/Jump Vault Monkey.fbx" id="19_nx11x"]
+[ext_resource type="AnimationLibrary" uid="uid://dkwvcjyf3dmox" path="res://Animations/attack/Idle Mma.fbx" id="19_w7c48"]
 [ext_resource type="AnimationLibrary" uid="uid://tgkns68chn7u" path="res://Animations/attack/Mma Kick Left.fbx" id="20_8q81g"]
 [ext_resource type="AnimationLibrary" uid="uid://bskfpf524bibf" path="res://Animations/attack/Punch Quick Right.fbx" id="26_7fjl8"]
 [ext_resource type="AnimationLibrary" uid="uid://gkch7scrbimp" path="res://Animations/attack/Punch Long Right.fbx" id="28_usuh0"]
-[ext_resource type="AnimationLibrary" uid="uid://ch2huaoog21v7" path="res://Animations/attack/Punch Cross Right.fbx" id="29_8q81g"]
+[ext_resource type="AnimationLibrary" uid="uid://dru7of2efvurr" path="res://Animations/attack/Punch Cross.fbx" id="29_8q81g"]
 [ext_resource type="AnimationLibrary" uid="uid://b7h3w65qwl2uh" path="res://Animations/attack/Punch Left.fbx" id="30_7fjl8"]
 [ext_resource type="AnimationLibrary" uid="uid://bt1icfcju4664" path="res://Animations/jump/Jump Vault.fbx" id="31_j8gkf"]
 [ext_resource type="PackedScene" uid="uid://bjdo1exfi4ycs" path="res://assets/BinbunVFX_Vol2/DarkMagicFX/effects/area/vfx_evil_area_01.tscn" id="33_6umd0"]
@@ -61,11 +64,8 @@ animation = &"Low Kick Right/mixamo_com"
 fadein_time = 0.1
 fadeout_time = 0.2
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_samnv"]
-animation = &"Normal Idle/mixamo_com"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8q81g"]
-animation = &"Punch Cross Right/mixamo_com"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w7c48"]
+animation = &"Punch Cross/mixamo_com"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7fjl8"]
 animation = &"Punch Left/mixamo_com"
@@ -76,9 +76,6 @@ animation = &"Punch Left/mixamo_com"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nitqc"]
 animation = &"Punch Right/mixamo_com"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w7c48"]
-advance_mode = 2
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pcu4d"]
 xfade_time = 0.1
 switch_mode = 2
@@ -88,21 +85,18 @@ xfade_time = 0.1
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t6exf"]
-xfade_time = 0.3
+xfade_time = 0.2
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t3i7j"]
-xfade_time = 0.1
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q1lxh"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_usuh0"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_57na2"]
-states/Idle/node = SubResource("AnimationNodeAnimation_samnv")
-states/Idle/position = Vector2(306, 175)
-states/Punch_Cross_R/node = SubResource("AnimationNodeAnimation_8q81g")
-states/Punch_Cross_R/position = Vector2(694, 257)
+states/Punch_Cross/node = SubResource("AnimationNodeAnimation_w7c48")
+states/Punch_Cross/position = Vector2(694, 257)
 states/Punch_L/node = SubResource("AnimationNodeAnimation_7fjl8")
 states/Punch_L/position = Vector2(388, 257)
 states/Punch_L2/node = SubResource("AnimationNodeAnimation_usuh0")
@@ -110,7 +104,7 @@ states/Punch_L2/position = Vector2(694, 423)
 states/Punch_R/node = SubResource("AnimationNodeAnimation_nitqc")
 states/Punch_R/position = Vector2(388, 423)
 states/Start/position = Vector2(127, 175)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_w7c48"), "Punch_L", "Punch_R", SubResource("AnimationNodeStateMachineTransition_pcu4d"), "Punch_R", "Punch_L2", SubResource("AnimationNodeStateMachineTransition_56a10"), "Punch_L2", "Punch_Cross_R", SubResource("AnimationNodeStateMachineTransition_t6exf"), "Punch_Cross_R", "Punch_L", SubResource("AnimationNodeStateMachineTransition_t3i7j"), "Idle", "Punch_L", SubResource("AnimationNodeStateMachineTransition_q1lxh")]
+transitions = ["Punch_L", "Punch_R", SubResource("AnimationNodeStateMachineTransition_pcu4d"), "Punch_R", "Punch_L2", SubResource("AnimationNodeStateMachineTransition_56a10"), "Punch_L2", "Punch_Cross", SubResource("AnimationNodeStateMachineTransition_t6exf"), "Punch_Cross", "Punch_L", SubResource("AnimationNodeStateMachineTransition_t3i7j"), "Start", "Punch_L", SubResource("AnimationNodeStateMachineTransition_usuh0")]
 graph_offset = Vector2(-94, 8)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_nx11x"]
@@ -139,7 +133,7 @@ animation = &"Aim Run Left/mixamo_com"
 animation = &"Aim Run Right/mixamo_com"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_idle"]
-animation = &"Normal Idle/mixamo_com"
+animation = &"Idle Mma/mixamo_com"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_run"]
 animation = &"Bow Run Forward/mixamo_com"
@@ -159,19 +153,19 @@ states/AimLeft/position = Vector2(62, 245)
 states/AimRight/node = SubResource("AnimationNodeAnimation_aimright")
 states/AimRight/position = Vector2(727, 245)
 states/Idle/node = SubResource("AnimationNodeAnimation_idle")
-states/Idle/position = Vector2(-122, 245)
+states/Idle/position = Vector2(-214, 245)
 states/Run/node = SubResource("AnimationNodeAnimation_run")
 states/Run/position = Vector2(-31, 77)
 states/Start/position = Vector2(-354, 31)
 transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_default"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_default"), "Idle", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "Idle", SubResource("AnimationNodeStateMachineTransition_default"), "Run", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "Run", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default")]
-graph_offset = Vector2(-320, -202)
+graph_offset = Vector2(-509, -7)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_8q81g"]
 fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
-graph_offset = Vector2(-521.7206, 285.73315)
+graph_offset = Vector2(-518.43677, 139.26675)
 nodes/output/position = Vector2(960, 240)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
 nodes/StateMachine/position = Vector2(-440, 180)
@@ -235,6 +229,9 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ot7kk")
 "libraries/Bow Run Right" = ExtResource("13_5wk80")
 "libraries/High Kick Left" = ExtResource("15_fxwi1")
 "libraries/High Kick Right" = ExtResource("16_5y2i1")
+"libraries/Idle Bounce" = ExtResource("17_usuh0")
+"libraries/Idle Guard" = ExtResource("18_nitqc")
+"libraries/Idle Mma" = ExtResource("19_w7c48")
 libraries/Jump = ExtResource("17_5y2i1")
 "libraries/Jump Vault" = ExtResource("31_j8gkf")
 "libraries/Jump Vault Monkey" = ExtResource("19_nx11x")
@@ -247,7 +244,7 @@ libraries/Jump = ExtResource("17_5y2i1")
 "libraries/Normal Right Strafe" = ExtResource("16_j8gkf")
 "libraries/Normal Run Backward" = ExtResource("17_nx11x")
 "libraries/Normal Run Forward" = ExtResource("18_6umd0")
-"libraries/Punch Cross Right" = ExtResource("29_8q81g")
+"libraries/Punch Cross" = ExtResource("29_8q81g")
 "libraries/Punch Left" = ExtResource("30_7fjl8")
 "libraries/Punch Long Right" = ExtResource("28_usuh0")
 "libraries/Punch Quick Right" = ExtResource("26_7fjl8")
