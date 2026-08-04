@@ -9,14 +9,18 @@ extends CharacterBody3D
 @export var JUMP_VELOCITY := 3.0
 
 @export var PUNCH_FADEOUT := 0.2  # fadeout do Idle po zakończeniu comba
+@export var COMBO_ROTATE_SPEED := 20.0  # szybszy niż zwykły ROTATE_SPEED, żeby czuć responsywność ciosu
 
 const KICK_ANIMS: Array[StringName] = [
 	&"High Kick Left/mixamo_com",
-	&"High Kick Right/mixamo_com",
-	&"Low Kick Left/mixamo_com",
 	&"Low Kick Right/mixamo_com",
-	&"Mma Kick Left/mixamo_com",
 	&"Mma Kick Right/mixamo_com",
+]
+
+const HIT_ANIMS: Array[StringName] = [
+	&"Punch Left/mixamo_com",
+	&"Punch Right/mixamo_com",
+	&"Punch Cross/mixamo_com",
 ]
 
 const PUNCH_COMBO_ORDER: Array[String] = ["Punch_L", "Punch_R", "Punch_L2", "Punch_Cross"]
@@ -43,12 +47,15 @@ var _last_combo_state := ""  # ostatni stan, dla którego wystartował combo_tim
 
 var _pending_facing_rot: float = 0.0
 var _has_pending_facing: bool = false
+var _target_facing_rot: float = 0.0
 
 func _ready() -> void:
+	_target_facing_rot = rotation.y
 	print("groups: ", get_groups())
 
 
 func _physics_process(delta: float) -> void:
+	var is_punching: bool = animation_tree.get("parameters/PunchShot/active")
 	var is_melee_attacking: bool = (
 		animation_tree.get("parameters/PunchShot/active")
 		or animation_tree.get("parameters/KickShot/active")
@@ -76,6 +83,8 @@ func _physics_process(delta: float) -> void:
 	if is_melee_attacking:
 		velocity.x = 0.0
 		velocity.z = 0.0
+		if is_punching:
+			rotation.y = lerp_angle(rotation.y, _target_facing_rot, COMBO_ROTATE_SPEED * delta)
 	elif is_aiming:
 		_process_aiming(delta, move_dir, aim_input)
 	else:
@@ -91,10 +100,6 @@ func _physics_process(delta: float) -> void:
 
 
 func _process(_delta: float) -> void:
-	# Kluczowa sztuczka: aktualizujemy fadeout_time co klatkę, na podstawie
-	# tego czy combo wciąż trwa (combo_index != -1) czy się zakończyło.
-	# Dzięki temu w momencie faktycznego zakończenia animacji OneShot
-	# używa aktualnej wartości, a nie tej ustawionej na starcie ataku.
 	punch_one_shot.fadeout_time = 0.0 if combo_index != -1 else PUNCH_FADEOUT
 
 	if combo_index == -1:
@@ -109,10 +114,8 @@ func _process(_delta: float) -> void:
 		combo_timer.start(_get_combo_window(current_playing))
 
 	if current_playing == _pending_target:
-		# Ten konkretny cios właśnie zaczął się realnie grać - dopiero teraz
-		# "commitujemy" kierunek, w jaki gracz celował stickiem w momencie kliknięcia.
 		if _has_pending_facing:
-			rotation.y = _pending_facing_rot
+			_target_facing_rot = _pending_facing_rot
 			_has_pending_facing = false
 		_pending_target = ""
 
@@ -137,6 +140,9 @@ func _input(event: InputEvent) -> void:
 
 	if event.is_action_pressed("kick"):
 		_do_attack("KickAnim", "KickShot", KICK_ANIMS)
+
+	if event.is_action_pressed("hit"):
+		_do_attack("HitAnim", "HitShot", HIT_ANIMS)
 
 
 func _do_jump() -> void:
