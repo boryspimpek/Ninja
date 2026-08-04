@@ -182,17 +182,21 @@ func _on_attack_input() -> void:
 
 
 func _get_combo_window(state_name: String) -> float:
-	# Okno na kolejny klik = długość animacji aktualnego ciosu (+ mały zapas).
-	# Celowo BEZ fallbacku - jeśli stan/animacja nie istnieje, chcemy się
-	# o tym dowiedzieć od razu, a nie dostać cichy, mylący domyślny czas.
 	var anim_node := punch_combo_state_machine.get_node(state_name) as AnimationNodeAnimation
 	assert(anim_node != null, "Brak stanu '%s' w PunchCombo albo to nie jest AnimationNodeAnimation" % state_name)
-	var anim := animation_player.get_animation(anim_node.animation)
-	assert(anim != null, "Animacja '%s' (stan '%s') nie istnieje w AnimationPlayer" % [anim_node.animation, state_name])
-	var window := anim.length + 0.1
+
+	var duration: float
+	if anim_node.use_custom_timeline:
+		# Węzeł ma własną, rozciągniętą długość - to ona realnie leci w state machine.
+		duration = anim_node.timeline_length
+	else:
+		var anim := animation_player.get_animation(anim_node.animation)
+		assert(anim != null, "Animacja '%s' (stan '%s') nie istnieje w AnimationPlayer" % [anim_node.animation, state_name])
+		duration = anim.length
+
+	var window := duration + 0.1
 	print(state_name, " -> okno na klik: ", window, "s")
 	return window
-
 
 func _on_combo_window_timer_timeout() -> void:
 	combo_index = -1

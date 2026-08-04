@@ -67,7 +67,7 @@ fadeout_time = 0.2
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w7c48"]
 animation = &"Punch Cross/mixamo_com"
 use_custom_timeline = true
-timeline_length = 0.9
+timeline_length = 1.0
 stretch_time_scale = true
 start_offset = 0.0
 loop_mode = 0
@@ -75,7 +75,7 @@ loop_mode = 0
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7fjl8"]
 animation = &"Punch Left/mixamo_com"
 use_custom_timeline = true
-timeline_length = 0.5
+timeline_length = 0.75
 stretch_time_scale = true
 start_offset = 0.0
 loop_mode = 0
@@ -83,7 +83,7 @@ loop_mode = 0
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_usuh0"]
 animation = &"Punch Left/mixamo_com"
 use_custom_timeline = true
-timeline_length = 0.5
+timeline_length = 0.75
 stretch_time_scale = true
 start_offset = 0.0
 loop_mode = 0
@@ -91,7 +91,7 @@ loop_mode = 0
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nitqc"]
 animation = &"Punch Right/mixamo_com"
 use_custom_timeline = true
-timeline_length = 0.5
+timeline_length = 0.75
 stretch_time_scale = true
 start_offset = 0.0
 loop_mode = 0
