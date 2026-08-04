@@ -27,7 +27,7 @@ albedo_color = Color(0.13319641, 0.13319641, 0.13319638, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1bvp3"]
 material = SubResource("StandardMaterial3D_h2yge")
-size = Vector2(50, 50)
+size = Vector2(50, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
 albedo_texture = ExtResource("5_7mycd")
@@ -60,12 +60,13 @@ shadow_blur = 0.1
 directional_shadow_mode = 1
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1034609979]
-transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 3, 5.19)
+transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 3, 8.635)
 visible = false
+v_offset = 1.745
 projection = 1
-size = 6.0
+size = 10.0
 near = 0.001
-far = 12.0
+far = 17.95
 script = ExtResource("2_0xm2m")
 
 [node name="Player" parent="." unique_id=1521387049 instance=ExtResource("1_ig7tw")]

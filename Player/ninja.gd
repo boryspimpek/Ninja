@@ -9,9 +9,10 @@ extends CharacterBody3D
 @export var JUMP_VELOCITY := 3.0
 
 const KICK_ANIMS: Array[StringName] = [
-	&"High Kick Left/mixamo_com",
-	&"Low Kick Right/mixamo_com",
-	&"Mma Kick Right/mixamo_com",
+	&"Mma Kick 2/mixamo_com",
+	&"Mma Kick 3/mixamo_com",
+	&"Mma Kick 4/mixamo_com",
+	&"Mma Kick/mixamo_com",
 ]
 
 const HIT_ANIMS: Array[StringName] = [
