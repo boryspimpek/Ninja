@@ -8,9 +8,8 @@ extends CharacterBody3D
 @export var STICK_DEADZONE := 0.2
 @export var JUMP_VELOCITY := 3.0
 
-const PUNCH_ANIMS: Array[StringName] = [
-	&"Punch Quick Right/mixamo_com",
-]
+@export var COMBO_WINDOW := 0.6  # ile sekund po ciosie gracz ma na wciśnięcie kolejnego
+@export var PUNCH_FADEOUT := 0.15  # fadeout do Idle po zakończeniu comba
 
 const KICK_ANIMS: Array[StringName] = [
 	&"High Kick Left/mixamo_com",
@@ -21,14 +20,26 @@ const KICK_ANIMS: Array[StringName] = [
 	&"Mma Kick Right/mixamo_com",
 ]
 
+const PUNCH_COMBO_ORDER := ["Jab_L", "Jab_R", "Hook_L", "Hook_R"]
+
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var _playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/StateMachine/playback"]
+
+# Wewnętrzna state machine ciosów - to osobny węzeł BlendTree (nazwa jak w edytorze!),
+# NIE podścieżka wewnątrz PunchShot. Podmień "PunchCombo" jeśli nazwałeś węzeł inaczej.
+@onready var punch_combo_playback: AnimationNodeStateMachinePlayback = animation_tree.get("parameters/PunchCombo/playback")
+# Sam węzeł OneShot, żeby móc sterować fadeout_time z kodu
+@onready var punch_one_shot: AnimationNodeOneShot = animation_tree.tree_root.get_node("PunchShot")
+
+@onready var combo_timer: Timer = $ComboWindowTimer  # one_shot = true
 
 var can_vault: bool = false
 var current_vault = null
 
+var combo_index := -1  # -1 = poza combem (nic nie kolejkujemy)
 
-func _ready():
+
+func _ready() -> void:
 	print("groups: ", get_groups())
 
 
@@ -50,13 +61,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = 0.0
 		if Input.is_action_just_pressed("jump") and not is_melee_attacking:
-			
 			if can_vault:
 				velocity.y = JUMP_VELOCITY
 				_do_vault()
 			else:
 				velocity.y = JUMP_VELOCITY
-				_do_jump()			
+				_do_jump()
 
 	if is_melee_attacking:
 		velocity.x = 0.0
@@ -75,18 +85,33 @@ func _physics_process(delta: float) -> void:
 		_update_animation(is_aiming, move_dir)
 
 
+func _process(_delta: float) -> void:
+	# Kluczowa sztuczka: aktualizujemy fadeout_time co klatkę, na podstawie
+	# tego czy combo wciąż trwa (combo_index != -1) czy się zakończyło.
+	# Dzięki temu w momencie faktycznego zakończenia animacji OneShot
+	# używa aktualnej wartości, a nie tej ustawionej na starcie ataku.
+	punch_one_shot.fadeout_time = 0.0 if combo_index != -1 else PUNCH_FADEOUT
+
+
 func _input(event: InputEvent) -> void:
+	var is_shooting: bool = animation_tree.get("parameters/Shoot/active")
+
+	if is_shooting:
+		return
+
+	if event.is_action_pressed("punch") and not event.is_echo():
+		_on_attack_input()
+		return
+
 	var is_melee_attacking: bool = (
 		animation_tree.get("parameters/PunchShot/active")
 		or animation_tree.get("parameters/KickShot/active")
 	)
-	var is_shooting: bool = animation_tree.get("parameters/Shoot/active")
-	if is_melee_attacking or is_shooting:
+
+	if is_melee_attacking:
 		return
 
-	if event.is_action_pressed("punch"):
-		_do_attack("PunchAnim", "PunchShot", PUNCH_ANIMS)
-	elif event.is_action_pressed("kick"):
+	if event.is_action_pressed("kick"):
 		_do_attack("KickAnim", "KickShot", KICK_ANIMS)
 
 
@@ -102,12 +127,39 @@ func _do_vault() -> void:
 	await get_tree().create_timer(1.0).timeout
 
 	set_collision_mask_value(5, true)
-	print("MASKA 5 PRZYWRÓCONA")	
+	print("MASKA 5 PRZYWRÓCONA")
+
 
 func _do_attack(anim_node_name: String, shot_name: String, pool: Array[StringName]) -> void:
 	var anim_node: AnimationNodeAnimation = animation_tree.tree_root.get_node(anim_node_name)
 	anim_node.animation = pool.pick_random()
 	animation_tree.set("parameters/" + shot_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+
+func _on_attack_input() -> void:
+	combo_timer.stop()
+
+	if combo_index == -1:
+		# Pierwszy cios w serii - odpalamy zewnętrzny OneShot.
+		combo_index = 0
+		animation_tree.set("parameters/PunchShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	else:
+		# Kolejny cios w oknie combo - OneShot już gra, tylko przesuwamy
+		# wewnętrzną state machine na następny stan (xfade 0 między nimi).
+		combo_index = (combo_index + 1) % PUNCH_COMBO_ORDER.size()
+
+	punch_combo_playback.travel(PUNCH_COMBO_ORDER[combo_index])
+	combo_timer.start(COMBO_WINDOW)
+
+
+func _on_combo_window_timer_timeout() -> void:
+	combo_index = -1
+	# PunchCombo (state machine) nie ma jednoznacznego "końca" jak zwykła
+	# animacja - zatrzymuje się na ostatnim stanie i czeka. Musimy więc
+	# jawnie kazać zewnętrznemu OneShotowi się zakończyć, inaczej "active"
+	# zostanie true na zawsze i postać nigdy nie wróci do ruchu/skoku.
+	punch_one_shot.fadeout_time = PUNCH_FADEOUT
+	animation_tree.set("parameters/PunchShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FADE_OUT)
 
 
 func _process_moving(delta: float, move_dir: Vector3) -> void:
@@ -161,6 +213,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		body.can_vault = true
 		print("VAULT ON: ", body.can_vault)
 		body.current_vault = self
+
 
 func _on_area_3d_body_exited(body: Node3D) -> void:
 	print("Area exited: ", body.name)
