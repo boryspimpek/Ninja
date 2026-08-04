@@ -39,6 +39,7 @@ var can_vault: bool = false
 var current_vault = null
 
 var combo_index := -1  # -1 = poza combem (nic nie kolejkujemy)
+var _pending_target := ""  # cel, który już zakolejkowaliśmy i czeka na start
 var _last_combo_state := ""  # ostatni stan, dla którego wystartował combo_timer
 
 
@@ -97,6 +98,7 @@ func _process(_delta: float) -> void:
 
 	if combo_index == -1:
 		_last_combo_state = ""
+		_pending_target = ""
 		return
 
 	# Timer na okno combo NIE startuje w momencie kliknięcia, tylko w
@@ -108,6 +110,11 @@ func _process(_delta: float) -> void:
 	if current_playing != _last_combo_state and current_playing in PUNCH_COMBO_ORDER:
 		_last_combo_state = current_playing
 		combo_timer.start(_get_combo_window(current_playing))
+
+	if current_playing == _pending_target:
+		# Zakolejkowany cios właśnie faktycznie ruszył - zwalniamy bufor,
+		# żeby kolejny klik gracza mógł zakolejkować następny cios.
+		_pending_target = ""
 
 
 func _input(event: InputEvent) -> void:
@@ -159,16 +166,20 @@ func _on_attack_input() -> void:
 	if combo_index == -1:
 		# Pierwszy cios w serii - odpalamy zewnętrzny OneShot.
 		combo_index = 0
+		_pending_target = PUNCH_COMBO_ORDER[combo_index]
+		punch_combo_playback.travel(_pending_target)
 		animation_tree.set("parameters/PunchShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	else:
-		# Kolejny cios w oknie combo - OneShot już gra, tylko przesuwamy
-		# wewnętrzną state machine na następny stan (xfade 0 między nimi).
-		# Sam moment faktycznego przełączenia (i zresetowania timera na
-		# odpowiednią długość) obsługuje _process(), bo przy Switch Mode
-		# "At End" to przełączenie może nastąpić z opóźnieniem względem kliku.
-		combo_index = (combo_index + 1) % PUNCH_COMBO_ORDER.size()
+		return
 
-	punch_combo_playback.travel(PUNCH_COMBO_ORDER[combo_index])
+	if _pending_target != "":
+		# Mamy już jeden zakolejkowany cios, który jeszcze się nie zaczął
+		# odtwarzać - bufor pełny, dodatkowe kliknięcia ignorujemy (zamiast
+		# pozwolić graczowi "namashować" długą, niekontrolowaną serię ciosów).
+		return
+
+	combo_index = (combo_index + 1) % PUNCH_COMBO_ORDER.size()
+	_pending_target = PUNCH_COMBO_ORDER[combo_index]
+	punch_combo_playback.travel(_pending_target)
 
 
 func _get_combo_window(state_name: String) -> float:
