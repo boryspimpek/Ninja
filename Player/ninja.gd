@@ -8,8 +8,7 @@ extends CharacterBody3D
 @export var STICK_DEADZONE := 0.2
 @export var JUMP_VELOCITY := 3.0
 
-@export var COMBO_WINDOW := 0.6  # fallback, gdy nie uda się odczytać długości animacji
-@export var PUNCH_FADEOUT := 0.15  # fadeout do Idle po zakończeniu comba
+@export var PUNCH_FADEOUT := 0.1  # fadeout do Idle po zakończeniu comba
 
 const KICK_ANIMS: Array[StringName] = [
 	&"High Kick Left/mixamo_com",
@@ -183,15 +182,13 @@ func _on_attack_input() -> void:
 
 
 func _get_combo_window(state_name: String) -> float:
-	# Okno na kolejny klik = długość animacji aktualnego ciosu (+ mały zapas),
-	# zamiast jednej sztywnej wartości dla wszystkich ciosów. Dzięki temu przy
-	# długich hakach gracz ma tyle czasu ile trwa animacja, a nie tylko 0.6s.
+	# Okno na kolejny klik = długość animacji aktualnego ciosu (+ mały zapas).
+	# Celowo BEZ fallbacku - jeśli stan/animacja nie istnieje, chcemy się
+	# o tym dowiedzieć od razu, a nie dostać cichy, mylący domyślny czas.
 	var anim_node := punch_combo_state_machine.get_node(state_name) as AnimationNodeAnimation
-	if anim_node == null:
-		return COMBO_WINDOW
+	assert(anim_node != null, "Brak stanu '%s' w PunchCombo albo to nie jest AnimationNodeAnimation" % state_name)
 	var anim := animation_player.get_animation(anim_node.animation)
-	if anim == null:
-		return COMBO_WINDOW
+	assert(anim != null, "Animacja '%s' (stan '%s') nie istnieje w AnimationPlayer" % [anim_node.animation, state_name])
 	var window := anim.length + 0.1
 	print(state_name, " -> okno na klik: ", window, "s")
 	return window
