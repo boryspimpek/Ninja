@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://6lciyj62uqti" path="res://Ninja model/T-Pose.fbx" id="1_25rb4"]
 [ext_resource type="Script" uid="uid://ba6hxecms0gtp" path="res://Player/ninja.gd" id="2_0jgus"]
 [ext_resource type="Texture2D" uid="uid://dab7j4yaog6cy" path="res://Ninja model/ninja_ninja_character_3d_model_basecolor.png" id="2_lbaip"]
+[ext_resource type="Script" uid="uid://dnxkqpdiesw0o" path="res://Player/AttackSpeedData.gd" id="3_8q81g"]
 [ext_resource type="AnimationLibrary" uid="uid://bjxkx141qed0" path="res://Animations/walk aiming/Standing Aim Idle.fbx" id="3_s7tgv"]
 [ext_resource type="AnimationLibrary" uid="uid://4af3flmy02k5" path="res://Animations/walk aiming/Standing Aim Walk Back.fbx" id="4_0jgus"]
 [ext_resource type="AnimationLibrary" uid="uid://nb5h3jvsq1hv" path="res://Animations/walk aiming/Standing Aim Walk Forward.fbx" id="5_l1xii"]
@@ -34,10 +35,17 @@
 [ext_resource type="PackedScene" uid="uid://bjdo1exfi4ycs" path="res://assets/BinbunVFX_Vol2/DarkMagicFX/effects/area/vfx_evil_area_01.tscn" id="33_6umd0"]
 [ext_resource type="AnimationLibrary" uid="uid://cx566wmdutw4u" path="res://Animations/attack/Punch Right.fbx" id="33_samnv"]
 
-[sub_resource type="Curve" id="Curve_6umd0"]
+[sub_resource type="Curve" id="Curve_7fjl8"]
 _limits = [1.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(0.09774436, 1), 0.0, 0.0, 0, 0, Vector2(0.46365914, 1), 0.0, 0.0, 0, 0, Vector2(0.55639094, 3.0463827), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(0.17759562, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_samnv"]
+script = ExtResource("3_8q81g")
+animation_name = &"mma_kick"
+speed_curve = SubResource("Curve_7fjl8")
+duration = 1.6
+metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ot7kk"]
 diffuse_mode = 3
@@ -140,7 +148,7 @@ fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
-graph_offset = Vector2(-294.47357, 131.13477)
+graph_offset = Vector2(-567.15375, 90.74962)
 nodes/output/position = Vector2(960, 200)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
 nodes/StateMachine/position = Vector2(-680, 200)
@@ -179,8 +187,7 @@ collision_mask = 17
 safe_margin = 0.01
 script = ExtResource("2_0jgus")
 MOVE_SPEED = 6.0
-kick_speed_curve = SubResource("Curve_6umd0")
-kick_duration = 1.6
+kick_speed_settings = Array[ExtResource("3_8q81g")]([SubResource("Resource_samnv")])
 
 [node name="Skeleton3D" parent="." index="0" unique_id=1484561533]
 bones/12/rotation = Quaternion(0.025149304, 6.941091e-17, -1.3882182e-17, 0.9996837)

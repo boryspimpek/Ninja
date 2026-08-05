@@ -21,6 +21,8 @@ const HIT_ANIMS: Array[StringName] = [
 	&"Punch Cross/mixamo_com",
 ]
 
+const AttackSpeedData = preload("res://Player/AttackSpeedData.gd")
+
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var _playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/StateMachine/playback"]
@@ -28,18 +30,20 @@ const HIT_ANIMS: Array[StringName] = [
 var can_vault: bool = false
 var current_vault = null
 
-@export var kick_speed_curves: Array[Curve] = []
-@export var kick_durations: Array[float] = []
-@export var hit_speed_curves: Array[Curve] = []
-@export var hit_durations: Array[float] = []
+@export var kick_speed_settings: Array[AttackSpeedData] = []
+@export var hit_speed_settings: Array[AttackSpeedData] = []
 @export var default_attack_duration: float = 0.7
 
 var attack_timer: float = 0.0
 var attack_active: bool = false
 var attack_speed_curve: Curve = Curve.new()
 var attack_duration: float = default_attack_duration
+var default_attack_curve: Curve = Curve.new()
 
 func _ready() -> void:
+	default_attack_curve.add_point(Vector2(0.0, 1.0))
+	default_attack_curve.add_point(Vector2(1.0, 1.0))
+	attack_speed_curve = default_attack_curve
 	print("groups: ", get_groups())
 
 
@@ -56,14 +60,14 @@ func _physics_process(delta: float) -> void:
 
 	var move_dir: Vector3 = Vector3(move_input.x, 0.0, move_input.y)
 
-	if kick_active:
-		kick_timer += delta
-		var t: float = clamp(kick_timer / kick_duration, 0.0, 1.0)
-		var speed: float = kick_speed_curve.sample(t)
+	if attack_active:
+		attack_timer += delta
+		var t: float = clamp(attack_timer / attack_duration, 0.0, 1.0)
+		var speed: float = attack_speed_curve.sample(t)
 		animation_tree.set("parameters/KickScale/scale", speed)
 
 		if t >= 1.0:
-			kick_active = false
+			attack_active = false
 			animation_tree.set("parameters/KickScale/scale", 1.0)
 
 	if not is_on_floor():
@@ -133,11 +137,31 @@ func _do_vault() -> void:
 
 func _do_attack(anim_node_name: String, shot_name: String, pool: Array[StringName]) -> void:
 	var anim_node: AnimationNodeAnimation = animation_tree.tree_root.get_node(anim_node_name)
-	anim_node.animation = pool.pick_random()
-	kick_timer = 0.0
-	kick_active = true
-	animation_tree.set("parameters/KickScale/scale", kick_speed_curve.sample(0.0))
+	var chosen_anim: StringName = pool.pick_random()
+	anim_node.animation = chosen_anim
+	_set_attack_curve(shot_name, chosen_anim)
+	attack_timer = 0.0
+	attack_active = true
+	animation_tree.set("parameters/KickScale/scale", attack_speed_curve.sample(0.0))
 	animation_tree.set("parameters/" + shot_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+
+
+func _set_attack_curve(shot_name: String, animation_name: StringName) -> void:
+	var key: String = String(animation_name)
+	attack_speed_curve = default_attack_curve
+	attack_duration = default_attack_duration
+
+	var settings: Array[AttackSpeedData]
+	if shot_name == "KickShot":
+		settings = kick_speed_settings
+	else:
+		settings = hit_speed_settings
+	for setting in settings:
+		if setting.animation_name == key:
+			attack_speed_curve = setting.speed_curve
+			if setting.duration > 0.0:
+				attack_duration = setting.duration
+			return
 
 
 func _process_moving(delta: float, move_dir: Vector3) -> void:
