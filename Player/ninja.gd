@@ -21,8 +21,6 @@ const HIT_ANIMS: Array[StringName] = [
 	&"Attacks/punch_cross",
 ]
 
-const AttackSpeedData = preload("res://Player/AttackSpeedData.gd")
-
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var _playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/StateMachine/playback"]
@@ -30,26 +28,16 @@ const AttackSpeedData = preload("res://Player/AttackSpeedData.gd")
 var can_vault: bool = false
 var current_vault = null
 
-@export var kick_speed_settings: Array[AttackSpeedData] = []
-@export var hit_speed_settings: Array[AttackSpeedData] = []
-@export var default_attack_duration: float = 0.7
+@export var fallback_attack_duration: float = 0.7 ## Używane tylko, gdy animacji nie znaleziono w AnimationPlayerze.
+@export var COMBO_BUFFER_TIME := 0.3
 
 var attack_timer: float = 0.0
 var attack_active: bool = false
-var attack_speed_curve: Curve = Curve.new()
-var attack_duration: float = default_attack_duration
-var default_attack_curve: Curve = Curve.new()
-
-const CURVE_INTEGRATION_STEPS := 64
-@export var COMBO_BUFFER_TIME := 0.3
-
-var attack_real_duration: float = 0.0
+var attack_duration: float = 0.0
 var buffered_attack: Dictionary = {}
 
+
 func _ready() -> void:
-	default_attack_curve.add_point(Vector2(0.0, 1.0))
-	default_attack_curve.add_point(Vector2(1.0, 1.0))
-	attack_speed_curve = default_attack_curve
 	print("groups: ", get_groups())
 
 
@@ -75,15 +63,8 @@ func _physics_process(delta: float) -> void:
 
 	if attack_active:
 		attack_timer += delta
-		var t: float = clamp(attack_timer / attack_duration, 0.0, 1.0)
-		var speed: float = attack_speed_curve.sample(t)
-		animation_tree.set("parameters/KickScale/scale", speed)
-		animation_tree.set("parameters/HitScale/scale", speed)
-
-		if attack_timer >= attack_real_duration:
+		if attack_timer >= attack_duration:
 			attack_active = false
-			animation_tree.set("parameters/KickScale/scale", 1.0)
-			animation_tree.set("parameters/HitScale/scale", 1.0)
 
 	if not is_on_floor():
 		velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity", 9.8) * delta
@@ -125,7 +106,7 @@ func _input(event: InputEvent) -> void:
 	)
 
 	if is_melee_attacking:
-		var time_left := attack_real_duration - attack_timer
+		var time_left := attack_duration - attack_timer
 		if time_left <= COMBO_BUFFER_TIME:
 			if event.is_action_pressed("kick"):
 				buffered_attack = {"anim_node": "KickAnim", "shot": "KickShot", "pool": KICK_ANIMS}
@@ -158,55 +139,18 @@ func _do_attack(anim_node_name: String, shot_name: String, pool: Array[StringNam
 	var anim_node: AnimationNodeAnimation = animation_tree.tree_root.get_node(anim_node_name)
 	var chosen_anim: StringName = pool.pick_random()
 	anim_node.animation = chosen_anim
-	_set_attack_curve(shot_name, chosen_anim)
 	attack_timer = 0.0
 	attack_active = true
-	animation_tree.set("parameters/KickScale/scale", attack_speed_curve.sample(0.0))
+	attack_duration = _get_animation_length(chosen_anim)
 	animation_tree.set("parameters/" + shot_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 
-func _set_attack_curve(shot_name: String, animation_name: StringName) -> void:
-	var key: String = String(animation_name)
-	attack_speed_curve = default_attack_curve
-	attack_duration = default_attack_duration
-
-	var settings: Array[AttackSpeedData]
-	if shot_name == "KickShot":
-		settings = kick_speed_settings
-	else:
-		settings = hit_speed_settings
-
-	for setting in settings:
-		if setting.animation_name == key:
-			attack_speed_curve = setting.speed_curve
-			if setting.duration > 0.0:
-				attack_duration = setting.duration
-			break
-	attack_real_duration = _estimate_real_duration(attack_speed_curve, attack_duration)
-	print("Attack duration for ", key, ": nominal=", attack_duration, ", real=", attack_real_duration)
-
-
-func _estimate_real_duration(curve: Curve, nominal_duration: float) -> float:
-	if nominal_duration <= 0.0:
-		return 0.0
-	var steps := CURVE_INTEGRATION_STEPS
-	var du := 1.0 / float(steps)
-	var area := 0.0
-	var prev_u := 0.0
-	var prev_v := curve.sample(0.0)
-	for i in range(1, steps + 1):
-		var u := i * du
-		var v := curve.sample(u)
-		var segment := (prev_v + v) * 0.5 * du
-		if area + segment >= 1.0:
-			var remaining := 1.0 - area
-			var frac := remaining / segment if segment > 0.0 else 0.0
-			var s := prev_u + frac * du
-			return s * nominal_duration
-		area += segment
-		prev_u = u
-		prev_v = v
-	return nominal_duration / max(area, 0.001) # fallback gdyby krzywa < 1.0 wszędzie
+func _get_animation_length(anim_name: StringName) -> float:
+	var anim: Animation = animation_player.get_animation(anim_name)
+	if anim == null:
+		push_warning("Nie znaleziono animacji '%s' w AnimationPlayerze, używam fallback_attack_duration." % anim_name)
+		return fallback_attack_duration
+	return anim.length
 
 
 func _process_moving(delta: float, move_dir: Vector3) -> void:
