@@ -47,6 +47,42 @@ speed_curve = SubResource("Curve_7fjl8")
 duration = 1.6
 metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
 
+[sub_resource type="Curve" id="Curve_8q81g"]
+_limits = [1.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(0.05464481, 1), 0.0, 0.0, 0, 0, Vector2(0.59836066, 1), 0.0, 0.0, 0, 0, Vector2(0.6775956, 5), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_8q81g"]
+script = ExtResource("3_8q81g")
+animation_name = &"Attacks/mma_kick_2"
+speed_curve = SubResource("Curve_8q81g")
+duration = 2.0
+metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
+
+[sub_resource type="Curve" id="Curve_samnv"]
+_limits = [1.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0.027322404, 5), 0.0, 0.0, 0, 0, Vector2(0.10382513, 1), 0.0, 0.0, 0, 0, Vector2(0.45901638, 1), 0.0, 0.0, 0, 0, Vector2(0.74043715, 5), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_usuh0"]
+script = ExtResource("3_8q81g")
+animation_name = &"Attacks/mma_kick_3"
+speed_curve = SubResource("Curve_samnv")
+duration = 1.666
+metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
+
+[sub_resource type="Curve" id="Curve_usuh0"]
+_limits = [1.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(0.08469946, 1.0042691), 0.0, 0.0, 0, 0, Vector2(0.5081967, 1), 0.0, 0.0, 0, 0, Vector2(0.71311474, 5), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Resource" id="Resource_nitqc"]
+script = ExtResource("3_8q81g")
+animation_name = &"Attacks/mma_kick_4"
+speed_curve = SubResource("Curve_usuh0")
+duration = 1.6
+metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ot7kk"]
 diffuse_mode = 3
 specular_mode = 1
@@ -148,7 +184,7 @@ fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
-graph_offset = Vector2(-567.15375, 90.74962)
+graph_offset = Vector2(-443.14966, 140.94604)
 nodes/output/position = Vector2(960, 200)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
 nodes/StateMachine/position = Vector2(-680, 200)
@@ -187,7 +223,7 @@ collision_mask = 17
 safe_margin = 0.01
 script = ExtResource("2_0jgus")
 MOVE_SPEED = 6.0
-kick_speed_settings = Array[ExtResource("3_8q81g")]([SubResource("Resource_samnv")])
+kick_speed_settings = Array[ExtResource("3_8q81g")]([SubResource("Resource_samnv"), SubResource("Resource_8q81g"), SubResource("Resource_usuh0"), SubResource("Resource_nitqc")])
 
 [node name="Skeleton3D" parent="." index="0" unique_id=1484561533]
 bones/12/rotation = Quaternion(0.025149304, 6.941091e-17, -1.3882182e-17, 0.9996837)

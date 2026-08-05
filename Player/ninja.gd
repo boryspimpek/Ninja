@@ -9,16 +9,16 @@ extends CharacterBody3D
 @export var JUMP_VELOCITY := 3.0
 
 const KICK_ANIMS: Array[StringName] = [
-	&"Attacks/mma_kick",
-#	&"attacks/mma_kick_2",
-#	&"Attacks/mma_kick_3",
-#	&"Attacks/mma_kick_4",
+	# &"Attacks/mma_kick",
+	# &"Attacks/mma_kick_2",
+	# &"Attacks/mma_kick_3",
+	&"Attacks/mma_kick_4",
 ]
 
 const HIT_ANIMS: Array[StringName] = [
 	&"Punch Left/mixamo_com",
-	&"Punch Right/mixamo_com",
-	&"Punch Cross/mixamo_com",
+	# &"Punch Right/mixamo_com",
+	# &"Punch Cross/mixamo_com",
 ]
 
 const AttackSpeedData = preload("res://Player/AttackSpeedData.gd")
