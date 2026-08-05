@@ -3,9 +3,9 @@
 [ext_resource type="PackedScene" uid="uid://6lciyj62uqti" path="res://Ninja model/T-Pose.fbx" id="1_25rb4"]
 [ext_resource type="Script" uid="uid://ba6hxecms0gtp" path="res://Player/ninja.gd" id="2_0jgus"]
 [ext_resource type="Texture2D" uid="uid://dab7j4yaog6cy" path="res://Ninja model/ninja_ninja_character_3d_model_basecolor.png" id="2_lbaip"]
-[ext_resource type="Script" uid="uid://dnxkqpdiesw0o" path="res://Player/AttackSpeedData.gd" id="3_8q81g"]
 [ext_resource type="AnimationLibrary" uid="uid://bjxkx141qed0" path="res://Animations/walk aiming/Standing Aim Idle.fbx" id="3_s7tgv"]
 [ext_resource type="AnimationLibrary" uid="uid://4af3flmy02k5" path="res://Animations/walk aiming/Standing Aim Walk Back.fbx" id="4_0jgus"]
+[ext_resource type="PackedScene" uid="uid://khxyfpawxvpe" path="res://Ninja model/sword_1.tscn" id="4_w7c48"]
 [ext_resource type="AnimationLibrary" uid="uid://nb5h3jvsq1hv" path="res://Animations/walk aiming/Standing Aim Walk Forward.fbx" id="5_l1xii"]
 [ext_resource type="AnimationLibrary" uid="uid://cb2lcomsqslto" path="res://Animations/walk aiming/Standing Aim Walk Left.fbx" id="6_ugt1r"]
 [ext_resource type="AnimationLibrary" uid="uid://5t27ca3vpy54" path="res://Animations/walk aiming/Standing Aim Walk Right.fbx" id="7_wwoeq"]
@@ -34,90 +34,11 @@
 [ext_resource type="AnimationLibrary" uid="uid://dkwvcjyf3dmox" path="res://Animations/attack/Idle Mma.fbx" id="19_w7c48"]
 [ext_resource type="AnimationLibrary" uid="uid://bt1icfcju4664" path="res://Animations/jump/Jump Vault.fbx" id="31_j8gkf"]
 [ext_resource type="PackedScene" uid="uid://bjdo1exfi4ycs" path="res://assets/BinbunVFX_Vol2/DarkMagicFX/effects/area/vfx_evil_area_01.tscn" id="33_6umd0"]
-
-[sub_resource type="Curve" id="Curve_7fjl8"]
-_limits = [1.0, 10.0, 0.0, 1.0]
-_data = [Vector2(0, 2), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Resource" id="Resource_samnv"]
-script = ExtResource("3_8q81g")
-animation_name = &"Attacks/mma_kick"
-speed_curve = SubResource("Curve_7fjl8")
-duration = 1.6
-metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
-
-[sub_resource type="Curve" id="Curve_8q81g"]
-_limits = [1.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 2), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Resource" id="Resource_8q81g"]
-script = ExtResource("3_8q81g")
-animation_name = &"Attacks/mma_kick_2"
-speed_curve = SubResource("Curve_8q81g")
-duration = 2.0
-metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
-
-[sub_resource type="Curve" id="Curve_samnv"]
-_limits = [1.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 1.5393262), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Resource" id="Resource_usuh0"]
-script = ExtResource("3_8q81g")
-animation_name = &"Attacks/mma_kick_3"
-speed_curve = SubResource("Curve_samnv")
-duration = 1.666
-metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
-
-[sub_resource type="Curve" id="Curve_usuh0"]
-_limits = [1.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 1.5), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Resource" id="Resource_nitqc"]
-script = ExtResource("3_8q81g")
-animation_name = &"Attacks/mma_kick_4"
-speed_curve = SubResource("Curve_usuh0")
-duration = 1.6
-metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
-
-[sub_resource type="Curve" id="Curve_nitqc"]
-_limits = [1.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 2.195652), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Resource" id="Resource_w7c48"]
-script = ExtResource("3_8q81g")
-animation_name = &"Attacks/punch_left"
-speed_curve = SubResource("Curve_nitqc")
-duration = 1.0
-metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
-
-[sub_resource type="Curve" id="Curve_w7c48"]
-_limits = [1.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 2), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Resource" id="Resource_pcu4d"]
-script = ExtResource("3_8q81g")
-animation_name = &"Attacks/punch_right"
-speed_curve = SubResource("Curve_w7c48")
-duration = 0.8
-metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
-
-[sub_resource type="Curve" id="Curve_pcu4d"]
-_limits = [1.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 1.4565217), 0.0, 0.0, 0, 0]
-point_count = 1
-
-[sub_resource type="Resource" id="Resource_56a10"]
-script = ExtResource("3_8q81g")
-animation_name = &"Attacks/punch_cross"
-speed_curve = SubResource("Curve_pcu4d")
-duration = 1.266
-metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
+[ext_resource type="Animation" uid="uid://b4p6qaxhdni4b" path="res://Animations/sword/sword_attack.tres" id="33_8q81g"]
+[ext_resource type="Animation" uid="uid://cqldy7qcddcgl" path="res://Animations/sword/sword_attack_2.tres" id="34_nitqc"]
+[ext_resource type="Animation" uid="uid://d27jcnfxndrd3" path="res://Animations/sword/sword_attack_3.tres" id="35_w7c48"]
+[ext_resource type="Animation" uid="uid://bufhsu0sl0ic6" path="res://Animations/sword/sword_attack_4.tres" id="36_pcu4d"]
+[ext_resource type="Animation" uid="uid://j7swxsh3jbw8" path="res://Animations/sword/sword_attack_5.tres" id="37_56a10"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ot7kk"]
 diffuse_mode = 3
@@ -134,6 +55,15 @@ _data = {
 &"punch_cross": ExtResource("15_8q81g"),
 &"punch_left": ExtResource("16_7fjl8"),
 &"punch_right": ExtResource("17_samnv")
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_samnv"]
+_data = {
+&"sword_attack": ExtResource("33_8q81g"),
+&"sword_attack_2": ExtResource("34_nitqc"),
+&"sword_attack_3": ExtResource("35_w7c48"),
+&"sword_attack_4": ExtResource("36_pcu4d"),
+&"sword_attack_5": ExtResource("37_56a10")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aimshoot"]
@@ -185,7 +115,7 @@ animation = &"Aim Run Left/mixamo_com"
 animation = &"Aim Run Right/mixamo_com"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_idle"]
-animation = &"Normal Idle/mixamo_com"
+animation = &"Idle Mma/mixamo_com"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_run"]
 animation = &"Bow Run Forward/mixamo_com"
@@ -215,15 +145,20 @@ states/Run/node = SubResource("AnimationNodeAnimation_run")
 states/Run/position = Vector2(-31, 77)
 states/Start/position = Vector2(-354, 31)
 transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_default"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_default"), "Idle", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "Idle", SubResource("AnimationNodeStateMachineTransition_default"), "Run", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "Run", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default")]
-graph_offset = Vector2(-324, -165)
+graph_offset = Vector2(-270, 55)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_usuh0"]
+animation = &"Sword/sword_attack"
+
+[sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_nitqc"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_8q81g"]
 fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
-graph_offset = Vector2(-360.93686, 171.84381)
-nodes/output/position = Vector2(960, 200)
+graph_offset = Vector2(-306.23236, 38.739838)
+nodes/output/position = Vector2(1260, 200)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
 nodes/StateMachine/position = Vector2(-380, 200)
 nodes/Shoot/node = SubResource("AnimationNodeOneShot_h4j7k")
@@ -239,18 +174,22 @@ nodes/HitShot/position = Vector2(120, 200)
 nodes/KickShot/node = SubResource("AnimationNodeOneShot_5y2i1")
 nodes/KickShot/position = Vector2(360, 200)
 nodes/JumpShot/node = SubResource("AnimationNodeOneShot_6umd0")
-nodes/JumpShot/position = Vector2(560, 200)
+nodes/JumpShot/position = Vector2(900, 200)
 nodes/JumpAnim/node = SubResource("AnimationNodeAnimation_nx11x")
-nodes/JumpAnim/position = Vector2(300, 580)
+nodes/JumpAnim/position = Vector2(520, 580)
 nodes/VaultShot/node = SubResource("AnimationNodeOneShot_8q81g")
-nodes/VaultShot/position = Vector2(740, 200)
+nodes/VaultShot/position = Vector2(1080, 200)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_6umd0")
-nodes/Animation/position = Vector2(580, 580)
+nodes/Animation/position = Vector2(760, 580)
 nodes/KickScale/node = SubResource("AnimationNodeTimeScale_6umd0")
 nodes/KickScale/position = Vector2(120, 580)
 nodes/HitScale/node = SubResource("AnimationNodeTimeScale_usuh0")
 nodes/HitScale/position = Vector2(-120, 580)
-node_connections = [&"output", 0, &"VaultShot", &"Shoot", 0, &"StateMachine", &"Shoot", 1, &"AimShoot", &"HitShot", 0, &"Shoot", &"HitShot", 1, &"HitScale", &"KickShot", 0, &"HitShot", &"KickShot", 1, &"KickScale", &"JumpShot", 0, &"KickShot", &"JumpShot", 1, &"JumpAnim", &"VaultShot", 0, &"JumpShot", &"VaultShot", 1, &"Animation", &"KickScale", 0, &"KickAnim", &"HitScale", 0, &"HitAnim"]
+nodes/SwordShot/node = SubResource("AnimationNodeOneShot_nitqc")
+nodes/SwordShot/position = Vector2(600, 200)
+nodes/SwordAnim/node = SubResource("AnimationNodeAnimation_usuh0")
+nodes/SwordAnim/position = Vector2(200, 800)
+node_connections = [&"output", 0, &"VaultShot", &"Shoot", 0, &"StateMachine", &"Shoot", 1, &"AimShoot", &"HitShot", 0, &"Shoot", &"HitShot", 1, &"HitScale", &"KickShot", 0, &"HitShot", &"KickShot", 1, &"KickScale", &"JumpShot", 0, &"SwordShot", &"JumpShot", 1, &"JumpAnim", &"VaultShot", 0, &"JumpShot", &"VaultShot", 1, &"Animation", &"KickScale", 0, &"KickAnim", &"HitScale", 0, &"HitAnim", &"SwordShot", 0, &"KickShot", &"SwordShot", 1, &"SwordAnim"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5y2i1"]
 radius = 0.026367188
@@ -263,8 +202,6 @@ collision_mask = 17
 safe_margin = 0.01
 script = ExtResource("2_0jgus")
 MOVE_SPEED = 6.0
-kick_speed_settings = Array[ExtResource("3_8q81g")]([SubResource("Resource_samnv"), SubResource("Resource_8q81g"), SubResource("Resource_usuh0"), SubResource("Resource_nitqc")])
-hit_speed_settings = Array[ExtResource("3_8q81g")]([SubResource("Resource_w7c48"), SubResource("Resource_pcu4d"), SubResource("Resource_56a10")])
 
 [node name="Skeleton3D" parent="." index="0" unique_id=1484561533]
 bones/12/rotation = Quaternion(0.025149304, 6.941091e-17, -1.3882182e-17, 0.9996837)
@@ -278,6 +215,14 @@ bones/29/rotation = Quaternion(0.07379109, 5.5662896e-17, -4.8705033e-17, 0.9972
 
 [node name="tripo_node_011bb799" parent="Skeleton3D" index="0" unique_id=441335630]
 surface_material_override/0 = SubResource("StandardMaterial3D_ot7kk")
+
+[node name="BoneAttachment3D" type="BoneAttachment3D" parent="Skeleton3D" index="1" unique_id=201473774]
+transform = Transform3D(-0.19431561, -0.9795799, -0.05161753, -0.42529505, 0.13154837, -0.8954433, 0.8839486, -0.15204601, -0.4421724, -0.33005807, 0.5488275, 0.0673766)
+bone_name = "mixamorig_RightHand"
+bone_idx = 22
+
+[node name="Sword1" parent="Skeleton3D/BoneAttachment3D" index="0" unique_id=112724226 instance=ExtResource("4_w7c48")]
+transform = Transform3D(0.5555556, -4.4703484e-08, 2.9802322e-08, -1.4901161e-08, 0.5555556, -4.4703484e-08, -1.4901161e-08, 8.940697e-08, 0.5555552, -0.0008631423, -0.15919757, 0.027733326)
 
 [node name="AnimationPlayer" parent="." index="1" unique_id=96017134]
 "libraries/Aim Idle" = ExtResource("3_s7tgv")
@@ -303,6 +248,7 @@ libraries/Jump = ExtResource("17_5y2i1")
 "libraries/Normal Right Strafe" = ExtResource("16_j8gkf")
 "libraries/Normal Run Backward" = ExtResource("17_nx11x")
 "libraries/Normal Run Forward" = ExtResource("18_6umd0")
+libraries/Sword = SubResource("AnimationLibrary_samnv")
 speed_scale = 0.0
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=923202538]
@@ -325,6 +271,9 @@ parameters/VaultShot/internal_active = false
 parameters/VaultShot/request = 0
 parameters/KickScale/scale = 1.0
 parameters/HitScale/scale = 1.0
+parameters/SwordShot/active = false
+parameters/SwordShot/internal_active = false
+parameters/SwordShot/request = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=1740798387]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47265625, 0.10223469)
@@ -332,5 +281,4 @@ shape = SubResource("CapsuleShape3D_5y2i1")
 
 [node name="VFXEvilArea_01" parent="." index="4" unique_id=394797287 instance=ExtResource("33_6umd0")]
 transform = Transform3D(0.351, 0, 0, 0, 0.351, 0, 0, 0, 0.351, 0, 0, 0)
-visible = false
 speed_scale = 2.0

@@ -21,6 +21,14 @@ const HIT_ANIMS: Array[StringName] = [
 	&"Attacks/punch_cross",
 ]
 
+const SWORD_ANIMS: Array[StringName] = [
+	&"Sword/sword_attack",
+	&"Sword/sword_attack_2",
+	&"Sword/sword_attack_3",
+	&"Sword/sword_attack_4",
+	&"Sword/sword_attack_5",
+]
+
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var _playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/StateMachine/playback"]
@@ -45,6 +53,7 @@ func _physics_process(delta: float) -> void:
 	var is_melee_attacking: bool = (
 		animation_tree.get("parameters/KickShot/active")
 		or animation_tree.get("parameters/HitShot/active")
+		or animation_tree.get("parameters/SwordShot/active")
 	)
 
 	if not is_melee_attacking and not buffered_attack.is_empty():
@@ -103,6 +112,7 @@ func _input(event: InputEvent) -> void:
 	var is_melee_attacking: bool = (
 		animation_tree.get("parameters/KickShot/active")
 		or animation_tree.get("parameters/HitShot/active")
+		or animation_tree.get("parameters/SwordShot/active")
 	)
 
 	if is_melee_attacking:
@@ -112,12 +122,16 @@ func _input(event: InputEvent) -> void:
 				buffered_attack = {"anim_node": "KickAnim", "shot": "KickShot", "pool": KICK_ANIMS}
 			elif event.is_action_pressed("hit"):
 				buffered_attack = {"anim_node": "HitAnim", "shot": "HitShot", "pool": HIT_ANIMS}
+			elif event.is_action_pressed("sword"):
+				buffered_attack = {"anim_node": "SwordAnim", "shot": "SwordShot", "pool": SWORD_ANIMS}
 		return
 
 	if event.is_action_pressed("kick"):
 		_do_attack("KickAnim", "KickShot", KICK_ANIMS)
 	if event.is_action_pressed("hit"):
 		_do_attack("HitAnim", "HitShot", HIT_ANIMS)
+	if event.is_action_pressed("sword"):
+		_do_attack("SwordAnim", "SwordShot", SWORD_ANIMS)
 
 
 func _do_jump() -> void:
