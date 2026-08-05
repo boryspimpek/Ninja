@@ -40,6 +40,12 @@ var attack_speed_curve: Curve = Curve.new()
 var attack_duration: float = default_attack_duration
 var default_attack_curve: Curve = Curve.new()
 
+const CURVE_INTEGRATION_STEPS := 64
+@export var COMBO_BUFFER_TIME := 0.3
+
+var attack_real_duration: float = 0.0
+var buffered_attack: Dictionary = {}
+
 func _ready() -> void:
 	default_attack_curve.add_point(Vector2(0.0, 1.0))
 	default_attack_curve.add_point(Vector2(1.0, 1.0))
@@ -52,6 +58,13 @@ func _physics_process(delta: float) -> void:
 		animation_tree.get("parameters/KickShot/active")
 		or animation_tree.get("parameters/HitShot/active")
 	)
+
+	if not is_melee_attacking and not buffered_attack.is_empty():
+		var next := buffered_attack
+		buffered_attack = {}
+		_do_attack(next["anim_node"], next["shot"], next["pool"])
+		is_melee_attacking = true
+		
 	var is_shooting: bool = animation_tree.get("parameters/Shoot/active")
 
 	var move_input: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -67,7 +80,7 @@ func _physics_process(delta: float) -> void:
 		animation_tree.set("parameters/KickScale/scale", speed)
 		animation_tree.set("parameters/HitScale/scale", speed)
 
-		if t >= 1.0:
+		if attack_timer >= attack_real_duration:
 			attack_active = false
 			animation_tree.set("parameters/KickScale/scale", 1.0)
 			animation_tree.set("parameters/HitScale/scale", 1.0)
@@ -103,7 +116,6 @@ func _physics_process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	var is_shooting: bool = animation_tree.get("parameters/Shoot/active")
-
 	if is_shooting:
 		return
 
@@ -113,11 +125,16 @@ func _input(event: InputEvent) -> void:
 	)
 
 	if is_melee_attacking:
+		var time_left := attack_real_duration - attack_timer
+		if time_left <= COMBO_BUFFER_TIME:
+			if event.is_action_pressed("kick"):
+				buffered_attack = {"anim_node": "KickAnim", "shot": "KickShot", "pool": KICK_ANIMS}
+			elif event.is_action_pressed("hit"):
+				buffered_attack = {"anim_node": "HitAnim", "shot": "HitShot", "pool": HIT_ANIMS}
 		return
 
 	if event.is_action_pressed("kick"):
 		_do_attack("KickAnim", "KickShot", KICK_ANIMS)
-
 	if event.is_action_pressed("hit"):
 		_do_attack("HitAnim", "HitShot", HIT_ANIMS)
 
@@ -158,12 +175,38 @@ func _set_attack_curve(shot_name: String, animation_name: StringName) -> void:
 		settings = kick_speed_settings
 	else:
 		settings = hit_speed_settings
+
 	for setting in settings:
 		if setting.animation_name == key:
 			attack_speed_curve = setting.speed_curve
 			if setting.duration > 0.0:
 				attack_duration = setting.duration
-			return
+			break
+	attack_real_duration = _estimate_real_duration(attack_speed_curve, attack_duration)
+	print("Attack duration for ", key, ": nominal=", attack_duration, ", real=", attack_real_duration)
+
+
+func _estimate_real_duration(curve: Curve, nominal_duration: float) -> float:
+	if nominal_duration <= 0.0:
+		return 0.0
+	var steps := CURVE_INTEGRATION_STEPS
+	var du := 1.0 / float(steps)
+	var area := 0.0
+	var prev_u := 0.0
+	var prev_v := curve.sample(0.0)
+	for i in range(1, steps + 1):
+		var u := i * du
+		var v := curve.sample(u)
+		var segment := (prev_v + v) * 0.5 * du
+		if area + segment >= 1.0:
+			var remaining := 1.0 - area
+			var frac := remaining / segment if segment > 0.0 else 0.0
+			var s := prev_u + frac * du
+			return s * nominal_duration
+		area += segment
+		prev_u = u
+		prev_v = v
+	return nominal_duration / max(area, 0.001) # fallback gdyby krzywa < 1.0 wszędzie
 
 
 func _process_moving(delta: float, move_dir: Vector3) -> void:

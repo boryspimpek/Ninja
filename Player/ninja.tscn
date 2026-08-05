@@ -162,8 +162,6 @@ animation = &"Attacks/mma_kick"
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_6umd0"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_5y2i1"]
-fadein_time = 0.1
-fadeout_time = 0.1
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_h4j7k"]
 filter_enabled = true
@@ -217,14 +215,14 @@ states/Run/node = SubResource("AnimationNodeAnimation_run")
 states/Run/position = Vector2(-31, 77)
 states/Start/position = Vector2(-354, 31)
 transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_default"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_default"), "Idle", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "Idle", SubResource("AnimationNodeStateMachineTransition_default"), "Run", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "Run", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default")]
-graph_offset = Vector2(-276, -147)
+graph_offset = Vector2(-324, -165)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_8q81g"]
 fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
-graph_offset = Vector2(-532, 19)
+graph_offset = Vector2(-379.76862, 568.05597)
 nodes/output/position = Vector2(960, 200)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
 nodes/StateMachine/position = Vector2(-380, 200)
