@@ -10,10 +10,14 @@
 [ext_resource type="AnimationLibrary" uid="uid://5t27ca3vpy54" path="res://Animations/walk aiming/Standing Aim Walk Right.fbx" id="7_wwoeq"]
 [ext_resource type="AnimationLibrary" uid="uid://cjtojebqbfds4" path="res://Animations/walk aiming/Standing Aim Shoot.fbx" id="8_jmlab"]
 [ext_resource type="AnimationLibrary" uid="uid://b5pvo8fj88dhd" path="res://Animations/walk with bow/Standing Idle 03 Examine.fbx" id="9_ge331"]
+[ext_resource type="Animation" uid="uid://bc83q33dxcymo" path="res://Animations/attack/mma_kick_3.tres" id="10_8q81g"]
 [ext_resource type="AnimationLibrary" uid="uid://cn06wtvvmqi57" path="res://Animations/walk with bow/Standing Run Back.fbx" id="10_e5msv"]
+[ext_resource type="Animation" uid="uid://by3n5rdk6jgla" path="res://Animations/attack/mma_kick.tres" id="10_usuh0"]
+[ext_resource type="Animation" uid="uid://c0gvwe8axnx4g" path="res://Animations/attack/mma_kick_2.tres" id="11_nitqc"]
 [ext_resource type="AnimationLibrary" uid="uid://cco0cpi0j4bec" path="res://Animations/walk with bow/Standing Sprint Forward.fbx" id="11_urp7h"]
 [ext_resource type="AnimationLibrary" uid="uid://bcnifltk7gglh" path="res://Animations/walk with bow/Standing Run Left.fbx" id="12_buiaf"]
 [ext_resource type="AnimationLibrary" uid="uid://cmt3ehq0hs5to" path="res://Animations/walk with bow/Standing Run Right.fbx" id="13_5wk80"]
+[ext_resource type="Animation" uid="uid://c5nl1m8rtou1i" path="res://Animations/attack/mma_kick_4.tres" id="13_w7c48"]
 [ext_resource type="AnimationLibrary" uid="uid://5q7un3fbrla2" path="res://Animations/normal walk/Normal Idle.fbx" id="14_fxwi1"]
 [ext_resource type="AnimationLibrary" uid="uid://cvg2ctqrh8djr" path="res://Animations/normal walk/Normal Left Strafe.fbx" id="15_5y2i1"]
 [ext_resource type="AnimationLibrary" uid="uid://bqvo7tku07vi0" path="res://Animations/normal walk/Normal Right Strafe.fbx" id="16_j8gkf"]
@@ -24,21 +28,30 @@
 [ext_resource type="AnimationLibrary" uid="uid://cn8npdg0ru8yo" path="res://Animations/attack/Idle Guard.fbx" id="18_nitqc"]
 [ext_resource type="AnimationLibrary" uid="uid://cpe5qp1ncr6bo" path="res://Animations/jump/Jump Vault Monkey.fbx" id="19_nx11x"]
 [ext_resource type="AnimationLibrary" uid="uid://dkwvcjyf3dmox" path="res://Animations/attack/Idle Mma.fbx" id="19_w7c48"]
-[ext_resource type="AnimationLibrary" uid="uid://cdedq8bebalqh" path="res://Animations/attack/Mma Kick.fbx" id="21_6umd0"]
-[ext_resource type="AnimationLibrary" uid="uid://dkyrntr452wuj" path="res://Animations/attack/Mma Kick 2.fbx" id="22_8q81g"]
-[ext_resource type="AnimationLibrary" uid="uid://bxx3xo2u2hhxc" path="res://Animations/attack/Mma Kick 3.fbx" id="23_7fjl8"]
-[ext_resource type="AnimationLibrary" uid="uid://d3eoff07oq8sy" path="res://Animations/attack/Mma Kick 4.fbx" id="24_samnv"]
 [ext_resource type="AnimationLibrary" uid="uid://dru7of2efvurr" path="res://Animations/attack/Punch Cross.fbx" id="29_8q81g"]
 [ext_resource type="AnimationLibrary" uid="uid://dcciabxvnnv0h" path="res://Animations/attack/Punch Left.fbx" id="30_7fjl8"]
 [ext_resource type="AnimationLibrary" uid="uid://bt1icfcju4664" path="res://Animations/jump/Jump Vault.fbx" id="31_j8gkf"]
 [ext_resource type="PackedScene" uid="uid://bjdo1exfi4ycs" path="res://assets/BinbunVFX_Vol2/DarkMagicFX/effects/area/vfx_evil_area_01.tscn" id="33_6umd0"]
 [ext_resource type="AnimationLibrary" uid="uid://cx566wmdutw4u" path="res://Animations/attack/Punch Right.fbx" id="33_samnv"]
 
+[sub_resource type="Curve" id="Curve_6umd0"]
+_limits = [1.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(0.09774436, 1), 0.0, 0.0, 0, 0, Vector2(0.46365914, 1), 0.0, 0.0, 0, 0, Vector2(0.55639094, 3.0463827), 0.0, 0.0, 0, 0]
+point_count = 4
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ot7kk"]
 diffuse_mode = 3
 specular_mode = 1
 albedo_texture = ExtResource("2_lbaip")
 metallic = 0.4
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7fjl8"]
+_data = {
+&"mma_kick": ExtResource("10_usuh0"),
+&"mma_kick_2": ExtResource("11_nitqc"),
+&"mma_kick_3": ExtResource("10_8q81g"),
+&"mma_kick_4": ExtResource("13_w7c48")
+}
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aimshoot"]
 animation = &"Aim Shoot/mixamo_com"
@@ -61,10 +74,11 @@ fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fxwi1"]
-animation = &"Mma Kick/mixamo_com"
+animation = &"Attacks/mma_kick"
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_6umd0"]
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_5y2i1"]
-fadein_time = 0.1
 fadeout_time = 0.1
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_h4j7k"]
@@ -126,8 +140,8 @@ fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
-graph_offset = Vector2(-630.7213, 89.77911)
-nodes/output/position = Vector2(880, 200)
+graph_offset = Vector2(-294.47357, 131.13477)
+nodes/output/position = Vector2(960, 200)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
 nodes/StateMachine/position = Vector2(-680, 200)
 nodes/Shoot/node = SubResource("AnimationNodeOneShot_h4j7k")
@@ -137,7 +151,7 @@ nodes/AimShoot/position = Vector2(-680, 400)
 nodes/HitAnim/node = SubResource("AnimationNodeAnimation_pcu4d")
 nodes/HitAnim/position = Vector2(-280, 580)
 nodes/KickAnim/node = SubResource("AnimationNodeAnimation_fxwi1")
-nodes/KickAnim/position = Vector2(0, 580)
+nodes/KickAnim/position = Vector2(-220, 900)
 nodes/HitShot/node = SubResource("AnimationNodeOneShot_56a10")
 nodes/HitShot/position = Vector2(120, 200)
 nodes/KickShot/node = SubResource("AnimationNodeOneShot_5y2i1")
@@ -147,10 +161,12 @@ nodes/JumpShot/position = Vector2(560, 200)
 nodes/JumpAnim/node = SubResource("AnimationNodeAnimation_nx11x")
 nodes/JumpAnim/position = Vector2(300, 580)
 nodes/VaultShot/node = SubResource("AnimationNodeOneShot_8q81g")
-nodes/VaultShot/position = Vector2(640, 200)
+nodes/VaultShot/position = Vector2(740, 200)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_6umd0")
 nodes/Animation/position = Vector2(580, 580)
-node_connections = [&"output", 0, &"VaultShot", &"Shoot", 0, &"StateMachine", &"Shoot", 1, &"AimShoot", &"HitShot", 0, &"Shoot", &"HitShot", 1, &"HitAnim", &"KickShot", 0, &"HitShot", &"KickShot", 1, &"KickAnim", &"JumpShot", 0, &"KickShot", &"JumpShot", 1, &"JumpAnim", &"VaultShot", 0, &"JumpShot", &"VaultShot", 1, &"Animation"]
+nodes/KickScale/node = SubResource("AnimationNodeTimeScale_6umd0")
+nodes/KickScale/position = Vector2(80, 620)
+node_connections = [&"output", 0, &"VaultShot", &"Shoot", 0, &"StateMachine", &"Shoot", 1, &"AimShoot", &"HitShot", 0, &"Shoot", &"HitShot", 1, &"HitAnim", &"KickShot", 0, &"HitShot", &"KickShot", 1, &"KickScale", &"JumpShot", 0, &"KickShot", &"JumpShot", 1, &"JumpAnim", &"VaultShot", 0, &"JumpShot", &"VaultShot", 1, &"Animation", &"KickScale", 0, &"KickAnim"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5y2i1"]
 radius = 0.026367188
@@ -163,6 +179,8 @@ collision_mask = 17
 safe_margin = 0.01
 script = ExtResource("2_0jgus")
 MOVE_SPEED = 6.0
+kick_speed_curve = SubResource("Curve_6umd0")
+kick_duration = 1.6
 
 [node name="Skeleton3D" parent="." index="0" unique_id=1484561533]
 bones/12/rotation = Quaternion(0.025149304, 6.941091e-17, -1.3882182e-17, 0.9996837)
@@ -184,6 +202,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ot7kk")
 "libraries/Aim Run Left" = ExtResource("6_ugt1r")
 "libraries/Aim Run Right" = ExtResource("7_wwoeq")
 "libraries/Aim Shoot" = ExtResource("8_jmlab")
+libraries/Attacks = SubResource("AnimationLibrary_7fjl8")
 "libraries/Bow Idle" = ExtResource("9_ge331")
 "libraries/Bow Run Back" = ExtResource("10_e5msv")
 "libraries/Bow Run Forward" = ExtResource("11_urp7h")
@@ -195,10 +214,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ot7kk")
 libraries/Jump = ExtResource("17_5y2i1")
 "libraries/Jump Vault" = ExtResource("31_j8gkf")
 "libraries/Jump Vault Monkey" = ExtResource("19_nx11x")
-"libraries/Mma Kick" = ExtResource("21_6umd0")
-"libraries/Mma Kick 2" = ExtResource("22_8q81g")
-"libraries/Mma Kick 3" = ExtResource("23_7fjl8")
-"libraries/Mma Kick 4" = ExtResource("24_samnv")
 "libraries/Normal Idle" = ExtResource("14_fxwi1")
 "libraries/Normal Left Strafe" = ExtResource("15_5y2i1")
 "libraries/Normal Right Strafe" = ExtResource("16_j8gkf")
@@ -207,6 +222,7 @@ libraries/Jump = ExtResource("17_5y2i1")
 "libraries/Punch Cross" = ExtResource("29_8q81g")
 "libraries/Punch Left" = ExtResource("30_7fjl8")
 "libraries/Punch Right" = ExtResource("33_samnv")
+speed_scale = 0.0
 
 [node name="AnimationTree" type="AnimationTree" parent="." index="2" unique_id=923202538]
 tree_root = SubResource("AnimationNodeBlendTree_9k2l3")
@@ -226,6 +242,7 @@ parameters/JumpShot/request = 0
 parameters/VaultShot/active = false
 parameters/VaultShot/internal_active = false
 parameters/VaultShot/request = 0
+parameters/KickScale/scale = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=1740798387]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47265625, 0.10223469)

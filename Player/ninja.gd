@@ -9,10 +9,10 @@ extends CharacterBody3D
 @export var JUMP_VELOCITY := 3.0
 
 const KICK_ANIMS: Array[StringName] = [
-	&"Mma Kick 2/mixamo_com",
-	&"Mma Kick 3/mixamo_com",
-	&"Mma Kick 4/mixamo_com",
-	&"Mma Kick/mixamo_com",
+	&"Attacks/mma_kick",
+#	&"attacks/mma_kick_2",
+#	&"Attacks/mma_kick_3",
+#	&"Attacks/mma_kick_4",
 ]
 
 const HIT_ANIMS: Array[StringName] = [
@@ -28,6 +28,12 @@ const HIT_ANIMS: Array[StringName] = [
 var can_vault: bool = false
 var current_vault = null
 
+@export var kick_speed_curve: Curve = Curve.new()
+@export var kick_duration: float = 0.7
+
+var kick_timer: float = 0.0
+var kick_active: bool = false
+
 
 func _ready() -> void:
 	print("groups: ", get_groups())
@@ -40,11 +46,21 @@ func _physics_process(delta: float) -> void:
 	)
 	var is_shooting: bool = animation_tree.get("parameters/Shoot/active")
 
-	var move_input := Input.get_vector("move_left", "move_right", "move_forward", "move_back")
-	var aim_input := Input.get_vector("aim_stick_left", "aim_stick_right", "aim_stick_forward", "aim_stick_back")
-	var is_aiming := Input.is_action_pressed("aim_mode") or aim_input.length() > STICK_DEADZONE
+	var move_input: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
+	var aim_input: Vector2 = Input.get_vector("aim_stick_left", "aim_stick_right", "aim_stick_forward", "aim_stick_back")
+	var is_aiming: bool = Input.is_action_pressed("aim_mode") or aim_input.length() > STICK_DEADZONE
 
-	var move_dir := Vector3(move_input.x, 0.0, move_input.y)
+	var move_dir: Vector3 = Vector3(move_input.x, 0.0, move_input.y)
+
+	if kick_active:
+		kick_timer += delta
+		var t: float = clamp(kick_timer / kick_duration, 0.0, 1.0)
+		var speed: float = kick_speed_curve.sample(t)
+		animation_tree.set("parameters/KickScale/scale", speed)
+
+		if t >= 1.0:
+			kick_active = false
+			animation_tree.set("parameters/KickScale/scale", 1.0)
 
 	if not is_on_floor():
 		velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity", 9.8) * delta
@@ -114,6 +130,9 @@ func _do_vault() -> void:
 func _do_attack(anim_node_name: String, shot_name: String, pool: Array[StringName]) -> void:
 	var anim_node: AnimationNodeAnimation = animation_tree.tree_root.get_node(anim_node_name)
 	anim_node.animation = pool.pick_random()
+	kick_timer = 0.0
+	kick_active = true
+	animation_tree.set("parameters/KickScale/scale", kick_speed_curve.sample(0.0))
 	animation_tree.set("parameters/" + shot_name + "/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 
