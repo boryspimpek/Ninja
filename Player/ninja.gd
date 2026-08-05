@@ -28,12 +28,16 @@ const HIT_ANIMS: Array[StringName] = [
 var can_vault: bool = false
 var current_vault = null
 
-@export var kick_speed_curve: Curve = Curve.new()
-@export var kick_duration: float = 0.7
+@export var kick_speed_curves: Array[Curve] = []
+@export var kick_durations: Array[float] = []
+@export var hit_speed_curves: Array[Curve] = []
+@export var hit_durations: Array[float] = []
+@export var default_attack_duration: float = 0.7
 
-var kick_timer: float = 0.0
-var kick_active: bool = false
-
+var attack_timer: float = 0.0
+var attack_active: bool = false
+var attack_speed_curve: Curve = Curve.new()
+var attack_duration: float = default_attack_duration
 
 func _ready() -> void:
 	print("groups: ", get_groups())
