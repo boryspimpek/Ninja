@@ -17,8 +17,8 @@ const KICK_ANIMS: Array[StringName] = [
 
 const HIT_ANIMS: Array[StringName] = [
 	&"Attacks/punch_left",
-	# &"Attacks/punch_right",
-	# &"Attack/punch_cross",
+	&"Attacks/punch_right",
+	&"Attacks/punch_cross",
 ]
 
 const AttackSpeedData = preload("res://Player/AttackSpeedData.gd")
@@ -71,7 +71,7 @@ func _physics_process(delta: float) -> void:
 			attack_active = false
 			animation_tree.set("parameters/KickScale/scale", 1.0)
 			animation_tree.set("parameters/HitScale/scale", 1.0)
-			
+
 	if not is_on_floor():
 		velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity", 9.8) * delta
 	else:

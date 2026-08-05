@@ -95,6 +95,30 @@ speed_curve = SubResource("Curve_nitqc")
 duration = 1.0
 metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
 
+[sub_resource type="Curve" id="Curve_w7c48"]
+_limits = [1.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+point_count = 1
+
+[sub_resource type="Resource" id="Resource_pcu4d"]
+script = ExtResource("3_8q81g")
+animation_name = &"Attacks/punch_right"
+speed_curve = SubResource("Curve_w7c48")
+duration = 0.8
+metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
+
+[sub_resource type="Curve" id="Curve_pcu4d"]
+_limits = [1.0, 5.0, 0.0, 1.0]
+_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(0.10928961, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Resource" id="Resource_56a10"]
+script = ExtResource("3_8q81g")
+animation_name = &"Attacks/punch_cross"
+speed_curve = SubResource("Curve_pcu4d")
+duration = 1.266
+metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ot7kk"]
 diffuse_mode = 3
 specular_mode = 1
@@ -243,7 +267,7 @@ safe_margin = 0.01
 script = ExtResource("2_0jgus")
 MOVE_SPEED = 6.0
 kick_speed_settings = Array[ExtResource("3_8q81g")]([SubResource("Resource_samnv"), SubResource("Resource_8q81g"), SubResource("Resource_usuh0"), SubResource("Resource_nitqc")])
-hit_speed_settings = Array[ExtResource("3_8q81g")]([SubResource("Resource_w7c48")])
+hit_speed_settings = Array[ExtResource("3_8q81g")]([SubResource("Resource_w7c48"), SubResource("Resource_pcu4d"), SubResource("Resource_56a10")])
 
 [node name="Skeleton3D" parent="." index="0" unique_id=1484561533]
 bones/12/rotation = Quaternion(0.025149304, 6.941091e-17, -1.3882182e-17, 0.9996837)
