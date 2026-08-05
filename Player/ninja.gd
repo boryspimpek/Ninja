@@ -17,8 +17,8 @@ const KICK_ANIMS: Array[StringName] = [
 
 const HIT_ANIMS: Array[StringName] = [
 	&"Attacks/punch_left",
-	&"Attacks/punch_right",
-	&"Attacks/punch_cross",
+	# &"Attacks/punch_right",
+	# &"Attacks/punch_cross",
 ]
 
 const AttackSpeedData = preload("res://Player/AttackSpeedData.gd")
