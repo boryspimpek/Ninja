@@ -17,8 +17,8 @@ const KICK_ANIMS: Array[StringName] = [
 
 const HIT_ANIMS: Array[StringName] = [
 	&"Attacks/punch_left",
-	# &"Attacks/punch_right",
-	# &"Attacks/punch_cross",
+	&"Attacks/punch_right",
+	&"Attacks/punch_cross",
 ]
 
 const AttackSpeedData = preload("res://Player/AttackSpeedData.gd")
@@ -64,7 +64,7 @@ func _physics_process(delta: float) -> void:
 		buffered_attack = {}
 		_do_attack(next["anim_node"], next["shot"], next["pool"])
 		is_melee_attacking = true
-		
+
 	var is_shooting: bool = animation_tree.get("parameters/Shoot/active")
 
 	var move_input: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")

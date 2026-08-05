@@ -36,9 +36,9 @@
 [ext_resource type="PackedScene" uid="uid://bjdo1exfi4ycs" path="res://assets/BinbunVFX_Vol2/DarkMagicFX/effects/area/vfx_evil_area_01.tscn" id="33_6umd0"]
 
 [sub_resource type="Curve" id="Curve_7fjl8"]
-_limits = [1.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(0.117486335, 1), 0.0, 0.0, 0, 0, Vector2(0.4617486, 1), 0.0, 0.0, 0, 0, Vector2(0.50546443, 5), 0.0, 0.0, 0, 0]
-point_count = 4
+_limits = [1.0, 10.0, 0.0, 1.0]
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0]
+point_count = 1
 
 [sub_resource type="Resource" id="Resource_samnv"]
 script = ExtResource("3_8q81g")
@@ -49,8 +49,8 @@ metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
 
 [sub_resource type="Curve" id="Curve_8q81g"]
 _limits = [1.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(0.05464481, 1), 0.0, 0.0, 0, 0, Vector2(0.59836066, 1), 0.0, 0.0, 0, 0, Vector2(0.6775956, 5), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0]
+point_count = 1
 
 [sub_resource type="Resource" id="Resource_8q81g"]
 script = ExtResource("3_8q81g")
@@ -61,8 +61,8 @@ metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
 
 [sub_resource type="Curve" id="Curve_samnv"]
 _limits = [1.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0.027322404, 5), 0.0, 0.0, 0, 0, Vector2(0.10382513, 1), 0.0, 0.0, 0, 0, Vector2(0.45901638, 1), 0.0, 0.0, 0, 0, Vector2(0.74043715, 5), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 1.5393262), 0.0, 0.0, 0, 0]
+point_count = 1
 
 [sub_resource type="Resource" id="Resource_usuh0"]
 script = ExtResource("3_8q81g")
@@ -73,8 +73,8 @@ metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
 
 [sub_resource type="Curve" id="Curve_usuh0"]
 _limits = [1.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(0.08469946, 1.0042691), 0.0, 0.0, 0, 0, Vector2(0.5081967, 1), 0.0, 0.0, 0, 0, Vector2(0.71311474, 5), 0.0, 0.0, 0, 0]
-point_count = 4
+_data = [Vector2(0, 1.5), 0.0, 0.0, 0, 0]
+point_count = 1
 
 [sub_resource type="Resource" id="Resource_nitqc"]
 script = ExtResource("3_8q81g")
@@ -85,8 +85,8 @@ metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
 
 [sub_resource type="Curve" id="Curve_nitqc"]
 _limits = [1.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.31781378, 5), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 2.195652), 0.0, 0.0, 0, 0]
+point_count = 1
 
 [sub_resource type="Resource" id="Resource_w7c48"]
 script = ExtResource("3_8q81g")
@@ -97,7 +97,7 @@ metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
 
 [sub_resource type="Curve" id="Curve_w7c48"]
 _limits = [1.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 2), 0.0, 0.0, 0, 0]
 point_count = 1
 
 [sub_resource type="Resource" id="Resource_pcu4d"]
@@ -109,8 +109,8 @@ metadata/_custom_type_script = "uid://dnxkqpdiesw0o"
 
 [sub_resource type="Curve" id="Curve_pcu4d"]
 _limits = [1.0, 5.0, 0.0, 1.0]
-_data = [Vector2(0, 5), 0.0, 0.0, 0, 0, Vector2(0.10928961, 1), 0.0, 0.0, 0, 0]
-point_count = 2
+_data = [Vector2(0, 1.4565217), 0.0, 0.0, 0, 0]
+point_count = 1
 
 [sub_resource type="Resource" id="Resource_56a10"]
 script = ExtResource("3_8q81g")
@@ -222,7 +222,7 @@ fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
-graph_offset = Vector2(-379.76862, 568.05597)
+graph_offset = Vector2(-360.93686, 171.84381)
 nodes/output/position = Vector2(960, 200)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
 nodes/StateMachine/position = Vector2(-380, 200)
