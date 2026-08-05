@@ -9,16 +9,16 @@ extends CharacterBody3D
 @export var JUMP_VELOCITY := 3.0
 
 const KICK_ANIMS: Array[StringName] = [
-	# &"Attacks/mma_kick",
-	# &"Attacks/mma_kick_2",
-	# &"Attacks/mma_kick_3",
+	&"Attacks/mma_kick",
+	&"Attacks/mma_kick_2",
+	&"Attacks/mma_kick_3",
 	&"Attacks/mma_kick_4",
 ]
 
 const HIT_ANIMS: Array[StringName] = [
-	&"Punch Left/mixamo_com",
-	# &"Punch Right/mixamo_com",
-	# &"Punch Cross/mixamo_com",
+	&"Attacks/punch_left",
+	# &"Attacks/punch_right",
+	# &"Attack/punch_cross",
 ]
 
 const AttackSpeedData = preload("res://Player/AttackSpeedData.gd")
@@ -65,11 +65,13 @@ func _physics_process(delta: float) -> void:
 		var t: float = clamp(attack_timer / attack_duration, 0.0, 1.0)
 		var speed: float = attack_speed_curve.sample(t)
 		animation_tree.set("parameters/KickScale/scale", speed)
+		animation_tree.set("parameters/HitScale/scale", speed)
 
 		if t >= 1.0:
 			attack_active = false
 			animation_tree.set("parameters/KickScale/scale", 1.0)
-
+			animation_tree.set("parameters/HitScale/scale", 1.0)
+			
 	if not is_on_floor():
 		velocity.y -= ProjectSettings.get_setting("physics/3d/default_gravity", 9.8) * delta
 	else:
