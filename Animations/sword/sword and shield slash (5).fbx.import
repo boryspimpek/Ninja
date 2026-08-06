@@ -41,9 +41,9 @@ _subresources={
 "animations": {
 "mixamo_com": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://sword_attack_5.tres",
+"save_to_file/fallback_path": "res://Animations/sword/sword_slash_5.tres",
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "uid://j7swxsh3jbw8",
+"save_to_file/path": "uid://csrndk1qlhsvp",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,

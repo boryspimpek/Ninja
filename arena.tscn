@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://6m0hn0br5405"]
 
-[ext_resource type="PackedScene" uid="uid://l3s7uc6udfj4" path="res://Kenney/MiniForest/fbx/bridge.fbx" id="1_yokb4"]
-[ext_resource type="PackedScene" uid="uid://ckuvyqldik116" path="res://Kenney/MiniForest/fbx/building-platform.fbx" id="2_35c7g"]
-[ext_resource type="PackedScene" uid="uid://b68kvs4vvjgin" path="res://Kenney/MiniForest/fbx/building-roof.fbx" id="3_n068f"]
-[ext_resource type="PackedScene" uid="uid://ct0dqmwwdjbsd" path="res://Kenney/MiniForest/fbx/building-structure.fbx" id="4_g8a64"]
-[ext_resource type="PackedScene" uid="uid://b68120yp72wt2" path="res://Kenney/MiniForest/fbx/character-archer.fbx" id="5_uvldv"]
-[ext_resource type="PackedScene" uid="uid://b2wak4ligb270" path="res://Kenney/MiniForest/fbx/fence.fbx" id="6_nb1nt"]
-[ext_resource type="PackedScene" uid="uid://ckw5qyjw5r6pr" path="res://Kenney/MiniForest/fbx/flag.fbx" id="7_u834y"]
-[ext_resource type="PackedScene" uid="uid://besb75ek5vwb" path="res://Kenney/MiniForest/fbx/ladder.fbx" id="8_w3v2p"]
-[ext_resource type="PackedScene" uid="uid://ulksxor1cwky" path="res://Kenney/MiniForest/fbx/tent.fbx" id="9_35c7g"]
+[ext_resource type="PackedScene" uid="uid://l3s7uc6udfj4" path="res://assets/Kenney/MiniForest/fbx/bridge.fbx" id="1_yokb4"]
+[ext_resource type="PackedScene" uid="uid://ckuvyqldik116" path="res://assets/Kenney/MiniForest/fbx/building-platform.fbx" id="2_35c7g"]
+[ext_resource type="PackedScene" uid="uid://b68kvs4vvjgin" path="res://assets/Kenney/MiniForest/fbx/building-roof.fbx" id="3_n068f"]
+[ext_resource type="PackedScene" uid="uid://ct0dqmwwdjbsd" path="res://assets/Kenney/MiniForest/fbx/building-structure.fbx" id="4_g8a64"]
+[ext_resource type="PackedScene" uid="uid://b68120yp72wt2" path="res://assets/Kenney/MiniForest/fbx/character-archer.fbx" id="5_uvldv"]
+[ext_resource type="PackedScene" uid="uid://b2wak4ligb270" path="res://assets/Kenney/MiniForest/fbx/fence.fbx" id="6_nb1nt"]
+[ext_resource type="PackedScene" uid="uid://ckw5qyjw5r6pr" path="res://assets/Kenney/MiniForest/fbx/flag.fbx" id="7_u834y"]
+[ext_resource type="PackedScene" uid="uid://besb75ek5vwb" path="res://assets/Kenney/MiniForest/fbx/ladder.fbx" id="8_w3v2p"]
+[ext_resource type="PackedScene" uid="uid://ulksxor1cwky" path="res://assets/Kenney/MiniForest/fbx/tent.fbx" id="9_35c7g"]
 
 [node name="Arena" type="Node3D" unique_id=509106087 groups=["toon_target"]]
 

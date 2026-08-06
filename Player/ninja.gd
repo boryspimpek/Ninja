@@ -9,24 +9,23 @@ extends CharacterBody3D
 @export var JUMP_VELOCITY := 3.0
 
 const KICK_ANIMS: Array[StringName] = [
-	&"Attacks/mma_kick",
-	&"Attacks/mma_kick_2",
-	&"Attacks/mma_kick_3",
-	&"Attacks/mma_kick_4",
+	&"HandToHand/mma_kick",
+	&"HandToHand/mma_kick_2",
+	&"HandToHand/mma_kick_3",
+	&"HandToHand/mma_kick_4",
 ]
 
 const HIT_ANIMS: Array[StringName] = [
-	&"Attacks/punch_left",
-	&"Attacks/punch_right",
-	&"Attacks/punch_cross",
+	&"HandToHand/punch_left",
+	&"HandToHand/punch_right",
+	&"HandToHand/punch_cross",
 ]
 
 const SWORD_ANIMS: Array[StringName] = [
-	&"Sword/sword_attack",
+	&"Sword/sword_attack_1",
 	&"Sword/sword_attack_2",
 	&"Sword/sword_attack_3",
 	&"Sword/sword_attack_4",
-	&"Sword/sword_attack_5",
 ]
 
 @onready var animation_tree: AnimationTree = $AnimationTree
