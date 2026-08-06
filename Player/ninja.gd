@@ -15,6 +15,10 @@ extends CharacterBody3D
 ##   KickN -> Kick(N+1)  [Switch Mode: At End, Advance Condition: kick_advance]  (wyżej w priorytecie)
 ##   KickN -> End        [Switch Mode: At End, brak warunku]                      (fallback)
 
+
+# ---------------------------------------------------------------------------
+# Exported tuning parameters
+# ---------------------------------------------------------------------------
 @export var MOVE_SPEED := 3.0
 @export var AIM_MOVE_SPEED := 1.0
 @export var ROTATE_SPEED := 12.0
@@ -22,6 +26,10 @@ extends CharacterBody3D
 @export var JUMP_VELOCITY := 3.0
 @export var COMBO_BUFFER_TIME := 0.3
 
+
+# ---------------------------------------------------------------------------
+# Constants
+# ---------------------------------------------------------------------------
 ## Definicja kategorii ataków: nazwa akcji inputu -> ścieżki parametrów w AnimationTree.
 ## To jedyne miejsce, które trzeba rozszerzyć, jeśli dojdzie nowy typ ataku.
 ## Nie ma tu żadnych nazw konkretnych animacji - te żyją wyłącznie w edytorze.
@@ -31,10 +39,18 @@ const COMBOS := {
 	"sword": {"shot": "SwordShot", "state_machine": "SwordCombo", "advance_param": "sword_advance"},
 }
 
+
+# ---------------------------------------------------------------------------
+# Node references
+# ---------------------------------------------------------------------------
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var _playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/StateMachine/playback"]
 
+
+# ---------------------------------------------------------------------------
+# Runtime state
+# ---------------------------------------------------------------------------
 var can_vault: bool = false
 var current_vault = null
 
@@ -45,6 +61,9 @@ var current_vault = null
 var _last_combo_state: Dictionary = {}
 
 
+# ---------------------------------------------------------------------------
+# Godot lifecycle
+# ---------------------------------------------------------------------------
 func _ready() -> void:
 	print("groups: ", get_groups())
 
@@ -120,6 +139,9 @@ func _input(event: InputEvent) -> void:
 			break
 
 
+# ---------------------------------------------------------------------------
+# Melee combo system
+# ---------------------------------------------------------------------------
 func _do_attack(category: String) -> void:
 	print("[COMBO DEBUG] _do_attack (świeży start) kategoria: ", category)
 	var combo: Dictionary = COMBOS[category]
@@ -173,21 +195,9 @@ func _advance_condition_path(category: String) -> String:
 	return "parameters/%s/conditions/%s" % [combo["state_machine"], combo["advance_param"]]
 
 
-func _do_jump() -> void:
-	animation_tree.set("parameters/JumpShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	print("JUMP WYKONANY")
-
-
-func _do_vault() -> void:
-	set_collision_mask_value(5, false)
-	animation_tree.set("parameters/VaultShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-	print("VAULT WYKONANY")
-	await get_tree().create_timer(1.0).timeout
-
-	set_collision_mask_value(5, true)
-	print("MASKA 5 PRZYWRÓCONA")
-
-
+# ---------------------------------------------------------------------------
+# Movement & aiming
+# ---------------------------------------------------------------------------
 func _process_moving(delta: float, move_dir: Vector3) -> void:
 	if move_dir.length() > STICK_DEADZONE:
 		var target_rot := atan2(move_dir.x, move_dir.z)
@@ -205,11 +215,35 @@ func _process_aiming(delta: float, move_dir: Vector3, aim_input: Vector2) -> voi
 	velocity.z = move_dir.z * AIM_MOVE_SPEED
 
 
+# ---------------------------------------------------------------------------
+# Jump / vault
+# ---------------------------------------------------------------------------
+func _do_jump() -> void:
+	animation_tree.set("parameters/JumpShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	print("JUMP WYKONANY")
+
+
+func _do_vault() -> void:
+	set_collision_mask_value(5, false)
+	animation_tree.set("parameters/VaultShot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+	print("VAULT WYKONANY")
+	await get_tree().create_timer(1.0).timeout
+
+	set_collision_mask_value(5, true)
+	print("MASKA 5 PRZYWRÓCONA")
+
+
+# ---------------------------------------------------------------------------
+# Ranged attack
+# ---------------------------------------------------------------------------
 func _fire() -> void:
 	if not animation_tree.get("parameters/Shoot/active"):
 		animation_tree.set("parameters/Shoot/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 
 
+# ---------------------------------------------------------------------------
+# Animation blend tree (idle/run/aim)
+# ---------------------------------------------------------------------------
 func _update_animation(is_aiming: bool, move_dir: Vector3) -> void:
 	if not is_aiming:
 		_playback.travel("Run" if move_dir.length() > STICK_DEADZONE else "Idle")
@@ -229,6 +263,9 @@ func _update_animation(is_aiming: bool, move_dir: Vector3) -> void:
 		_playback.travel("AimForward" if local_z > 0.0 else "AimBack")
 
 
+# ---------------------------------------------------------------------------
+# Vault trigger area signals
+# ---------------------------------------------------------------------------
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	print("Area entered: ", body.name)
 	if body.is_in_group("player"):
