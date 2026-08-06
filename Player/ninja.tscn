@@ -152,6 +152,7 @@ transitions = ["Start", "HandToHand_punch_left", SubResource("AnimationNodeState
 graph_offset = Vector2(85, 288)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_56a10"]
+fadein_time = 0.1
 fadeout_time = 0.1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nx11x"]
@@ -173,11 +174,6 @@ animation = &"HandToHand/mma_kick_4"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_648m2"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sl0jx"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"kick_advance"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hd2hj"]
 priority = 2
 switch_mode = 2
@@ -198,26 +194,32 @@ switch_mode = 2
 advance_mode = 2
 advance_condition = &"kick_advance"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h5yfb"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"kick_advance"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6xltb"]
 states/End/position = Vector2(712, 321)
 states/HandToHand_mma_kick/node = SubResource("AnimationNodeAnimation_66lkx")
-states/HandToHand_mma_kick/position = Vector2(268, 506)
+states/HandToHand_mma_kick/position = Vector2(492, 506)
 states/HandToHand_mma_kick_3/node = SubResource("AnimationNodeAnimation_6qxd4")
-states/HandToHand_mma_kick_3/position = Vector2(712, 506)
+states/HandToHand_mma_kick_3/position = Vector2(928, 506)
 states/HandToHand_mma_kick_4/node = SubResource("AnimationNodeAnimation_2sfbd")
-states/HandToHand_mma_kick_4/position = Vector2(1167, 499)
-states/Start/position = Vector2(268, 321)
-transitions = ["Start", "HandToHand_mma_kick", SubResource("AnimationNodeStateMachineTransition_648m2"), "HandToHand_mma_kick_3", "HandToHand_mma_kick_4", SubResource("AnimationNodeStateMachineTransition_sl0jx"), "HandToHand_mma_kick", "End", SubResource("AnimationNodeStateMachineTransition_hd2hj"), "HandToHand_mma_kick_3", "End", SubResource("AnimationNodeStateMachineTransition_o41kq"), "HandToHand_mma_kick_4", "End", SubResource("AnimationNodeStateMachineTransition_yhend"), "HandToHand_mma_kick", "HandToHand_mma_kick_3", SubResource("AnimationNodeStateMachineTransition_0r5ui")]
-graph_offset = Vector2(132, 188)
+states/HandToHand_mma_kick_4/position = Vector2(712, 647)
+states/Start/position = Vector2(492, 321)
+transitions = ["Start", "HandToHand_mma_kick", SubResource("AnimationNodeStateMachineTransition_648m2"), "HandToHand_mma_kick", "End", SubResource("AnimationNodeStateMachineTransition_hd2hj"), "HandToHand_mma_kick_3", "End", SubResource("AnimationNodeStateMachineTransition_o41kq"), "HandToHand_mma_kick_4", "End", SubResource("AnimationNodeStateMachineTransition_yhend"), "HandToHand_mma_kick", "HandToHand_mma_kick_4", SubResource("AnimationNodeStateMachineTransition_0r5ui"), "HandToHand_mma_kick_4", "HandToHand_mma_kick_3", SubResource("AnimationNodeStateMachineTransition_h5yfb")]
+graph_offset = Vector2(177, 123)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_5y2i1"]
+fadein_time = 0.1
 fadeout_time = 0.1
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_h4j7k"]
 filter_enabled = true
 filters = ["Skeleton3D:mixamorig_Head", "Skeleton3D:mixamorig_LeftArm", "Skeleton3D:mixamorig_LeftForeArm", "Skeleton3D:mixamorig_LeftHand", "Skeleton3D:mixamorig_LeftHandIndex1", "Skeleton3D:mixamorig_LeftHandIndex2", "Skeleton3D:mixamorig_LeftHandIndex3", "Skeleton3D:mixamorig_LeftHandThumb1", "Skeleton3D:mixamorig_LeftHandThumb2", "Skeleton3D:mixamorig_LeftHandThumb3", "Skeleton3D:mixamorig_LeftShoulder", "Skeleton3D:mixamorig_Neck", "Skeleton3D:mixamorig_RightArm", "Skeleton3D:mixamorig_RightForeArm", "Skeleton3D:mixamorig_RightHand", "Skeleton3D:mixamorig_RightHandIndex1", "Skeleton3D:mixamorig_RightHandIndex2", "Skeleton3D:mixamorig_RightHandIndex3", "Skeleton3D:mixamorig_RightHandThumb1", "Skeleton3D:mixamorig_RightHandThumb2", "Skeleton3D:mixamorig_RightHandThumb3", "Skeleton3D:mixamorig_RightShoulder", "Skeleton3D:mixamorig_Spine", "Skeleton3D:mixamorig_Spine1", "Skeleton3D:mixamorig_Spine2", "mixamorig_Head", "mixamorig_HeadTop_End", "mixamorig_LeftArm", "mixamorig_LeftForeArm", "mixamorig_LeftHand", "mixamorig_LeftHandIndex1", "mixamorig_LeftHandIndex2", "mixamorig_LeftHandIndex3", "mixamorig_LeftHandIndex4", "mixamorig_LeftHandThumb1", "mixamorig_LeftHandThumb2", "mixamorig_LeftHandThumb3", "mixamorig_LeftHandThumb4", "mixamorig_LeftShoulder", "mixamorig_Neck", "mixamorig_RightArm", "mixamorig_RightForeArm", "mixamorig_RightHand", "mixamorig_RightHandIndex1", "mixamorig_RightHandIndex2", "mixamorig_RightHandIndex3", "mixamorig_RightHandIndex4", "mixamorig_RightHandThumb1", "mixamorig_RightHandThumb2", "mixamorig_RightHandThumb3", "mixamorig_RightHandThumb4", "mixamorig_RightShoulder", "mixamorig_Spine", "mixamorig_Spine1", "mixamorig_Spine2"]
 fadein_time = 0.1
-fadeout_time = 0.2
+fadeout_time = 0.1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aimback"]
 animation = &"Bow/bow_walk_back"
@@ -347,7 +349,7 @@ fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
-graph_offset = Vector2(-336.50415, -12.239685)
+graph_offset = Vector2(-350.7142, -109.0163)
 nodes/output/position = Vector2(1580, 200)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
 nodes/StateMachine/position = Vector2(-580, 220)
@@ -450,8 +452,8 @@ parameters/HitCombo/conditions/hit_advance = false
 parameters/KickCombo/conditions/kick_advance = false
 parameters/SwordCombo/conditions/sword_advance = false
 parameters/TimeScale/scale = 1.5
-"parameters/TimeScale 2/scale" = 1.5
-"parameters/TimeScale 3/scale" = 1.0
+"parameters/TimeScale 2/scale" = 1.25
+"parameters/TimeScale 3/scale" = 1.2999999999999972
 "parameters/TimeScale 4/scale" = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=1740798387]

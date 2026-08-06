@@ -24,7 +24,7 @@ extends CharacterBody3D
 @export var ROTATE_SPEED := 12.0
 @export var STICK_DEADZONE := 0.2
 @export var JUMP_VELOCITY := 3.0
-@export var COMBO_BUFFER_TIME := 0.3
+@export var COMBO_BUFFER_TIME := 0.5
 
 
 # ---------------------------------------------------------------------------
