@@ -41,9 +41,9 @@ _subresources={
 "animations": {
 "mixamo_com": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://jump_vault_monkey.tres",
+"save_to_file/fallback_path": "res://Animations/Resources/Normal/jump_vault_monkey_strip.tres",
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "uid://dvp7jeyrvjor0",
+"save_to_file/path": "uid://brx826ysl8d6t",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,

@@ -17,6 +17,7 @@
 [ext_resource type="Animation" uid="uid://dxtgefd0y2qjk" path="res://Animations/Resources/Bow/bow_strafe_right.tres" id="20_t6exf"]
 [ext_resource type="Animation" uid="uid://t6sklenjqdnr" path="res://Animations/Resources/Bow/bow_walk_back.tres" id="21_t3i7j"]
 [ext_resource type="Animation" uid="uid://dy865fi65w6nl" path="res://Animations/Resources/Bow/bow_walk_forward.tres" id="22_q1lxh"]
+[ext_resource type="Animation" uid="uid://dyo2dvwcjiypm" path="res://Animations/Resources/Normal/jump_vault_monkey_strip.tres" id="22_t6exf"]
 [ext_resource type="Animation" uid="uid://0uqoci7gkuqc" path="res://Animations/Resources/Normal/jump.tres" id="23_7fjl8"]
 [ext_resource type="Animation" uid="uid://bvkbxd4qxud5k" path="res://Animations/Resources/Bow/now_aim_ide.tres" id="23_57na2"]
 [ext_resource type="Animation" uid="uid://b5juy4neeh87j" path="res://Animations/Resources/Normal/jump_vault.tres" id="24_samnv"]
@@ -75,6 +76,7 @@ _data = {
 &"jump": ExtResource("23_7fjl8"),
 &"jump_vault": ExtResource("24_samnv"),
 &"jump_vault_monkey": ExtResource("25_usuh0"),
+&"jump_vault_monkey_strip": ExtResource("22_t6exf"),
 &"normal_idle": ExtResource("26_nitqc"),
 &"run": ExtResource("27_w7c48"),
 &"standard_idle": ExtResource("28_pcu4d")
@@ -104,7 +106,7 @@ _data = {
 animation = &"Bow/bow_shoot"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6umd0"]
-animation = &"Normal/jump_vault_monkey"
+animation = &"Normal/jump_vault_monkey_strip"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_56a10"]
 animation = &"HandToHand/punch_cross"
@@ -156,6 +158,7 @@ transitions = ["Start", "HandToHand_punch_left", SubResource("AnimationNodeState
 graph_offset = Vector2(85, 288)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_56a10"]
+fadeout_time = 0.1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nx11x"]
 animation = &"Normal/jump"
@@ -350,40 +353,52 @@ graph_offset = Vector2(145, 121)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_nitqc"]
 
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_t3i7j"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_q1lxh"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_t6exf"]
+
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_8q81g"]
 fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
-graph_offset = Vector2(-359.30005, 350.51666)
-nodes/output/position = Vector2(1560, 220)
+graph_offset = Vector2(-558.9064, -31.723602)
+nodes/output/position = Vector2(1580, 200)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
-nodes/StateMachine/position = Vector2(-420, 220)
+nodes/StateMachine/position = Vector2(-580, 220)
 nodes/Shoot/node = SubResource("AnimationNodeOneShot_h4j7k")
-nodes/Shoot/position = Vector2(-100, 200)
+nodes/Shoot/position = Vector2(-260, 220)
 nodes/AimShoot/node = SubResource("AnimationNodeAnimation_aimshoot")
-nodes/AimShoot/position = Vector2(-500, 500)
+nodes/AimShoot/position = Vector2(-280, 520)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_6umd0")
-nodes/Animation/position = Vector2(1080, 620)
+nodes/Animation/position = Vector2(1300, 520)
 nodes/SwordShot/node = SubResource("AnimationNodeOneShot_nitqc")
-nodes/SwordShot/position = Vector2(660, 200)
+nodes/SwordShot/position = Vector2(760, 200)
 nodes/HitShot/node = SubResource("AnimationNodeOneShot_56a10")
-nodes/HitShot/position = Vector2(200, 200)
+nodes/HitShot/position = Vector2(80, 200)
 nodes/KickShot/node = SubResource("AnimationNodeOneShot_5y2i1")
-nodes/KickShot/position = Vector2(440, 200)
+nodes/KickShot/position = Vector2(420, 200)
 nodes/JumpShot/node = SubResource("AnimationNodeOneShot_6umd0")
-nodes/JumpShot/position = Vector2(1100, 220)
+nodes/JumpShot/position = Vector2(1100, 200)
 nodes/JumpAnim/node = SubResource("AnimationNodeAnimation_nx11x")
-nodes/JumpAnim/position = Vector2(860, 620)
+nodes/JumpAnim/position = Vector2(1100, 520)
 nodes/VaultShot/node = SubResource("AnimationNodeOneShot_8q81g")
-nodes/VaultShot/position = Vector2(1280, 220)
+nodes/VaultShot/position = Vector2(1380, 200)
 nodes/HitCombo/node = SubResource("AnimationNodeStateMachine_yyhs2")
-nodes/HitCombo/position = Vector2(-120, 640)
+nodes/HitCombo/position = Vector2(40, 700)
 nodes/KickCombo/node = SubResource("AnimationNodeStateMachine_6xltb")
-nodes/KickCombo/position = Vector2(140, 640)
+nodes/KickCombo/position = Vector2(380, 700)
 nodes/SwordCombo/node = SubResource("AnimationNodeStateMachine_q1h7j")
-nodes/SwordCombo/position = Vector2(400, 640)
-node_connections = [&"output", 0, &"VaultShot", &"Shoot", 0, &"StateMachine", &"Shoot", 1, &"AimShoot", &"SwordShot", 0, &"KickShot", &"SwordShot", 1, &"SwordCombo", &"HitShot", 0, &"Shoot", &"HitShot", 1, &"HitCombo", &"KickShot", 0, &"HitShot", &"KickShot", 1, &"KickCombo", &"JumpShot", 0, &"SwordShot", &"JumpShot", 1, &"JumpAnim", &"VaultShot", 0, &"JumpShot", &"VaultShot", 1, &"Animation"]
+nodes/SwordCombo/position = Vector2(720, 700)
+nodes/TimeScale/node = SubResource("AnimationNodeTimeScale_t6exf")
+nodes/TimeScale/position = Vector2(80, 500)
+"nodes/TimeScale 2/node" = SubResource("AnimationNodeTimeScale_t3i7j")
+"nodes/TimeScale 2/position" = Vector2(420, 500)
+"nodes/TimeScale 3/node" = SubResource("AnimationNodeTimeScale_q1lxh")
+"nodes/TimeScale 3/position" = Vector2(760, 500)
+node_connections = [&"output", 0, &"VaultShot", &"Shoot", 0, &"StateMachine", &"Shoot", 1, &"AimShoot", &"SwordShot", 0, &"KickShot", &"SwordShot", 1, &"TimeScale 3", &"HitShot", 0, &"Shoot", &"HitShot", 1, &"TimeScale", &"KickShot", 0, &"HitShot", &"KickShot", 1, &"TimeScale 2", &"JumpShot", 0, &"SwordShot", &"JumpShot", 1, &"JumpAnim", &"VaultShot", 0, &"JumpShot", &"VaultShot", 1, &"Animation", &"TimeScale", 0, &"HitCombo", &"TimeScale 2", 0, &"KickCombo", &"TimeScale 3", 0, &"SwordCombo"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5y2i1"]
 radius = 0.026367188
@@ -412,6 +427,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ot7kk")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Skeleton3D" index="1" unique_id=201473774]
 transform = Transform3D(-0.19431561, -0.9795799, -0.05161753, -0.42529505, 0.13154837, -0.8954433, 0.8839486, -0.15204601, -0.4421724, -0.33005807, 0.5488275, 0.0673766)
+visible = false
 bone_name = "mixamorig_RightHand"
 bone_idx = 22
 
@@ -449,6 +465,9 @@ parameters/VaultShot/request = 0
 parameters/HitCombo/conditions/hit_advance = false
 parameters/KickCombo/conditions/kick_advance = false
 parameters/SwordCombo/conditions/sword_advance = false
+parameters/TimeScale/scale = 1.5
+"parameters/TimeScale 2/scale" = 1.5
+"parameters/TimeScale 3/scale" = 1.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=1740798387]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47265625, 0.10223469)

@@ -18,8 +18,20 @@ func _post_import(scene: Node) -> Object:
 			var anim := lib.get_animation(anim_name)
 			_zero_track_xz(anim, anim_name)
 
-	return scene
+			# Jeśli animacja jest zapisywana jako osobny plik .tres (opcja
+			# "Save to File" w imporcie), trzeba to jawnie zapisać —
+			# post_import nie robi tego samo, bo zapis do .tres dzieje się
+			# ZANIM ten skrypt się wykona.
+			var anim_path: String = anim.resource_path
+			if anim_path != "" and anim_path.ends_with(".tres"):
+				var err := ResourceSaver.save(anim, anim_path)
+				if err != OK:
+					push_warning("strip_root_motion_xz: nie udało się zapisać '%s' (err %d)" % [anim_path, err])
+				else:
+					print("strip_root_motion_xz: zapisano zmiany do '%s'" % anim_path)
 
+	return scene
+	
 
 func _zero_track_xz(anim: Animation, anim_name: String) -> void:
 	for track_idx in anim.get_track_count():
