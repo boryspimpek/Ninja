@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://cck1s58poa1uu"
-path="res://.godot/imported/sword and shield run (2).fbx-28a92c43c8129cc7b08d6622a027c895.scn"
+path="res://.godot/imported/sword and shield run (2).fbx-28a92c43c8129cc7b08d6622a027c895.res"
 
 [deps]
 
 source_file="res://Animations/sword/sword and shield run (2).fbx"
-dest_files=["res://.godot/imported/sword and shield run (2).fbx-28a92c43c8129cc7b08d6622a027c895.scn"]
+dest_files=["res://.godot/imported/sword and shield run (2).fbx-28a92c43c8129cc7b08d6622a027c895.res"]
 
 [params]
 

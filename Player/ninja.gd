@@ -54,10 +54,6 @@ const COMBOS := {
 var can_vault: bool = false
 var current_vault = null
 
-# Śledzi ostatni znany stan każdego combo state machine, żeby wykryć moment
-# faktycznego przejścia (KickN -> Kick(N+1)) i skasować warunek "advance"
-# zaraz po tym, jak zostanie skonsumowany - inaczej combo poleciałoby dalej
-# samo, bez kolejnego wciśnięcia przycisku.
 var _last_combo_state: Dictionary = {}
 
 
@@ -120,7 +116,6 @@ func _input(event: InputEvent) -> void:
 	var active_combo := _get_active_combo()
 
 	if active_combo != "":
-		print("[COMBO DEBUG] aktywne combo: ", active_combo, " | current_node: ", _get_combo_playback(active_combo).get_current_node(), " | time_left: ", _time_left_in_current_hit(active_combo))
 		# W trakcie combo: jeśli jesteśmy w oknie bufora i gracz wcisnął TĘ SAMĄ
 		# kategorię ataku ponownie, poproś state machine o przejście dalej.
 		if event.is_action_pressed(active_combo):
@@ -128,9 +123,6 @@ func _input(event: InputEvent) -> void:
 			if time_left <= COMBO_BUFFER_TIME:
 				var path := _advance_condition_path(active_combo)
 				animation_tree.set(path, true)
-				print("[COMBO DEBUG] USTAWIAM ", path, " = true | odczyt zaraz po ustawieniu: ", animation_tree.get(path))
-			else:
-				print("[COMBO DEBUG] wciśnięto za wcześnie, poza oknem bufora (", time_left, " > ", COMBO_BUFFER_TIME, ")")
 		return
 
 	for category in COMBOS.keys():
@@ -143,10 +135,7 @@ func _input(event: InputEvent) -> void:
 # Melee combo system
 # ---------------------------------------------------------------------------
 func _do_attack(category: String) -> void:
-	print("[COMBO DEBUG] _do_attack (świeży start) kategoria: ", category)
 	var combo: Dictionary = COMBOS[category]
-	# Świeży start combo - upewnij się, że warunek advance jest czysty,
-	# a state machine wystartuje od Start -> pierwszy stan.
 	animation_tree.set(_advance_condition_path(category), false)
 	_last_combo_state.erase(category)
 	animation_tree.set("parameters/%s/request" % combo["shot"], AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -177,20 +166,11 @@ func _consume_advance_condition_if_transitioned(category: String) -> void:
 		return
 	var current_state: String = pb.get_current_node()
 	if _last_combo_state.get(category, "") != current_state:
-		print("[COMBO DEBUG] przejście stanu w ", category, ": '", _last_combo_state.get(category, ""), "' -> '", current_state, "' (kasuję warunek)")
-		# State machine właśnie przeszedł do nowego ciosu (albo dopiero
-		# wystartował) - skasuj warunek, żeby nie polecieć od razu dalej
-		# bez kolejnego wciśnięcia przycisku.
 		animation_tree.set(_advance_condition_path(category), false)
 		_last_combo_state[category] = current_state
 
 
 func _advance_condition_path(category: String) -> String:
-	# Warunki przejść wewnątrz ZAGNIEŻDŻONEGO state machine (np. KickCombo,
-	# który jest node'em w głównym drzewie, a nie jego rootem) mają prefiks
-	# z nazwą tego state machine: "parameters/<StateMachineName>/conditions/<x>".
-	# Sama ścieżka "parameters/conditions/<x>" działa tylko wtedy, gdy dany
-	# state machine JEST rootem całego AnimationTree.
 	var combo: Dictionary = COMBOS[category]
 	return "parameters/%s/conditions/%s" % [combo["state_machine"], combo["advance_param"]]
 

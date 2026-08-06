@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://dme37r50a070w"
-path="res://.godot/imported/sword and shield power up.fbx-1b926769017bb43d6ebbb87a9acb02a7.scn"
+path="res://.godot/imported/sword and shield power up.fbx-1b926769017bb43d6ebbb87a9acb02a7.res"
 
 [deps]
 
 source_file="res://Animations/sword/sword and shield power up.fbx"
-dest_files=["res://.godot/imported/sword and shield power up.fbx-1b926769017bb43d6ebbb87a9acb02a7.scn"]
+dest_files=["res://.godot/imported/sword and shield power up.fbx-1b926769017bb43d6ebbb87a9acb02a7.res"]
 
 [params]
 

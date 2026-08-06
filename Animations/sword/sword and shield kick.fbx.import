@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://dije8j8j4mhkf"
-path="res://.godot/imported/sword and shield kick.fbx-f1a2def7005f7716f0132af52a14eaf6.scn"
+path="res://.godot/imported/sword and shield kick.fbx-f1a2def7005f7716f0132af52a14eaf6.res"
 
 [deps]
 
 source_file="res://Animations/sword/sword and shield kick.fbx"
-dest_files=["res://.godot/imported/sword and shield kick.fbx-f1a2def7005f7716f0132af52a14eaf6.scn"]
+dest_files=["res://.godot/imported/sword and shield kick.fbx-f1a2def7005f7716f0132af52a14eaf6.res"]
 
 [params]
 

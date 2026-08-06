@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://4wv1bmsam2i"
-path="res://.godot/imported/sword and shield block idle.fbx-430b77946f2b163994b089b669e4d39e.scn"
+path="res://.godot/imported/sword and shield block idle.fbx-430b77946f2b163994b089b669e4d39e.res"
 
 [deps]
 
 source_file="res://Animations/sword/sword and shield block idle.fbx"
-dest_files=["res://.godot/imported/sword and shield block idle.fbx-430b77946f2b163994b089b669e4d39e.scn"]
+dest_files=["res://.godot/imported/sword and shield block idle.fbx-430b77946f2b163994b089b669e4d39e.res"]
 
 [params]
 

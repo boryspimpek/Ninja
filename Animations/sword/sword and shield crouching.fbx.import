@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://24rl15qqi5l7"
-path="res://.godot/imported/sword and shield crouching.fbx-8fa37f0c1503727e9bcf67812ac3afca.scn"
+path="res://.godot/imported/sword and shield crouching.fbx-8fa37f0c1503727e9bcf67812ac3afca.res"
 
 [deps]
 
 source_file="res://Animations/sword/sword and shield crouching.fbx"
-dest_files=["res://.godot/imported/sword and shield crouching.fbx-8fa37f0c1503727e9bcf67812ac3afca.scn"]
+dest_files=["res://.godot/imported/sword and shield crouching.fbx-8fa37f0c1503727e9bcf67812ac3afca.res"]
 
 [params]
 

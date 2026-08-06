@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://dljcpyn6628hj"
-path="res://.godot/imported/sword and shield 180 turn (2).fbx-e00861f72d569523be95d24e6a4b2e44.scn"
+path="res://.godot/imported/sword and shield 180 turn (2).fbx-e00861f72d569523be95d24e6a4b2e44.res"
 
 [deps]
 
 source_file="res://Animations/sword/sword and shield 180 turn (2).fbx"
-dest_files=["res://.godot/imported/sword and shield 180 turn (2).fbx-e00861f72d569523be95d24e6a4b2e44.scn"]
+dest_files=["res://.godot/imported/sword and shield 180 turn (2).fbx-e00861f72d569523be95d24e6a4b2e44.res"]
 
 [params]
 

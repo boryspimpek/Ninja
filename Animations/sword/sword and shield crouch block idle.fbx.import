@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://cy67bluba8f6d"
-path="res://.godot/imported/sword and shield crouch block idle.fbx-899bab4cc0b6da7600c46dc00403fdcd.scn"
+path="res://.godot/imported/sword and shield crouch block idle.fbx-899bab4cc0b6da7600c46dc00403fdcd.res"
 
 [deps]
 
 source_file="res://Animations/sword/sword and shield crouch block idle.fbx"
-dest_files=["res://.godot/imported/sword and shield crouch block idle.fbx-899bab4cc0b6da7600c46dc00403fdcd.scn"]
+dest_files=["res://.godot/imported/sword and shield crouch block idle.fbx-899bab4cc0b6da7600c46dc00403fdcd.res"]
 
 [params]
 

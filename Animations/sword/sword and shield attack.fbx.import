@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://r2w2vtrjfrk3"
-path="res://.godot/imported/sword and shield attack.fbx-090f39c2df3cf7009d1221520fc2af99.scn"
+path="res://.godot/imported/sword and shield attack.fbx-090f39c2df3cf7009d1221520fc2af99.res"
 
 [deps]
 
 source_file="res://Animations/sword/sword and shield attack.fbx"
-dest_files=["res://.godot/imported/sword and shield attack.fbx-090f39c2df3cf7009d1221520fc2af99.scn"]
+dest_files=["res://.godot/imported/sword and shield attack.fbx-090f39c2df3cf7009d1221520fc2af99.res"]
 
 [params]
 
@@ -33,7 +33,7 @@ animation/fps=30
 animation/trimming=true
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
-import_script/path=""
+import_script/path="uid://cdkrui2oxxekw"
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
@@ -41,9 +41,9 @@ _subresources={
 "animations": {
 "mixamo_com": {
 "save_to_file/enabled": true,
-"save_to_file/fallback_path": "res://Animations/sword/sword_attack.tres",
+"save_to_file/fallback_path": "res://Animations/Resources/Sword/sword_attack_1.tres",
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "uid://b4p6qaxhdni4b",
+"save_to_file/path": "uid://orabm314dqx2",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,

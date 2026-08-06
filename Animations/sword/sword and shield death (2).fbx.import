@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://b0nhqxsysuael"
-path="res://.godot/imported/sword and shield death (2).fbx-61caf7b8fa6c943234fa957b0ee06122.scn"
+path="res://.godot/imported/sword and shield death (2).fbx-61caf7b8fa6c943234fa957b0ee06122.res"
 
 [deps]
 
 source_file="res://Animations/sword/sword and shield death (2).fbx"
-dest_files=["res://.godot/imported/sword and shield death (2).fbx-61caf7b8fa6c943234fa957b0ee06122.scn"]
+dest_files=["res://.godot/imported/sword and shield death (2).fbx-61caf7b8fa6c943234fa957b0ee06122.res"]
 
 [params]
 

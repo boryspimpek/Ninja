@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://cqfhs8atwowo1"
-path="res://.godot/imported/sword and shield strafe (3).fbx-48d92bb3c8c6d2d6fac9b1d705ddcd39.scn"
+path="res://.godot/imported/sword and shield strafe (3).fbx-48d92bb3c8c6d2d6fac9b1d705ddcd39.res"
 
 [deps]
 
 source_file="res://Animations/sword/sword and shield strafe (3).fbx"
-dest_files=["res://.godot/imported/sword and shield strafe (3).fbx-48d92bb3c8c6d2d6fac9b1d705ddcd39.scn"]
+dest_files=["res://.godot/imported/sword and shield strafe (3).fbx-48d92bb3c8c6d2d6fac9b1d705ddcd39.res"]
 
 [params]
 

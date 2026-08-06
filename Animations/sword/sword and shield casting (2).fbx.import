@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://cutsw3wf2jxsy"
-path="res://.godot/imported/sword and shield casting (2).fbx-268040becd7628b3fac4bddde1c255cd.scn"
+path="res://.godot/imported/sword and shield casting (2).fbx-268040becd7628b3fac4bddde1c255cd.res"
 
 [deps]
 
 source_file="res://Animations/sword/sword and shield casting (2).fbx"
-dest_files=["res://.godot/imported/sword and shield casting (2).fbx-268040becd7628b3fac4bddde1c255cd.scn"]
+dest_files=["res://.godot/imported/sword and shield casting (2).fbx-268040becd7628b3fac4bddde1c255cd.res"]
 
 [params]
 

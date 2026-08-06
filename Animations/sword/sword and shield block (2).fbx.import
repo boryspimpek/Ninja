@@ -1,15 +1,15 @@
 [remap]
 
-importer="scene"
+importer="animation_library"
 importer_version=1
-type="PackedScene"
+type="AnimationLibrary"
 uid="uid://l7ps0plsyrd4"
-path="res://.godot/imported/sword and shield block (2).fbx-6c7bdfe9146d3a96742e4d1479b7caa1.scn"
+path="res://.godot/imported/sword and shield block (2).fbx-6c7bdfe9146d3a96742e4d1479b7caa1.res"
 
 [deps]
 
 source_file="res://Animations/sword/sword and shield block (2).fbx"
-dest_files=["res://.godot/imported/sword and shield block (2).fbx-6c7bdfe9146d3a96742e4d1479b7caa1.scn"]
+dest_files=["res://.godot/imported/sword and shield block (2).fbx-6c7bdfe9146d3a96742e4d1479b7caa1.res"]
 
 [params]
 

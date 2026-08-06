@@ -26,10 +26,8 @@
 [ext_resource type="Animation" uid="uid://djvh8qrbe6ggn" path="res://Animations/Resources/Normal/run.tres" id="27_w7c48"]
 [ext_resource type="Animation" uid="uid://c2r8dy8ua7uoh" path="res://Animations/Resources/Normal/standard_idle.tres" id="28_pcu4d"]
 [ext_resource type="PackedScene" uid="uid://bjdo1exfi4ycs" path="res://assets/BinbunVFX_Vol2/DarkMagicFX/effects/area/vfx_evil_area_01.tscn" id="33_6umd0"]
-[ext_resource type="Animation" uid="uid://b4p6qaxhdni4b" path="res://Animations/Resources/Sword/sword_attack_1.tres" id="33_8q81g"]
-[ext_resource type="Animation" uid="uid://cqldy7qcddcgl" path="res://Animations/Resources/Sword/sword_attack_2.tres" id="34_nitqc"]
-[ext_resource type="Animation" uid="uid://d27jcnfxndrd3" path="res://Animations/Resources/Sword/sword_attack_3.tres" id="35_w7c48"]
-[ext_resource type="Animation" uid="uid://bufhsu0sl0ic6" path="res://Animations/Resources/Sword/sword_attack_4.tres" id="36_pcu4d"]
+[ext_resource type="Animation" uid="uid://dyamo4ro7eefe" path="res://Animations/Resources/Sword/sword_attack_1.tres" id="33_8q81g"]
+[ext_resource type="Animation" uid="uid://tjbhu5ekuly8" path="res://Animations/Resources/Sword/sword_attack_2.tres" id="34_nitqc"]
 [ext_resource type="Animation" uid="uid://c1bepb3sspax2" path="res://Animations/Resources/Sword/sword_idle_1.tres" id="40_66lkx"]
 [ext_resource type="Animation" uid="uid://47wrbur3dowj" path="res://Animations/Resources/Sword/sword_idle_2.tres" id="41_h5yfb"]
 [ext_resource type="Animation" uid="uid://cjjqxhb7hmv5k" path="res://Animations/Resources/Sword/sword_idle_3.tres" id="42_6qxd4"]
@@ -41,7 +39,6 @@
 [ext_resource type="Animation" uid="uid://cj4qf8yevx38t" path="res://Animations/Resources/Sword/sword_slash_2.tres" id="48_s40mx"]
 [ext_resource type="Animation" uid="uid://c0ahqpqwstqkk" path="res://Animations/Resources/Sword/sword_slash_3.tres" id="49_hd2hj"]
 [ext_resource type="Animation" uid="uid://bfec1a2bqqd4y" path="res://Animations/Resources/Sword/sword_slash_4.tres" id="50_adpud"]
-[ext_resource type="Animation" uid="uid://csrndk1qlhsvp" path="res://Animations/Resources/Sword/sword_slash_5.tres" id="51_o41kq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ot7kk"]
 diffuse_mode = 3
@@ -86,8 +83,6 @@ _data = {
 _data = {
 &"sword_attack_1": ExtResource("33_8q81g"),
 &"sword_attack_2": ExtResource("34_nitqc"),
-&"sword_attack_3": ExtResource("35_w7c48"),
-&"sword_attack_4": ExtResource("36_pcu4d"),
 &"sword_idle_1": ExtResource("40_66lkx"),
 &"sword_idle_2": ExtResource("41_h5yfb"),
 &"sword_idle_3": ExtResource("42_6qxd4"),
@@ -98,8 +93,7 @@ _data = {
 &"sword_slash_1": ExtResource("47_sl0jx"),
 &"sword_slash_2": ExtResource("48_s40mx"),
 &"sword_slash_3": ExtResource("49_hd2hj"),
-&"sword_slash_4": ExtResource("50_adpud"),
-&"sword_slash_5": ExtResource("51_o41kq")
+&"sword_slash_4": ExtResource("50_adpud")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_aimshoot"]
@@ -170,9 +164,6 @@ fadeout_time = 0.2
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_66lkx"]
 animation = &"HandToHand/mma_kick"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h5yfb"]
-animation = &"HandToHand/mma_kick_2"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6qxd4"]
 animation = &"HandToHand/mma_kick_3"
 
@@ -182,27 +173,12 @@ animation = &"HandToHand/mma_kick_4"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_648m2"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_okh6d"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"kick_advance"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cbxv8"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"kick_advance"
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sl0jx"]
 switch_mode = 2
 advance_mode = 2
 advance_condition = &"kick_advance"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hd2hj"]
-priority = 2
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_adpud"]
 priority = 2
 switch_mode = 2
 advance_mode = 2
@@ -217,21 +193,25 @@ priority = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0r5ui"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"kick_advance"
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_6xltb"]
 states/End/position = Vector2(712, 321)
 states/HandToHand_mma_kick/node = SubResource("AnimationNodeAnimation_66lkx")
 states/HandToHand_mma_kick/position = Vector2(268, 506)
-states/HandToHand_mma_kick_2/node = SubResource("AnimationNodeAnimation_h5yfb")
-states/HandToHand_mma_kick_2/position = Vector2(579, 506)
 states/HandToHand_mma_kick_3/node = SubResource("AnimationNodeAnimation_6qxd4")
-states/HandToHand_mma_kick_3/position = Vector2(877, 506)
+states/HandToHand_mma_kick_3/position = Vector2(712, 506)
 states/HandToHand_mma_kick_4/node = SubResource("AnimationNodeAnimation_2sfbd")
 states/HandToHand_mma_kick_4/position = Vector2(1167, 499)
 states/Start/position = Vector2(268, 321)
-transitions = ["Start", "HandToHand_mma_kick", SubResource("AnimationNodeStateMachineTransition_648m2"), "HandToHand_mma_kick", "HandToHand_mma_kick_2", SubResource("AnimationNodeStateMachineTransition_okh6d"), "HandToHand_mma_kick_2", "HandToHand_mma_kick_3", SubResource("AnimationNodeStateMachineTransition_cbxv8"), "HandToHand_mma_kick_3", "HandToHand_mma_kick_4", SubResource("AnimationNodeStateMachineTransition_sl0jx"), "HandToHand_mma_kick", "End", SubResource("AnimationNodeStateMachineTransition_hd2hj"), "HandToHand_mma_kick_2", "End", SubResource("AnimationNodeStateMachineTransition_adpud"), "HandToHand_mma_kick_3", "End", SubResource("AnimationNodeStateMachineTransition_o41kq"), "HandToHand_mma_kick_4", "End", SubResource("AnimationNodeStateMachineTransition_yhend")]
-graph_offset = Vector2(84, 220)
+transitions = ["Start", "HandToHand_mma_kick", SubResource("AnimationNodeStateMachineTransition_648m2"), "HandToHand_mma_kick_3", "HandToHand_mma_kick_4", SubResource("AnimationNodeStateMachineTransition_sl0jx"), "HandToHand_mma_kick", "End", SubResource("AnimationNodeStateMachineTransition_hd2hj"), "HandToHand_mma_kick_3", "End", SubResource("AnimationNodeStateMachineTransition_o41kq"), "HandToHand_mma_kick_4", "End", SubResource("AnimationNodeStateMachineTransition_yhend"), "HandToHand_mma_kick", "HandToHand_mma_kick_3", SubResource("AnimationNodeStateMachineTransition_0r5ui")]
+graph_offset = Vector2(132, 188)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_5y2i1"]
+fadeout_time = 0.1
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_h4j7k"]
 filter_enabled = true
@@ -255,7 +235,7 @@ animation = &"Bow/bow_strafe_left"
 animation = &"Bow/bow_strafe_right"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_idle"]
-animation = &"Normal/normal_idle"
+animation = &"Sword/sword_idle_1"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_run"]
 animation = &"Normal/run"
@@ -287,75 +267,78 @@ states/Start/position = Vector2(-354, 31)
 transitions = ["Idle", "Run", SubResource("AnimationNodeStateMachineTransition_default"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_default"), "Idle", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "Idle", SubResource("AnimationNodeStateMachineTransition_default"), "Run", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "Run", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimIdle", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimIdle", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimForward", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimForward", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimBack", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimBack", SubResource("AnimationNodeStateMachineTransition_default"), "AimLeft", "AimRight", SubResource("AnimationNodeStateMachineTransition_default"), "AimRight", "AimLeft", SubResource("AnimationNodeStateMachineTransition_default")]
 graph_offset = Vector2(-273, 1)
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q1lxh"]
-animation = &"Sword/sword_attack_1"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pcu4d"]
+animation = &"Sword/sword_slash_1"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_57na2"]
-animation = &"Sword/sword_attack_2"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qumu5"]
-animation = &"Sword/sword_attack_3"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w7c48"]
+animation = &"Sword/sword_slash_2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0r5ui"]
-animation = &"Sword/sword_attack_4"
+animation = &"Sword/sword_slash_3"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yyhs2"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q1lxh"]
+animation = &"Sword/sword_slash_4"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pcu4d"]
+priority = 2
 switch_mode = 2
 advance_mode = 2
-advance_condition = &"sword_advance"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t6exf"]
+priority = 2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yyhs2"]
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_66lkx"]
 switch_mode = 2
 advance_mode = 2
 advance_condition = &"sword_advance"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h5yfb"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t3i7j"]
+priority = 2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6qxd4"]
+priority = 2
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w7c48"]
 switch_mode = 2
 advance_mode = 2
 advance_condition = &"sword_advance"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2sfbd"]
-priority = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_56a10"]
 switch_mode = 2
 advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6xltb"]
-priority = 2
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q1h7j"]
-priority = 2
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dw3q1"]
-priority = 2
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ldyol"]
-advance_mode = 2
+advance_condition = &"sword_advance"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_q1h7j"]
-states/End/position = Vector2(671, 368)
-states/Start/position = Vector2(367, 147)
-states/Sword_sword_attack_1/node = SubResource("AnimationNodeAnimation_q1lxh")
-states/Sword_sword_attack_1/position = Vector2(367, 368)
-states/Sword_sword_attack_2/node = SubResource("AnimationNodeAnimation_57na2")
-states/Sword_sword_attack_2/position = Vector2(671, 571)
-states/Sword_sword_attack_3/node = SubResource("AnimationNodeAnimation_qumu5")
-states/Sword_sword_attack_3/position = Vector2(992, 368)
-states/Sword_sword_attack_4/node = SubResource("AnimationNodeAnimation_0r5ui")
-states/Sword_sword_attack_4/position = Vector2(671, 147)
-transitions = ["Sword_sword_attack_1", "Sword_sword_attack_2", SubResource("AnimationNodeStateMachineTransition_yyhs2"), "Sword_sword_attack_2", "Sword_sword_attack_3", SubResource("AnimationNodeStateMachineTransition_66lkx"), "Sword_sword_attack_3", "Sword_sword_attack_4", SubResource("AnimationNodeStateMachineTransition_h5yfb"), "Sword_sword_attack_2", "End", SubResource("AnimationNodeStateMachineTransition_2sfbd"), "Sword_sword_attack_3", "End", SubResource("AnimationNodeStateMachineTransition_6xltb"), "Sword_sword_attack_4", "End", SubResource("AnimationNodeStateMachineTransition_q1h7j"), "Sword_sword_attack_1", "End", SubResource("AnimationNodeStateMachineTransition_dw3q1"), "Start", "Sword_sword_attack_1", SubResource("AnimationNodeStateMachineTransition_ldyol")]
-graph_offset = Vector2(145, 121)
+states/End/position = Vector2(604, 551)
+states/Start/position = Vector2(328, 342)
+states/Sword_sword_slash_1/node = SubResource("AnimationNodeAnimation_pcu4d")
+states/Sword_sword_slash_1/position = Vector2(328, 551)
+states/Sword_sword_slash_2/node = SubResource("AnimationNodeAnimation_w7c48")
+states/Sword_sword_slash_2/position = Vector2(604, 342)
+states/Sword_sword_slash_3/node = SubResource("AnimationNodeAnimation_0r5ui")
+states/Sword_sword_slash_3/position = Vector2(604, 790)
+states/Sword_sword_slash_4/node = SubResource("AnimationNodeAnimation_q1lxh")
+states/Sword_sword_slash_4/position = Vector2(871, 551)
+transitions = ["Sword_sword_slash_1", "End", SubResource("AnimationNodeStateMachineTransition_pcu4d"), "Sword_sword_slash_3", "End", SubResource("AnimationNodeStateMachineTransition_t6exf"), "Start", "Sword_sword_slash_1", SubResource("AnimationNodeStateMachineTransition_yyhs2"), "Sword_sword_slash_1", "Sword_sword_slash_3", SubResource("AnimationNodeStateMachineTransition_66lkx"), "Sword_sword_slash_2", "End", SubResource("AnimationNodeStateMachineTransition_t3i7j"), "Sword_sword_slash_4", "End", SubResource("AnimationNodeStateMachineTransition_6qxd4"), "Sword_sword_slash_3", "Sword_sword_slash_4", SubResource("AnimationNodeStateMachineTransition_w7c48"), "Sword_sword_slash_4", "Sword_sword_slash_2", SubResource("AnimationNodeStateMachineTransition_56a10")]
+graph_offset = Vector2(52, 104)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_nitqc"]
+fadeout_time = 0.1
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_t3i7j"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_q1lxh"]
+
+[sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_w7c48"]
 
 [sub_resource type="AnimationNodeTimeScale" id="AnimationNodeTimeScale_t6exf"]
 
@@ -364,14 +347,14 @@ fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
-graph_offset = Vector2(-558.9064, -31.723602)
+graph_offset = Vector2(-336.50415, -12.239685)
 nodes/output/position = Vector2(1580, 200)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
 nodes/StateMachine/position = Vector2(-580, 220)
 nodes/Shoot/node = SubResource("AnimationNodeOneShot_h4j7k")
-nodes/Shoot/position = Vector2(-260, 220)
+nodes/Shoot/position = Vector2(-260, 200)
 nodes/AimShoot/node = SubResource("AnimationNodeAnimation_aimshoot")
-nodes/AimShoot/position = Vector2(-280, 520)
+nodes/AimShoot/position = Vector2(-280, 700)
 nodes/Animation/node = SubResource("AnimationNodeAnimation_6umd0")
 nodes/Animation/position = Vector2(1300, 520)
 nodes/SwordShot/node = SubResource("AnimationNodeOneShot_nitqc")
@@ -398,7 +381,9 @@ nodes/TimeScale/position = Vector2(80, 500)
 "nodes/TimeScale 2/position" = Vector2(420, 500)
 "nodes/TimeScale 3/node" = SubResource("AnimationNodeTimeScale_q1lxh")
 "nodes/TimeScale 3/position" = Vector2(760, 500)
-node_connections = [&"output", 0, &"VaultShot", &"Shoot", 0, &"StateMachine", &"Shoot", 1, &"AimShoot", &"SwordShot", 0, &"KickShot", &"SwordShot", 1, &"TimeScale 3", &"HitShot", 0, &"Shoot", &"HitShot", 1, &"TimeScale", &"KickShot", 0, &"HitShot", &"KickShot", 1, &"TimeScale 2", &"JumpShot", 0, &"SwordShot", &"JumpShot", 1, &"JumpAnim", &"VaultShot", 0, &"JumpShot", &"VaultShot", 1, &"Animation", &"TimeScale", 0, &"HitCombo", &"TimeScale 2", 0, &"KickCombo", &"TimeScale 3", 0, &"SwordCombo"]
+"nodes/TimeScale 4/node" = SubResource("AnimationNodeTimeScale_w7c48")
+"nodes/TimeScale 4/position" = Vector2(-260, 500)
+node_connections = [&"output", 0, &"VaultShot", &"Shoot", 0, &"StateMachine", &"Shoot", 1, &"TimeScale 4", &"SwordShot", 0, &"KickShot", &"SwordShot", 1, &"TimeScale 3", &"HitShot", 0, &"Shoot", &"HitShot", 1, &"TimeScale", &"KickShot", 0, &"HitShot", &"KickShot", 1, &"TimeScale 2", &"JumpShot", 0, &"SwordShot", &"JumpShot", 1, &"JumpAnim", &"VaultShot", 0, &"JumpShot", &"VaultShot", 1, &"Animation", &"TimeScale", 0, &"HitCombo", &"TimeScale 2", 0, &"KickCombo", &"TimeScale 3", 0, &"SwordCombo", &"TimeScale 4", 0, &"AimShoot"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5y2i1"]
 radius = 0.026367188
@@ -427,7 +412,6 @@ surface_material_override/0 = SubResource("StandardMaterial3D_ot7kk")
 
 [node name="BoneAttachment3D" type="BoneAttachment3D" parent="Skeleton3D" index="1" unique_id=201473774]
 transform = Transform3D(-0.19431561, -0.9795799, -0.05161753, -0.42529505, 0.13154837, -0.8954433, 0.8839486, -0.15204601, -0.4421724, -0.33005807, 0.5488275, 0.0673766)
-visible = false
 bone_name = "mixamorig_RightHand"
 bone_idx = 22
 
@@ -468,6 +452,7 @@ parameters/SwordCombo/conditions/sword_advance = false
 parameters/TimeScale/scale = 1.5
 "parameters/TimeScale 2/scale" = 1.5
 "parameters/TimeScale 3/scale" = 1.0
+"parameters/TimeScale 4/scale" = 2.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3" unique_id=1740798387]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47265625, 0.10223469)
