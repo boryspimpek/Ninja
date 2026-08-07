@@ -465,5 +465,6 @@ shape = SubResource("CapsuleShape3D_5y2i1")
 transform = Transform3D(0.351, 0, 0, 0, 0.351, 0, 0, 0, 0.351, 0, 0, 0)
 speed_scale = 2.0
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="6" unique_id=130591430]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." index="5" unique_id=130591430]
 stream = ExtResource("40_pcu4d")
+volume_db = 7.805

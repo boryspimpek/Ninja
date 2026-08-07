@@ -64,3 +64,4 @@ mesh = SubResource("PlaneMesh_1bvp3")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=151374314]
 stream = ExtResource("5_lquwl")
 autoplay = true
+parameters/looping = true

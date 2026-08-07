@@ -45,6 +45,7 @@ const COMBOS := {
 # ---------------------------------------------------------------------------
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var footsteps_audio: AudioStreamPlayer3D = $AudioStreamPlayer3D
 @onready var _playback: AnimationNodeStateMachinePlayback = animation_tree["parameters/StateMachine/playback"]
 
 
@@ -103,6 +104,9 @@ func _physics_process(delta: float) -> void:
 
 	if Input.is_action_just_pressed("shoot") and is_aiming and not is_melee_attacking and not is_shooting:
 		_fire()
+
+	var should_play_footsteps: bool = not is_melee_attacking and is_on_floor() and move_dir.length() > STICK_DEADZONE
+	_update_footstep_sound(should_play_footsteps)
 
 	if not is_melee_attacking:
 		_update_animation(is_aiming, move_dir)
@@ -241,6 +245,14 @@ func _update_animation(is_aiming: bool, move_dir: Vector3) -> void:
 		_playback.travel("AimLeft" if local_x > 0.0 else "AimRight")
 	else:
 		_playback.travel("AimForward" if local_z > 0.0 else "AimBack")
+
+
+func _update_footstep_sound(should_play: bool) -> void:
+	if should_play:
+		if not footsteps_audio.playing:
+			footsteps_audio.play()
+	elif footsteps_audio.playing:
+		footsteps_audio.stop()
 
 
 # ---------------------------------------------------------------------------
