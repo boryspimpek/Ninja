@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://cfaybe0cevndi"]
+
+[ext_resource type="PackedScene" uid="uid://37qnroy48lo6" path="res://assets/Models/Deck/Meshy_AI_Four_Post_Wooden_Dock_0807102701_texture_fbx/Meshy_AI_Four_Post_Wooden_Dock_0807102701_texture.fbx" id="1_2vak8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_noay0"]
+size = Vector3(1.1185913, 0.10070801, 1.0298233)
+
+[node name="Wooden_Dock" unique_id=1542742450 instance=ExtResource("1_2vak8")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1610754550]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1956628955]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0047302246, -0.020937553, 0.0026893616)
+shape = SubResource("BoxShape3D_noay0")

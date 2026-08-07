@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bonfavyyaex5j"]
+
+[ext_resource type="PackedScene" uid="uid://ca84ta57nbxdf" path="res://assets/Models/Deck/Meshy_AI_Trapdoor_Platform_0807102754_texture_fbx/Meshy_AI_Trapdoor_Platform_0807102754_texture.fbx" id="1_vjrod"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_beooi"]
+size = Vector3(1.0769348, 0.1015625, 1.0158768)
+
+[node name="Trapdoor_Platform" unique_id=883220285 instance=ExtResource("1_vjrod")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=474488977]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=806123067]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0061798096, -0.04736328, 0.0038642883)
+shape = SubResource("BoxShape3D_beooi")

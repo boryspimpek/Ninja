@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dlkk0tr2rw0vu"]
+
+[ext_resource type="PackedScene" uid="uid://dubre6pmrf7vv" path="res://assets/Models/Deck/Meshy_AI_Wooden_Platform_Frame_0807102728_texture_fbx/Meshy_AI_Wooden_Platform_Frame_0807102728_texture.fbx" id="1_3nwed"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c856m"]
+size = Vector3(1.1141357, 0.09887695, 1.1097794)
+
+[node name="Wooden_Frame" unique_id=1970144529 instance=ExtResource("1_3nwed")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=2007712782]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1798957820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002380371, -0.028126769, 0.0013160706)
+shape = SubResource("BoxShape3D_c856m")

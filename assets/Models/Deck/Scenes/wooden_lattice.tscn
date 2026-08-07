@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bqh5u3xkwa8wn"]
+
+[ext_resource type="PackedScene" uid="uid://be6rd6ppf7oab" path="res://assets/Models/Deck/Meshy_AI_Wooden_lattice_tray_0807102807_texture_fbx/Meshy_AI_Wooden_lattice_tray_0807102807_texture.fbx" id="1_idj0s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vr267"]
+size = Vector3(1.1331787, 0.09887695, 1.0993538)
+
+[node name="Wooden_lattice" unique_id=637242534 instance=ExtResource("1_idj0s")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1823084998]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=988829367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001159668, -0.03214524, -4.386902e-05)
+shape = SubResource("BoxShape3D_vr267")

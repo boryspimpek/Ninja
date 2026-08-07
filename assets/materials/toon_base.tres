@@ -1,7 +1,7 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://c8chtuplirkgm"]
 
 [ext_resource type="Shader" uid="uid://c6qqb04bkhxpc" path="res://assets/Shaders/toon.gdshader" id="1_t2rm8"]
-[ext_resource type="Texture2D" uid="uid://cec1psesswfwt" path="res://assets/Kenney/MiniForest/Textures/colormap.png" id="2_u0muc"]
+[ext_resource type="Texture2D" uid="uid://cec1psesswfwt" path="res://assets/Models/Kenney/MiniForest/Textures/colormap.png" id="2_u0muc"]
 
 [resource]
 render_priority = 0

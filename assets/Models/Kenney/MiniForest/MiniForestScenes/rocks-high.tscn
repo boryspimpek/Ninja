@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://308w7emckccf"]
+
+[ext_resource type="PackedScene" uid="uid://couh0x2ngp8p7" path="res://assets/Models/Kenney/MiniForest/fbx/rocks-high.fbx" id="1_base"]
+[ext_resource type="Shader" path="res://Shaders/ultimate_toon.gdshader" id="2_u27wh"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v7v3y"]
+render_priority = 0
+shader = ExtResource("2_u27wh")
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/albedo_affect = 0.0
+shader_parameter/use_stepped = true
+shader_parameter/steps = 3.0
+shader_parameter/step_smoothness = 0.3
+shader_parameter/shadow_tint = Color(0, 0, 0, 1)
+shader_parameter/shadow_tint_amount = 0.4
+shader_parameter/specular = 0.0
+shader_parameter/normal_strength = 0.0
+shader_parameter/use_rim = true
+shader_parameter/rim_color = Color(1, 1, 1, 1)
+shader_parameter/rim_amount = 2.0
+shader_parameter/rim_smoothness = 0.2
+shader_parameter/rim_mask_shadow = 1.0
+shader_parameter/rim_blend = 1.0
+shader_parameter/use_pattern = true
+shader_parameter/pattern_uv_mode = 2
+shader_parameter/pattern_tiling = 32.0
+shader_parameter/pattern_amount = 0.5
+shader_parameter/pattern_smoothness = 0.5
+shader_parameter/pattern_blend = 0.2
+
+[node name="rocks-high" unique_id=1236832710 instance=ExtResource("1_base")]
+
+[node name="rocks-high" parent="." index="0" unique_id=401258320]
+surface_material_override/0 = SubResource("ShaderMaterial_v7v3y")

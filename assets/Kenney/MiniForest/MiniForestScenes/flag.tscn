@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://fiecnrejvnc8"]
-
-[ext_resource type="PackedScene" uid="uid://ckw5qyjw5r6pr" path="res://assets/Kenney/MiniForest/fbx/flag.fbx" id="1_base"]
-
-[node name="flag" type="Node3D" instance=ExtResource("1_base")]

@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://3a15jbyxfpq0"]
+
+[ext_resource type="PackedScene" uid="uid://b3jyovsarmup1" path="res://assets/Models/Deck/Meshy_AI_Ropebound_Wooden_Plat_0807102715_texture_fbx/Meshy_AI_Ropebound_Wooden_Plat_0807102715_texture.fbx" id="1_auqjo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u1t3f"]
+size = Vector3(1.09906, 0.095458984, 1.0261536)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8hvsh"]
+size = Vector3(0.083496094, 0.19555664, 0.8586426)
+
+[node name="Ropebound" unique_id=1888316702 instance=ExtResource("1_auqjo")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1927772350]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=363742117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.003753662, -0.07897949, -0.0066375732)
+shape = SubResource("BoxShape3D_u1t3f")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=389383291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45825195, -0.013061523, -0.0076904297)
+shape = SubResource("BoxShape3D_8hvsh")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="StaticBody3D" index="2" unique_id=1965428930]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44177246, -0.013061523, -0.0076904297)
+shape = SubResource("BoxShape3D_8hvsh")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="StaticBody3D" index="3" unique_id=311582643]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -0.007980347, -0.013061523, 0.36901855)
+shape = SubResource("BoxShape3D_8hvsh")

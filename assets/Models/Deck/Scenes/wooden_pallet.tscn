@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://da3o1auu8dtb8"]
+
+[ext_resource type="PackedScene" uid="uid://do4ypc8e857sa" path="res://assets/Models/Deck/Meshy_AI_Bronzed_Wooden_Pallet_0807102742_texture_fbx/Meshy_AI_Bronzed_Wooden_Pallet_0807102742_texture.fbx" id="1_4e6mq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ww2k8"]
+size = Vector3(1.1512451, 0.09887695, 1.0897446)
+
+[node name="Wooden_Pallet" unique_id=1647547398 instance=ExtResource("1_4e6mq")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=654662799]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=101813604]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.009216309, -0.00043560565, 0.014247894)
+shape = SubResource("BoxShape3D_ww2k8")

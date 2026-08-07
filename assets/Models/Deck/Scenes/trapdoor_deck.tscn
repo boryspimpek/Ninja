@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://w4y1ndv84nk6"]
+
+[ext_resource type="PackedScene" uid="uid://y1207uh6ca54" path="res://assets/Models/Deck/Meshy_AI_Trapdoor_Deck_0807102817_texture_fbx/Meshy_AI_Trapdoor_Deck_0807102817_texture.fbx" id="1_nksyr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4c58t"]
+size = Vector3(1.0720215, 0.09838867, 1.0735855)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ooof0"]
+size = Vector3(0.5423584, 0.30639648, 0.057861328)
+
+[node name="Trapdoor_Deck" unique_id=1138133037 instance=ExtResource("1_nksyr")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1" unique_id=1162661762]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0" unique_id=1834406961]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.009155273, -0.094589055, 0.0031166077)
+shape = SubResource("BoxShape3D_4c58t")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D" index="1" unique_id=1131251482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09429932, 0.022827148, -0.43566895)
+shape = SubResource("BoxShape3D_ooof0")

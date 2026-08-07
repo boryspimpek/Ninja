@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://b24uwfmxx65qj"]
-
-[ext_resource type="PackedScene" uid="uid://b2wak4ligb270" path="res://assets/Kenney/MiniForest/fbx/fence.fbx" id="1_base"]
-
-[node name="fence" type="Node3D" instance=ExtResource("1_base")]

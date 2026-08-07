@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://c58msdb6j0uvy"]
-
-[ext_resource type="PackedScene" uid="uid://ttimanw4m0jr" path="res://assets/Kenney/MiniForest/fbx/weapon-arrow.fbx" id="1_base"]
-
-[node name="weapon-arrow" type="Node3D" instance=ExtResource("1_base")]

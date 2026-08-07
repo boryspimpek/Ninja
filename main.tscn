@@ -1,119 +1,66 @@
 [gd_scene format=3 uid="uid://j5cacsjwf01s"]
 
 [ext_resource type="PackedScene" uid="uid://ejfaj5pm3sua" path="res://Player/ninja.tscn" id="1_ig7tw"]
-[ext_resource type="Texture2D" uid="uid://ck2wctmgns2x1" path="res://assets/SkyBox/sky_74_2k.png" id="1_lquwl"]
 [ext_resource type="Script" uid="uid://cnjhx4skg6s7d" path="res://Player/camera_follow.gd" id="2_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://brme6u266if1i" path="res://assets/Texture/kenney_prototype-textures/PNG/Dark/texture_01.png" id="5_7mycd"]
-[ext_resource type="PackedScene" uid="uid://b6wavrspm73tq" path="res://assets/Kenney/MiniForest/MiniForestScenes/tree-high.tscn" id="5_lquwl"]
-[ext_resource type="Texture2D" uid="uid://c4oyfjjltf85k" path="res://assets/Texture/kenney_prototype-textures/PNG/Green/texture_01.png" id="7_5vw27"]
+[ext_resource type="PackedScene" uid="uid://6m0hn0br5405" path="res://arena.tscn" id="4_1bvp3"]
+[ext_resource type="Material" uid="uid://d3xqjeyd4sryl" path="res://assets/materials/water.tres" id="4_lquwl"]
+[ext_resource type="AudioStream" uid="uid://b1lp0cpykwkma" path="res://assets/Sounds/ambient.mp3" id="5_lquwl"]
 
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_272bh"]
-panorama = ExtResource("1_lquwl")
+[sub_resource type="Sky" id="Sky_h2yge"]
 
-[sub_resource type="Sky" id="Sky_0xm2m"]
-sky_material = SubResource("PanoramaSkyMaterial_272bh")
+[sub_resource type="Environment" id="Environment_7mycd"]
+background_energy_multiplier = 8.0
+sky = SubResource("Sky_h2yge")
+ambient_light_color = Color(0.737193, 0.7371929, 0.7371929, 1)
+tonemap_mode = 4
 
-[sub_resource type="Environment" id="Environment_h2yge"]
-background_mode = 2
-sky = SubResource("Sky_0xm2m")
-tonemap_mode = 3
-glow_enabled = true
-adjustment_enabled = true
-adjustment_brightness = 1.27
+[sub_resource type="PlaneMesh" id="PlaneMesh_5vw27"]
+material = ExtResource("4_lquwl")
+size = Vector2(100, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h2yge"]
-albedo_color = Color(0.13319641, 0.13319641, 0.13319638, 1)
+albedo_color = Color(0, 0, 1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_1bvp3"]
 material = SubResource("StandardMaterial3D_h2yge")
-size = Vector2(50, 50)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5vw27"]
-albedo_texture = ExtResource("5_7mycd")
-uv1_triplanar = true
-
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_h2yge"]
-data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kek77"]
-albedo_texture = ExtResource("5_7mycd")
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_lquwl"]
-size = Vector3(0.8529663, 0.5, 3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_efxa6"]
-albedo_texture = ExtResource("7_5vw27")
+size = Vector2(100, 100)
 
 [node name="Main" type="Node3D" unique_id=695608711]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=428946127]
-environment = SubResource("Environment_h2yge")
+environment = SubResource("Environment_7mycd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=250343996]
-transform = Transform3D(-0.70710677, 0.61237246, -0.35355335, 0, 0.49999997, 0.86602545, 0.70710677, 0.61237246, -0.35355335, 0, 10, 0)
+transform = Transform3D(-0.052335937, 0.86483854, -0.49931473, 0, 0.49999997, 0.86602545, 0.99862945, 0.045324255, -0.026167968, 0, 10, 0)
 shadow_enabled = true
 shadow_blur = 0.1
 directional_shadow_mode = 1
+directional_shadow_fade_start = 1.0
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1034609979]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 3, 3)
 visible = false
-v_offset = 1.575
+v_offset = 5.665
 projection = 1
-size = 5.265
+size = 10.375
 near = 0.001
-far = 20.0
+far = 29.62
 script = ExtResource("2_0xm2m")
 
 [node name="Player" parent="." unique_id=233157932 instance=ExtResource("1_ig7tw")]
-transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, -5)
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0.89, -11.445)
 
-[node name="Ground" type="MeshInstance3D" parent="." unique_id=1019681525]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+[node name="Arena" parent="." unique_id=509106087 instance=ExtResource("4_1bvp3")]
+transform = Transform3D(1.6401477, 0, -2.5119545, 0, 3, 0, 2.5119545, 0, 1.6401477, 0, 0.85, -4.886)
+
+[node name="water" type="MeshInstance3D" parent="." unique_id=938502437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.809, 0)
+mesh = SubResource("PlaneMesh_5vw27")
+
+[node name="ground" type="MeshInstance3D" parent="." unique_id=440572057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 mesh = SubResource("PlaneMesh_1bvp3")
-surface_material_override/0 = SubResource("StandardMaterial3D_5vw27")
-metadata/_edit_lock_ = true
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Ground" unique_id=185210825]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D" unique_id=2020197302]
-shape = SubResource("ConcavePolygonShape3D_h2yge")
-
-[node name="tree-high" parent="." unique_id=344840795 instance=ExtResource("5_lquwl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.253069, 0.00012207031, -0.77905273)
-
-[node name="VaultObstacle" type="Node3D" parent="." unique_id=42020932]
-transform = Transform3D(-4.371138e-08, 0, 0.9999999, 0, 1, 0, -0.9999999, 0, -4.371138e-08, -0.5, 0, 3.5)
-
-[node name="CSGBox3D" type="CSGBox3D" parent="VaultObstacle" unique_id=1696334364]
-transform = Transform3D(0, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 0, -4.2617226, 0.24999999, 0.115240574)
-material_override = SubResource("StandardMaterial3D_kek77")
-use_collision = true
-collision_layer = 16
-size = Vector3(1, 0.5, 3)
-
-[node name="Area3D" type="Area3D" parent="VaultObstacle" unique_id=868473405]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-collision_layer = 2
-collision_mask = 8
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="VaultObstacle/Area3D" unique_id=1322469411]
-transform = Transform3D(-1.4210855e-14, 0, -0.99999976, 0, 1, 0, 0.99999976, 0, -1.4210855e-14, -4.2617216, 0, 3.559176)
-shape = SubResource("BoxShape3D_lquwl")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="VaultObstacle/Area3D" unique_id=1481332412]
-transform = Transform3D(-7.1054274e-15, 0, -0.9999997, 0, 1, 0, 0.9999997, 0, -7.1054274e-15, -4.261722, 0, -3.5460346)
-shape = SubResource("BoxShape3D_lquwl")
-
-[node name="CSGBox3D3" type="CSGBox3D" parent="VaultObstacle" unique_id=366398980]
-transform = Transform3D(-7.1054274e-15, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, -7.1054274e-15, -4.2617226, -0.47100002, 3.5568783)
-material_override = SubResource("StandardMaterial3D_efxa6")
-size = Vector3(0.85, 1, 3)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="VaultObstacle" unique_id=1867590290]
-transform = Transform3D(0, 0, -0.9999998, 0, 1, 0, 0.9999998, 0, 0, -4.261722, -0.47100002, -3.5505211)
-material_override = SubResource("StandardMaterial3D_efxa6")
-size = Vector3(0.85, 1, 3)
-
-[connection signal="body_entered" from="VaultObstacle/Area3D" to="Player" method="_on_area_3d_body_entered"]
-[connection signal="body_exited" from="VaultObstacle/Area3D" to="Player" method="_on_area_3d_body_exited"]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=151374314]
+stream = ExtResource("5_lquwl")
+autoplay = true
