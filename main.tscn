@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://ejfaj5pm3sua" path="res://Player/ninja.tscn" id="1_ig7tw"]
 [ext_resource type="Script" uid="uid://cnjhx4skg6s7d" path="res://Player/camera_follow.gd" id="2_0xm2m"]
-[ext_resource type="PackedScene" uid="uid://6m0hn0br5405" path="res://arena.tscn" id="4_1bvp3"]
 [ext_resource type="Material" uid="uid://d3xqjeyd4sryl" path="res://assets/materials/water.tres" id="4_lquwl"]
 [ext_resource type="AudioStream" uid="uid://b1lp0cpykwkma" path="res://assets/Sounds/ambient.mp3" id="5_lquwl"]
 
@@ -49,9 +48,6 @@ script = ExtResource("2_0xm2m")
 
 [node name="Player" parent="." unique_id=233157932 instance=ExtResource("1_ig7tw")]
 transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0.89, -11.445)
-
-[node name="Arena" parent="." unique_id=509106087 instance=ExtResource("4_1bvp3")]
-transform = Transform3D(1.6401477, 0, -2.5119545, 0, 3, 0, 2.5119545, 0, 1.6401477, 0, 0.85, -4.886)
 
 [node name="water" type="MeshInstance3D" parent="." unique_id=938502437]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.809, 0)

@@ -333,7 +333,7 @@ states/Sword_sword_slash_3/position = Vector2(604, 790)
 states/Sword_sword_slash_4/node = SubResource("AnimationNodeAnimation_q1lxh")
 states/Sword_sword_slash_4/position = Vector2(871, 551)
 transitions = ["Sword_sword_slash_1", "End", SubResource("AnimationNodeStateMachineTransition_pcu4d"), "Sword_sword_slash_3", "End", SubResource("AnimationNodeStateMachineTransition_t6exf"), "Start", "Sword_sword_slash_1", SubResource("AnimationNodeStateMachineTransition_yyhs2"), "Sword_sword_slash_1", "Sword_sword_slash_3", SubResource("AnimationNodeStateMachineTransition_66lkx"), "Sword_sword_slash_2", "End", SubResource("AnimationNodeStateMachineTransition_t3i7j"), "Sword_sword_slash_4", "End", SubResource("AnimationNodeStateMachineTransition_6qxd4"), "Sword_sword_slash_3", "Sword_sword_slash_4", SubResource("AnimationNodeStateMachineTransition_w7c48"), "Sword_sword_slash_4", "Sword_sword_slash_2", SubResource("AnimationNodeStateMachineTransition_56a10")]
-graph_offset = Vector2(52, 104)
+graph_offset = Vector2(77, 320)
 
 [sub_resource type="AnimationNodeOneShot" id="AnimationNodeOneShot_nitqc"]
 fadeout_time = 0.1
@@ -351,6 +351,7 @@ fadein_time = 0.1
 fadeout_time = 0.2
 
 [sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_9k2l3"]
+graph_offset = Vector2(142.60834, 557.015)
 nodes/output/position = Vector2(1340, 200)
 nodes/StateMachine/node = SubResource("AnimationNodeStateMachine_s7tgv")
 nodes/StateMachine/position = Vector2(-360, 200)
